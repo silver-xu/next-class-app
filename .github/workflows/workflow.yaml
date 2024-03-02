@@ -1,0 +1,15 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: vitr/actions-build-and-upload-to-ecs@master
+              with:
+                  access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+                  repo: next-class-app
+                  region: ap-southeast-2
+                  tags: latest,true
