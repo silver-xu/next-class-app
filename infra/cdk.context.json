@@ -1,0 +1,15 @@
+{
+  "availability-zones:account=094194403041:region=ap-southeast-2": [
+    "ap-southeast-2a",
+    "ap-southeast-2b",
+    "ap-southeast-2c"
+  ],
+  "hosted-zone:account=094194403041:domainName=nextclass.au:region=ap-southeast-2": {
+    "Id": "/hostedzone/Z00156921KD5B19VFBT0V",
+    "Name": "nextclass.au."
+  },
+  "hosted-zone:account=094194403041:domainName=dev.nextclass.au:region=ap-southeast-2": {
+    "Id": "/hostedzone/Z045977737ULY4OKK5D3X",
+    "Name": "dev.nextclass.au."
+  }
+}
