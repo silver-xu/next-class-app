@@ -47,9 +47,9 @@ export class NextClassAppCdkStack extends cdk.Stack {
             this,
             `${appName}-service`,
             {
-                cluster, // Required
-                cpu: 256, // Default is 256
-                desiredCount: 1, // Default is 1
+                cluster,
+                cpu: 256,
+                desiredCount: 1,
                 taskImageOptions: {
                     image: ecs.ContainerImage.fromEcrRepository(
                         repository,
@@ -57,8 +57,8 @@ export class NextClassAppCdkStack extends cdk.Stack {
                     ),
                     containerPort: 3000,
                 },
-                memoryLimitMiB: 512, // Default is 512
-                publicLoadBalancer: true, // Default is false,
+                memoryLimitMiB: 512,
+                publicLoadBalancer: true,
                 domainName,
                 listenerPort: 443,
                 certificate,
