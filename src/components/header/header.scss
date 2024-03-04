@@ -1,0 +1,26 @@
+.site-header {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.right-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+	.right-header__link {
+        padding: 10px 15px;
+		>a {
+			color: #2d2d2d;
+		}
+	}
+
+    .right-header__button{
+        margin: 0 0 0 15px;
+        a {
+            color: #ffffff;
+        }
+    }
+}
