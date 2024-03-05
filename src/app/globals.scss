@@ -638,3 +638,9 @@ textarea {
 		outline: none;
 	}
 }
+
+.row {
+	display:flex;
+	flex-direction: row;
+	flex-wrap:wrap;	
+}

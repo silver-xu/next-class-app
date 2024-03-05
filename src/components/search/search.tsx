@@ -17,7 +17,7 @@ export const Search = () => (
                             id="s"
                             type="text"
                             name="s"
-                            placeholder="A class on your mind"
+                            placeholder="What your kids like"
                             autoComplete="off"
                         />
                     </div>

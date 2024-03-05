@@ -1,23 +1,21 @@
 .site-banner {    
-	height: 500px;
-	background-color: #F5F5F5;
-
-
-
+	height: 600px;
+	background-color: #000000;
+    background-image: url(images/violin.jpg);
+    background-size: 1300px;
+    background-repeat: no-repeat;
+    background-position-x:right;    
 	.container {
 		position: relative;
 		height: 100%;
         width:1200px;
 		z-index: 7;
-        background-image: url(bg/jump-rope.png);
-        background-size: 500px;
-        background-repeat: no-repeat;
-        background-position: right 50px center;
+
 	}
     .site-banner__title{
         font-size:52px;
         font-weight:500;
-        color: #2d2d2d;
+        color: #efefef;
         margin-bottom:32px;
     }
 	.site-banner__content {
@@ -36,7 +34,7 @@
 
 .site-banner__search {
 	position: relative;
-	max-width: 600px;
+	max-width: 650px;
 	width: 100%;
 	margin-bottom: 20px;
 	.site-banner__search__input {
@@ -45,6 +43,7 @@
 		padding: 0;
 		line-height: 60px;
 		border-radius: 30px;
+        width:100%;        
 		-webkit-backface-visibility: hidden;
 		-moz-backface-visibility: hidden;
 		-webkit-transform: translate3d(0, 0, 0);
@@ -112,6 +111,7 @@
 		padding: 0 20px;
         width:100%;
 		position: relative;
+        box-sizing:border-box;
 		label {
 			color: #2d2d2d;
 			font-family: "Jost";
@@ -166,8 +166,8 @@
 			flex: 0 0 50%;
 			max-width: 50%;
 			.site-banner__search__input {
-				padding: 0 45px 0 0;
-				padding: 0 45px 0 0;
+				padding: 0 45px 0 5px;
+				padding: 0 45px 0 5px;
 			}
 		}
 	}
@@ -271,14 +271,14 @@
 		padding-left: 20px;
 		opacity: 0.8;
 		font-family: "Jost-Book";
-		color: #2d2d2d;
+		color: #cdcdcd;
 		margin-right: 1px;
 	}
 	a {
 		opacity: 1;
 		font-family: "Jost";
 		font-weight: 500;
-		color: #2d2d2d;
+		color: #cdcdcd;
 		position: relative;
 		margin-right: 8px;
 		transition: inherit;
@@ -299,7 +299,7 @@
 			right: 0;
 			bottom: 0;
 			height: 1px;
-			background-color: #2d2d2d;
+			background-color: #cdcdcd;
 		}
 	}
 }

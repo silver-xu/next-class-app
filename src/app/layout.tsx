@@ -21,6 +21,7 @@ export default function RootLayout({
                     type="text/css"
                     href="fonts/jost/stylesheet.css"
                 />
+                <link rel="icon" href="favicon.svg" />
             </body>
         </html>
     );
