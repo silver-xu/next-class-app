@@ -21,7 +21,7 @@ jobs:
               env:
                   ECR_REGISTRY: ${{ steps.login-pf-aws-ecr.outputs.registry }}
                   ECR_REPOSITORY: next-class-app
-                  IMAGE_TAG: ${GITHUB_SHA}
+                  IMAGE_TAG: ${{github.sha}}
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
                   docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -34,4 +34,4 @@ jobs:
                   cdk_args: "--require-approval never"
                   actions_comment: false
               env:
-                  IMAGE_TAG: ${GITHUB_SHA}
+                  IMAGE_TAG: ${{github.sha}}
