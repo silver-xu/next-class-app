@@ -16,6 +16,8 @@ const account = "094194403041";
 const region = "ap-southeast-2";
 const ecrArn = `arn:aws:ecr:${region}:${account}:repository/${appName}`;
 
+const imageTag = process.env.IMAGE_TAG;
+
 export class NextClassAppCdkStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
@@ -53,7 +55,7 @@ export class NextClassAppCdkStack extends cdk.Stack {
                 taskImageOptions: {
                     image: ecs.ContainerImage.fromEcrRepository(
                         repository,
-                        "latest"
+                        imageTag
                     ),
                     containerPort: 3000,
                 },
