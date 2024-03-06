@@ -4,9 +4,6 @@
 	border-top: 0;
 	background-color: #111111;
 	text-align: center;
-	.footer__top {
-		padding: 77px 0 110px;
-	}
 	h2 {
 		font-size: 48px;
 		color: #ffffff;
@@ -59,6 +56,8 @@
 	position: relative;
 	z-index: 1;
 	background-color: #ffffff;
+    border-top: 1px solid #eeeeee;
+
 	.footer__top__info {
 		.footer__top__info__logo {
 			img {
@@ -69,9 +68,6 @@
 			margin-bottom: 10px;
 		}
 	}
-}
-.footer {
-	border-top: 1px solid #eeeeee;
 }
 .footer-subscribe {
 	max-width: 300px;
@@ -123,7 +119,7 @@
 	padding: 32px 0;
 }
 .footer__top {
-	padding: 0 0 60px 0;
+	padding: 20px 0 40px 0;
 }
 .footer__top__info {
 	.footer__top__info__logo {
@@ -217,29 +213,36 @@
 			opacity: 0.7;
 		}
 	}
-	li.facebook{
-		a{
-			background-color: #3b5998;
-		}
-	}
-	li.twitter{
-		a{
-			background-color: #1da1f2;
-		}
-	}
-	li.youtube{
-		a{
-			background-color: #cd201f;
-		}
-	}
-	li.instagram{
-		a{
-			background-color: #262626;
-		}
-	}
 }
 .footer__bottom__copyright {
 	text-align: center;
 	font-size: 14px;
 	color: #5d5d5d;
+}
+
+@media screen and (min-width: 768px) and (max-width:1023px) {
+    
+}
+
+@media screen and (max-width: 767px) {
+    .footer {
+        .container {
+            padding: 15px;
+            .footer__top {
+                padding: 0 0 20px 0;
+
+                .footer__top__nav {
+                    width: 100%;
+            
+                    h3 {
+                        margin:15px 0 10px 0;
+                    }
+                }
+            }
+            
+            .footer__bottom {
+                padding:15px 0;
+            }
+        }
+    }
 }
