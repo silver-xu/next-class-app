@@ -28,7 +28,7 @@ export const Header = () => {
                         <div>Sign in</div>
                         <div>Signup</div>
                     </li>
-                    <li>Provider Sign in</li>
+                    <li>Provider Portal</li>
                     <li>Contact Us</li>
                 </ul>
             </div>
