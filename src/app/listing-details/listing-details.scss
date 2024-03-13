@@ -1,0 +1,202 @@
+.page-title {
+	position: relative;
+	height: 400px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(images/bg-shop.png);
+}
+
+.container {
+	max-width:1200px;
+	position: relative;
+	height: 100%;
+	padding-left: 25px;
+	padding-right: 25px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.page-title--small {
+	height: 150px;
+	background-color: #23d3d3;
+	margin-bottom: 40px;
+	background-repeat: no-repeat;
+	background-position: center right;
+	background-size: contain;
+	.container {
+
+	}
+	.page-title__content {
+		text-align: left;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+
+		p {
+			font-size: 18px;
+			font-weight: 400;
+			font-style: inherit;
+		}
+		h1 {
+			color: #ffffff;
+			font-size: 40px;
+			margin-bottom: 5px;
+			font-weight:500;
+		}
+		p {
+			color: #ffffff;
+			font-size: 16px;
+			font-style: normal;
+		}
+	}
+}
+
+.single-02 {
+	.place__left {
+		padding-right: 30px;
+	}
+	.breadcrumbs {
+        margin-bottom: 5px;
+
+        li {
+            list-style: none;
+            display: inline-block;
+            margin-right: 8px;
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+                color: #8d8d8d;
+                font-size: 14px;
+                text-transform: uppercase;
+                position: relative;
+                line-height: 19px;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 1px;
+                    background-color: #23d3d3;
+                }
+                &:hover {
+                    color: #23d3d3;
+                }
+            }
+        }        
+
+		a {
+			color: #8d8d8d;
+			font-size: 14px;
+			font-family: "Jost-Book";
+			font-weight: normal;
+		}
+	}
+	.place__box--npd {
+		border-bottom: 0;
+		h1 {
+			color: #2d2d2d;
+            font-size: 36px;
+            font-family: "Jost-Book";
+            margin-bottom: 6px;
+            font-weight: 400;
+		}
+	}
+	.reviews_count {
+		color: #5d5d5d;
+	}
+	.place__currency {
+		color: #5d5d5d;
+	}
+	.place__category {
+		a {
+			color: #5d5d5d;
+			font-size: 15px;
+		}
+	}
+	.place__meta {
+		>div {
+			&:after {
+				background-color: #dddddd;
+			}
+		}
+	}
+}
+
+.col-lg-8 {
+	width: 66.6%;
+}
+
+.col-lg-4 {
+	width: 33.3%
+}
+
+.sidebar.fixed {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 40px;
+}
+
+.single .sidebar {
+    margin-top: 30px;
+    padding-bottom: 10px;
+}
+.sidebar--shop {
+    padding-left: 30px;
+}
+
+.sidebar--border .widget {
+    padding: 20px;
+    border: 1px solid #eeeeee;
+    margin-bottom: 30px;
+}
+
+.sidebar--border .widget .product-small:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.sidebar--border .widget > h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.sidebar--border .widget--ads {
+    border: 0;
+    padding: 0;
+}
+
+
+.widget-shadow {
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.widget-shadow h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.widget-shadow .btn {
+    display: block;
+}
+
+.widget-shadow .note {
+    font-size: 13px;
+    color: #5d5d5d;
+    margin-top: 10px;
+}
+@media screen and (min-width: 768px) and (max-width:1023px) {
+    .container {
+		max-width:960px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+
+}
