@@ -8,6 +8,9 @@
 }
 
 .container {
+	>.row {
+		flex-direction: row-reverse;
+	}
 	max-width:1200px;
 	position: relative;
 	height: 100%;
@@ -208,6 +211,39 @@
     padding: 0;
 }
 
+.sidebar {
+	.row{
+		padding: 0 20px;
+		margin-bottom:10px;
+	}
+
+	.field-left {
+		box-sizing:border-box;
+		width:25%;
+		padding:10px 0;
+		text-align: left;
+	}
+
+	.field-right {
+		width: 75%;
+		padding: 0 0 0 15px;
+		box-sizing:border-box;
+		text-align: left;
+	}
+
+	.number-of-bookings {
+		width:50px;
+	}
+	
+	.booking-date{
+		height: 40px;
+
+		input {
+			margin:0;
+		}
+	}
+}
+
 
 .widget-shadow {
     text-align: center;
@@ -230,12 +266,28 @@
     color: #5d5d5d;
     margin-top: 10px;
 }
-@media screen and (min-width: 768px) and (max-width:1023px) {
+@media screen and (min-width: 768px) {
     .container {
-		max-width:960px;
+		max-width:1200px;
 	}
 }
 
 @media screen and (max-width: 767px) {
+	.place{
+		>.container {
+			>.row {
+				display:block;
+				>.col-lg-8{
+					width: 100%;
+				}
+				>.col-lg-4{
+					width: 100%;
 
+					.sidebar--shop{
+						padding-left: 0;
+					}
+				}
+			}
+		}
+	}
 }

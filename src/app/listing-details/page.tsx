@@ -2,6 +2,7 @@ import { Header } from "@/components/header";
 
 import { Map } from "../../components/map";
 
+import { DatePicker, InputNumber, Select } from "antd";
 import { Footer } from "@/components/footer";
 import "./listing-details.scss";
 
@@ -23,6 +24,68 @@ export default function Page() {
                 <div className="place">
                     <div className="container">
                         <div className="row">
+                            <div className="col-lg-4">
+                                <div className="sidebar sidebar--shop sidebar--border fixed">
+                                    <div className="widget widget-shadow widget-reservation">
+                                        <h3>Book a free trial</h3>
+                                        <div className="form-underline">
+                                            <div className="row">
+                                                <div className="field-left">
+                                                    Date
+                                                </div>
+                                                <div className="field-right">
+                                                    <DatePicker
+                                                        placeholder=""
+                                                        className="booking-date"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="field-left">
+                                                    Time
+                                                </div>
+                                                <div className="field-right">
+                                                    <Select
+                                                        mode="tags"
+                                                        style={{
+                                                            width: "100%",
+                                                        }}
+                                                        placeholder="Select preferred times"
+                                                        options={[
+                                                            {
+                                                                value: "12:30pm",
+                                                                label: "12:30pm",
+                                                            },
+                                                            {
+                                                                value: "01:30pm",
+                                                                label: "01:30pm",
+                                                            },
+                                                        ]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="field-left">
+                                                    Attendees
+                                                </div>
+                                                <div className="field-right">
+                                                    <InputNumber
+                                                        className="number-of-bookings"
+                                                        min={1}
+                                                        max={10}
+                                                        defaultValue={3}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <input
+                                                type="submit"
+                                                name="submit"
+                                                value="Request"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="col-lg-8">
                                 <div className="place__left">
                                     <div className="place__box place__box-overview">
@@ -35,10 +98,9 @@ export default function Page() {
                                                 intermediate to advanced. We
                                                 pride ourselves on providing
                                                 classes that are welcoming,
-                                                engaging, inclusive and
-                                                fun!​Here is what you can expect
-                                                when you attend one of our
-                                                classes:
+                                                engaging, inclusive and fun!
+                                                Here is what you can expect when
+                                                you attend one of our classes:
                                             </p>
                                             <p>
                                                 <b>BEGINNER</b>: Our beginner
@@ -183,20 +245,6 @@ export default function Page() {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="sidebar sidebar--shop sidebar--border fixed">
-                                    <div className="widget widget-shadow widget-reservation">
-                                        <h3>Book a free trial</h3>
-                                        <div className="form-underline">
-                                            <input
-                                                type="submit"
-                                                name="submit"
-                                                value="Request"
-                                            />
-                                        </div>
                                     </div>
                                 </div>
                             </div>
