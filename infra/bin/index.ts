@@ -4,7 +4,6 @@ import {
 } from "aws-cdk-lib/aws-certificatemanager";
 import * as ecs_patterns from "aws-cdk-lib/aws-ecs-patterns";
 import { HostedZone } from "aws-cdk-lib/aws-route53";
-import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as ecs from "aws-cdk-lib/aws-ecs";
 import * as ecr from "aws-cdk-lib/aws-ecr";
 import { Construct } from "constructs";
