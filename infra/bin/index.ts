@@ -66,6 +66,7 @@ export class NextClassAppCdkStack extends cdk.Stack {
                     },
                 ],
                 memoryLimitMiB: 512,
+                assignPublicIp: true,
                 publicLoadBalancer: true,
                 domainName,
                 listenerPort: 443,
