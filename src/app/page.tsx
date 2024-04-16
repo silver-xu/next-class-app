@@ -1,95 +1,111 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Button, ConfigProvider, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+
+import theme from "../theme/themeConfig";
+import styles from "./page.module.scss";
+
+export const metadata = {
+    title: "nextclass. || The interest of lifetime - Home",
+    description: "nextclass. || The interest of lifetime - Home",
+};
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    return (
+        <ConfigProvider theme={theme}>
+            <div>
+                <div className={styles.splash}>
+                    <div className={styles.header}>
+                        <div className={styles.logo}>nextclass.</div>
+                    </div>
+                    <h1>Find free trial classes.</h1>
+                    <h2>The interest of lifetime.</h2>
+                    <div className={styles.search}>
+                        <div className={styles.field}>
+                            <Input
+                                placeholder="Dancing, arts or skating"
+                                variant="borderless"
+                            />
+                        </div>
+                        <div className={styles.btn}>
+                            <Button
+                                type="primary"
+                                shape="circle"
+                                icon={<SearchOutlined />}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.content}>
+                    <h2 className={styles.topHeading}>Recommended</h2>
+                    <h3>4 carefully selected classes by our editors</h3>
+                    <ul className={styles.listings}>
+                        <li>
+                            <img src="thumbnails/piano.jpg" />
+                            <h4>Piano class - Music Studio</h4>
+                            <p>Boxhill, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/skating.jpg" />
+                            <h4>Skating class - 66 Skating</h4>
+                            <p>Balwyn, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/gym.jpg" />
+                            <h4>Gym class - Gym Girls</h4>
+                            <p>Melbourne City, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/chess.jpg" />
+                            <h4>Chess class - Brain Power</h4>
+                            <p>Burwood, VIC</p>
+                        </li>
+                    </ul>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+                    <h2>Popular</h2>
+                    <ul className={styles.listings}>
+                        <li>
+                            <img src="thumbnails/piano.jpg" />
+                            <h4>Piano class - Music Studio</h4>
+                            <p>Boxhill, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/skating.jpg" />
+                            <h4>Skating class - 66 Skating</h4>
+                            <p>Balwyn, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/gym.jpg" />
+                            <h4>Gym class - Gym Girls</h4>
+                            <p>Melbourne City, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/chess.jpg" />
+                            <h4>Chess class - Brain Power</h4>
+                            <p>Burwood, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/piano.jpg" />
+                            <h4>Piano class - Music Studio</h4>
+                            <p>Boxhill, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/skating.jpg" />
+                            <h4>Skating class - 66 Skating</h4>
+                            <p>Balwyn, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/gym.jpg" />
+                            <h4>Gym class - Gym Girls</h4>
+                            <p>Melbourne City, VIC</p>
+                        </li>
+                        <li>
+                            <img src="thumbnails/chess.jpg" />
+                            <h4>Chess class - Brain Power</h4>
+                            <p>Burwood, VIC</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ConfigProvider>
+    );
 }

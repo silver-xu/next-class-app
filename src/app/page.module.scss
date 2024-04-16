@@ -1,0 +1,111 @@
+
+
+.header {
+    width:100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    
+    .logo {
+        font-family: "Roboto", sans-serif;
+        font-weight: 100;
+        font-style: normal;
+        font-size: 32px;
+        color: white;
+        padding: 20px 30px;
+    }
+}
+
+.splash{
+    width: 100%;
+    height: 550px;
+    background-image:url(../../public/splash.jpg);
+    background-size:100% auto;
+    background-position:top center;
+
+    h1 {
+        color: #ffffff;
+        font-size: 40px;
+        font-weight:300;
+        text-align:center;
+        margin: 150px 0 0 0;
+    }
+
+    h2 {
+        color: #ffffff;
+        font-family: "Jost", sans-serif;
+        font-size: 14px;
+        font-weight:300;
+        text-align:center;        
+    }
+
+    .search{
+        margin: 80px auto;
+        width: 360px;
+        height: 33px;
+        background: #ffffff;
+        border-radius: 60px;
+        padding: 5px 8px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.content {
+    max-width:1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    h2{
+        color: #051036;
+        font-size:30px;
+        font-weight:600px;        
+    }
+
+    .topHeading {
+        margin: 60px 0 5px 0;
+    }
+
+    h3{
+        color: #697488;
+        font-size:16px;
+        font-weight:400;
+        margin: 0;
+    }
+
+    .listings{
+        margin: 15px 0;
+        display:flex;
+        flex-wrap:wrap;
+
+        li {
+            width: 25%;
+            box-sizing:border-box;
+            padding: 0 15px 0 0;
+            margin: 0 0 35px 0;
+
+            img {
+                width: 100%;
+                display: block;
+                border-radius: 15px;
+            }
+
+            h4 {
+                font-size:17px;
+                font-weight: 500;
+                color: #051036;
+                margin: 10px 0;
+            }
+
+            p{
+                color: #697488;
+                font-size:12px;
+                margin: 5px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .splash {
+        background-size: 1200px auto;
+    }
+}
