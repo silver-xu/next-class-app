@@ -5,6 +5,7 @@ import { ConfigProvider } from "antd";
 import "./layout.css";
 
 import theme from "@/theme/themeConfig";
+import Head from "next/head";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -15,12 +16,12 @@ export default function Layout({
 }>) {
     return (
         <html lang="en">
-            <head>
+            <Head>
                 <meta
                     name="viewport"
-                    content="width=device-width, user-scalable=no"
+                    content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
                 />
-            </head>
+            </Head>
             <body className={jost.className}>
                 <AntdRegistry>
                     <ConfigProvider theme={theme}>{children}</ConfigProvider>
