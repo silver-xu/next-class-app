@@ -61,14 +61,14 @@
     }
 
     .listings {
-        margin: 15px 0;
+        margin: 15px 0 0 -15px;
         display: flex;
         flex-wrap: wrap;
 
         li {
             width: 25%;
             box-sizing: border-box;
-            padding: 0 15px 0 0;
+            padding: 0 0 0 15px;
             margin: 0 0 35px 0;
 
             img {

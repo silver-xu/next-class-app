@@ -15,6 +15,12 @@ export default function Layout({
 }>) {
     return (
         <html lang="en">
+            <head>
+                <meta
+                    name="viewport"
+                    content="width=device-width, user-scalable=no"
+                />
+            </head>
             <body className={jost.className}>
                 <AntdRegistry>
                     <ConfigProvider theme={theme}>{children}</ConfigProvider>
