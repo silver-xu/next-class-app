@@ -95,7 +95,7 @@
                 margin: 10px 0;
             }
 
-            p{
+            p {
                 color: #697488;
                 font-size:12px;
                 margin: 5px 0;
@@ -104,6 +104,20 @@
     }
 }
 
+// Landscape Phones
+@media only screen and (max-width: 767px) {
+    .content {
+        .listings{
+            li {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+    }
+}
+
+// Ultra Wide Screens
 @media (max-width: 1200px) {
     .splash {
         background-size: 1200px auto;
