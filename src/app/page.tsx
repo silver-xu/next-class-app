@@ -1,16 +1,10 @@
-import {
-    Button,
-    ConfigProvider,
-    Dropdown,
-    Input,
-    MenuProps,
-    Space,
-} from "antd";
-import { SearchOutlined, DownOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
+import { Button, Input } from "antd";
 
-import { Header } from "../components/header";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import Layout from "./layout";
 
-import theme from "../theme/themeConfig";
 import styles from "./page.module.scss";
 
 export const metadata = {
@@ -18,25 +12,14 @@ export const metadata = {
     description: "nextclass. || The interest of lifetime - Home",
 };
 
-const items: MenuProps["items"] = [
-    {
-        label: "US English",
-        key: "0",
-    },
-    {
-        label: "中文",
-        key: "1",
-    },
-];
-
 export default function Home() {
     return (
-        <ConfigProvider theme={theme}>
+        <Layout>
             <div>
                 <div className={styles.splash}>
-                    <Header />
-                    <h1>Find free trial classes.</h1>
-                    <h2>The interest of lifetime.</h2>
+                    <Header lightTheme={false} />
+                    <h1>Trial different classes</h1>
+                    <h2>Find interest of lifetime</h2>
                     <div className={styles.search}>
                         <Input
                             placeholder="Dancing, arts or skating"
@@ -119,38 +102,8 @@ export default function Home() {
                         </li>
                     </ul>
                 </div>
-                <div className={styles.footer}>
-                    <p>
-                        © 2024 Powered by the educo pty ltd. All rights
-                        reserved.
-                    </p>
-                    <ul>
-                        <li>
-                            <a href="https://www.google.com">
-                                Privacy Statement
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.google.com">
-                                Terms and Conditions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.google.com">Contact Us</a>
-                        </li>
-                    </ul>
-                    <div className={styles.language}>
-                        <Dropdown menu={{ items }} trigger={["click"]}>
-                            <a>
-                                <Space>
-                                    Language: EN
-                                    <DownOutlined />
-                                </Space>
-                            </a>
-                        </Dropdown>
-                    </div>
-                </div>
+                <Footer />
             </div>
-        </ConfigProvider>
+        </Layout>
     );
 }

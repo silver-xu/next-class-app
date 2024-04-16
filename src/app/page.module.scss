@@ -1,16 +1,15 @@
-
-.splash{
+.splash {
     width: 100%;
     height: 550px;
-    background-image:url(../../public/splash.jpg);
-    background-size:100% auto;
-    background-position:top center;
+    background-image: url(../../public/splash.jpg);
+    background-size: 100% auto;
+    background-position: top center;
 
     h1 {
         color: #ffffff;
         font-size: 40px;
-        font-weight:300;
-        text-align:center;
+        font-weight: 300;
+        text-align: center;
         margin: 150px 0 0 0;
     }
 
@@ -18,14 +17,14 @@
         color: #ffffff;
         font-family: "Jost", sans-serif;
         font-size: 14px;
-        font-weight:300;
-        text-align:center;        
+        font-weight: 300;
+        text-align: center;
     }
 
-    .search{
+    .search {
         margin: 80px auto;
         width: 360px;
-        max-width:70%;
+        max-width: 70%;
         height: 33px;
         background: #ffffff;
         border-radius: 60px;
@@ -33,43 +32,42 @@
         display: flex;
         justify-content: space-between;
 
-        
         input {
             width: calc(100% - 36px);
-        }        
+        }
     }
 }
 
 .content {
-    max-width:1200px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    
-    h2{
+
+    h2 {
         color: #051036;
-        font-size:30px;
-        font-weight:600px;        
+        font-size: 30px;
+        font-weight: 600px;
     }
 
     .topHeading {
         margin: 60px 0 5px 0;
     }
 
-    h3{
+    h3 {
         color: #697488;
-        font-size:16px;
-        font-weight:400;
+        font-size: 16px;
+        font-weight: 400;
         margin: 0;
     }
 
-    .listings{
+    .listings {
         margin: 15px 0;
-        display:flex;
-        flex-wrap:wrap;
+        display: flex;
+        flex-wrap: wrap;
 
         li {
             width: 25%;
-            box-sizing:border-box;
+            box-sizing: border-box;
             padding: 0 15px 0 0;
             margin: 0 0 35px 0;
 
@@ -80,7 +78,7 @@
             }
 
             h4 {
-                font-size:17px;
+                font-size: 17px;
                 font-weight: 500;
                 color: #051036;
                 margin: 10px 0;
@@ -88,85 +86,21 @@
 
             p {
                 color: #697488;
-                font-size:12px;
+                font-size: 12px;
                 margin: 5px 0;
             }
         }
     }
 }
 
-.footer {
-    max-width: 1200px;
-    padding: 35px 20px;
-    margin: 0 auto;
-    border-top:1px solid #ddd;
-    display:flex;
-
-    p {
-        margin: 4px 55px 0 0;
-        padding: 0;
-        font-size: 12px;
-        color: #697488;
-        flex-grow: 1
-    }
-
-    ul {
-        display:flex;
-        flex-grow: 4;
-
-        li{
-            margin: 0 20px 0 0;
-
-            a {
-                font-size: 12px;
-                font-weight:600;
-            }
-
-            
-            a:link {
-                text-decoration: none;
-                color: #697488;        
-            }
-
-            a:visited {
-                text-decoration: none;
-                color: #697488;        
-            }
-        }
-    }
-
-    .language {
-        flex-grow: 1;
-        font-size: 12px;
-        padding-top:4px;
-        font-weight:600;
-    }
-}
-
 // Landscape Phones
 @media only screen and (max-width: 767px) {
     .content {
-        .listings{
+        .listings {
             li {
                 width: 100%;
                 padding: 0;
             }
-        }
-    }
-
-    .footer {
-        flex-direction: column;
-
-        p {
-            margin: 15px 0 0 0 ;
-        }
-
-        ul {
-            margin: 15px 0 0 0;
-        }
-
-        .language {
-            margin: 15px 0;
         }
     }
 }

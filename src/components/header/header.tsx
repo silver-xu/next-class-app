@@ -12,8 +12,13 @@ import {
 import styles from "./header.module.scss";
 import { useState } from "react";
 
-export const Header = () => {
+export interface HeaderProps {
+    lightTheme: boolean;
+}
+
+export const Header = (props: HeaderProps) => {
     const [showMenu, setShowMenu] = useState(false);
+    const { lightTheme: innerPage } = props;
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -22,6 +27,10 @@ export const Header = () => {
     const closeMenu = () => {
         setShowMenu(false);
     };
+
+    const headerClassNames = innerPage
+        ? `${styles.header} ${styles.light}`
+        : styles.header;
 
     const menu = showMenu ? (
         <div>
@@ -52,12 +61,12 @@ export const Header = () => {
                     </li>
                 </ul>
             </div>
-            <div className={styles.overlay}></div>
+            <div className={styles.overlay} onClick={closeMenu}></div>
         </div>
     ) : undefined;
 
     return (
-        <div className={styles.header}>
+        <div className={headerClassNames}>
             <div className={styles.logo}>nextclass.</div>
             <div className={styles.menu}>
                 <MenuOutlined

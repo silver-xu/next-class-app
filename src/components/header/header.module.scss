@@ -1,68 +1,67 @@
-
 .header {
-    width:100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    display:flex;
+    display: flex;
     justify-content: space-between;
 
     .logo {
-        font-family: "Roboto", sans-serif;
-        font-weight: 100;
+        font-family: var(--font-roboto);
+        font-weight: 300;
         font-style: normal;
         font-size: 32px;
         color: white;
-        padding: 20px 30px;
+        padding: 13px 30px;
     }
 
-    .menu{
+    .menu {
         margin: 25px 30px 0 0;
 
         .menuIcon {
             color: white;
-            width:20px;
-            height:20px;
+            width: 20px;
+            height: 20px;
         }
 
         .submenu {
-            background:#ffffff;
-            width:50%;
-            height:100%;
+            background: #ffffff;
+            width: 50%;
+            max-width: 360px;
+            height: 100%;
             position: fixed;
             top: 0px;
-            right:0px;
-            z-index:1000;
+            right: 0px;
+            z-index: 1000;
 
-            .menuHeader {                
+            .menuHeader {
                 padding: 15px;
                 border: 1px solid #dddddd;
-                display:flex;
+                display: flex;
                 justify-content: space-between;
-                color:#697488;
+                color: #697488;
 
-                h1{
-                    color:#697488;
-                    font-size:24px;
+                h1 {
+                    color: #697488;
+                    font-size: 24px;
                     font-family: "Roboto", sans-serif;
                     font-weight: 100;
-                    font-style: normal;                    
+                    font-style: normal;
                     margin: 3px 0 0 0;
-                    padding:0;
-                    text-align:left;
+                    padding: 0;
+                    text-align: left;
                 }
 
                 .close {
                     margin: 10px 10px;
                 }
-
             }
 
             ul {
-                margin-top:15px;
+                margin-top: 15px;
 
                 li {
-                    color:#697488;
+                    color: #697488;
                     padding: 20px 35px;
-                    font-size:14px;
+                    font-size: 14px;
                     display: flex;
                     justify-content: space-between;
 
@@ -72,21 +71,36 @@
                 }
 
                 li:hover {
-                    background:#efefef;
-                    cursor:pointer;
+                    background: #efefef;
+                    cursor: pointer;
                 }
             }
         }
 
         .overlay {
-            background:#000000;
+            background: #000000;
             position: fixed;
             top: 0px;
             left: 0px;
             width: 100%;
             height: 100%;
-            z-index:999;
+            z-index: 999;
             opacity: 0.2;
+        }
+    }
+}
+
+.light {
+    background: none;
+
+    .logo {
+        color: #051036;
+        padding: 13x 30px;
+    }
+
+    .menu {
+        .menuIcon {
+            color: #051036;
         }
     }
 }
