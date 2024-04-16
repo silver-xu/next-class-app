@@ -8,6 +8,8 @@ import {
 } from "antd";
 import { SearchOutlined, DownOutlined } from "@ant-design/icons";
 
+import { Header } from "../components/header";
+
 import theme from "../theme/themeConfig";
 import styles from "./page.module.scss";
 
@@ -18,19 +20,12 @@ export const metadata = {
 
 const items: MenuProps["items"] = [
     {
-        label: <a href="https://www.antgroup.com">1st menu item</a>,
+        label: "US English",
         key: "0",
     },
     {
-        label: <a href="https://www.aliyun.com">2nd menu item</a>,
+        label: "中文",
         key: "1",
-    },
-    {
-        type: "divider",
-    },
-    {
-        label: "3rd menu item",
-        key: "3",
     },
 ];
 
@@ -39,9 +34,7 @@ export default function Home() {
         <ConfigProvider theme={theme}>
             <div>
                 <div className={styles.splash}>
-                    <div className={styles.header}>
-                        <div className={styles.logo}>nextclass.</div>
-                    </div>
+                    <Header />
                     <h1>Find free trial classes.</h1>
                     <h2>The interest of lifetime.</h2>
                     <div className={styles.search}>
