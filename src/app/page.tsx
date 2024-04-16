@@ -102,7 +102,7 @@ export default function Home() {
                         </li>
                     </ul>
                 </div>
-                <Footer />
+                <Footer isSticky={false}/>
             </div>
         </Layout>
     );
