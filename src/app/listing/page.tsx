@@ -165,6 +165,14 @@ export default function Signin() {
                             &nbsp;70-88 Koonung Rd, Blackburn North, Victoria
                             3130
                         </p>
+                        <Map
+                            location={{
+                                lat: -37.80699564585417,
+                                lng: 145.15231782475576,
+                            }}
+                            businessName="66 Roller Skating"
+                            streetAddress="70-88 Koonung Rd, Blackburn North, Victoria 3130"
+                        />
                     </div>
                 </div>
                 <Footer isSticky={false} />

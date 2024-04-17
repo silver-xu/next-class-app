@@ -1,0 +1,13 @@
+.map {
+    height: "100vh";
+    width: "100%";
+}
+
+.marker {
+    cursor: pointer;
+
+    svg {
+        width: 36px;
+        height: 36px;
+    }
+}
