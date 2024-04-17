@@ -10,7 +10,8 @@ import Layout from "../layout";
 
 import styles from "./page.module.scss";
 
-export default function Signin() {
+export default function Listing() {
+    const mapBoxApiKey = process.env.MAPBOX_API_KEY;
     return (
         <Layout>
             <div>
@@ -167,11 +168,11 @@ export default function Signin() {
                         </p>
                         <Map
                             location={{
-                                lat: -37.80699564585417,
-                                lng: 145.15231782475576,
+                                latitude: -37.80699564585417,
+                                longitude: 145.15231782475576,
                             }}
-                            businessName="66 Roller Skating"
                             streetAddress="70-88 Koonung Rd, Blackburn North, Victoria 3130"
+                            mapBoxApiKey={mapBoxApiKey}
                         />
                     </div>
                 </div>
