@@ -1,0 +1,18 @@
+.content {
+    background: #ecf3f4;
+    position: fixed;
+    top: 76px;
+    left: 0px;
+    bottom: 88px;
+    right: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 767px) {
+    .content {
+        bottom: 188px;
+    }
+}

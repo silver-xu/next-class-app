@@ -18,8 +18,8 @@ export default function Home() {
             <div>
                 <div className={styles.splash}>
                     <Header lightTheme={false} />
-                    <h1>Trial different classes</h1>
-                    <h2>Find interest of lifetime</h2>
+                    <h1>Experience trial class</h1>
+                    <h2>Find talent of lifetime</h2>
                     <div className={styles.search}>
                         <Input
                             placeholder="Dancing, arts or skating"
@@ -102,7 +102,7 @@ export default function Home() {
                         </li>
                     </ul>
                 </div>
-                <Footer isSticky={false}/>
+                <Footer isSticky={false} />
             </div>
         </Layout>
     );

@@ -3,8 +3,9 @@ import { Button, Input } from "antd";
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import Layout from "../layout";
+import Layout from "../../layout";
 
+import userStyles from "../user.module.scss";
 import styles from "./page.module.scss";
 
 export const metadata = {
@@ -18,21 +19,24 @@ export default function Signin() {
             <div>
                 <Header lightTheme={true} />
                 <div className={styles.content}>
-                    <div className={styles.loginBox}>
+                    <div className={userStyles.loginBox}>
                         <h2>Welcome back</h2>
                         <p>Don't have an account yet? Sign up for free</p>
                         <Input
-                            className={styles.largeInput}
+                            className={userStyles.largeInput}
                             placeholder="Email"
                             prefix={<UserOutlined />}
                         />
                         <Input
-                            className={styles.largeInput}
+                            className={userStyles.largeInput}
                             placeholder="Password"
                             prefix={<LockOutlined />}
                         />
                         <p>Forgot your password?</p>
-                        <Button className={styles.largeButton} type="primary">
+                        <Button
+                            className={userStyles.largeButton}
+                            type="primary"
+                        >
                             Sign in
                         </Button>
                     </div>

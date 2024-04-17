@@ -5,12 +5,14 @@ import { ConfigProvider } from "antd";
 import "./layout.css";
 
 import theme from "@/theme/themeConfig";
+import { Viewport } from "next";
 
 const jost = Jost({ subsets: ["latin"] });
 
-export const metadata = {
-    viewport:
-        "width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0",
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
 };
 
 export default function Layout({
