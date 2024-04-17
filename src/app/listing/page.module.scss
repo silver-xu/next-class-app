@@ -2,4 +2,114 @@
     min-height: 600px;
     max-width: 1200px;
     margin: 0 auto;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 5px 0;
+    }
+
+    h2 {
+        font-size: 22px;
+        font-weight: 500;
+        margin: 25px 0 0 0;
+    }
+
+    p {
+        color: #697488;
+        font-size: 14px;
+        margin: 15px 0;
+    }
+
+    .gallery {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 0.52fr 0.24fr 0.24fr;
+        grid-template-rows: 1fr 1fr;
+        margin: 15px 0 0 0;
+
+        li {
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        li:first-child {
+            grid-row: span 2;
+        }
+    }
+
+    .button {
+        height: 48px;
+    }
+
+    .sticky {
+        position: sticky;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background: #ffffff;
+        padding: 15px 0;
+    }
+
+    .section {
+        border-top: 1px solid #ddd;
+        margin-top: 15px;
+    }
+
+    .section:last-child {
+        margin-bottom: 30px;
+    }
+
+    .sessionList {
+        li {
+            display: block;
+            padding: 8px 0 0 0;
+
+            span {
+                margin: 0 15px 0 0;
+                font-weight: 500;
+                color: #697488;
+            }
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 15px 0 0;
+
+                li {
+                    margin: 5px;
+                    font-size: 12px;
+                    font-weight: 300;
+                    color: #ffffff;
+                    background: #08979c;
+                    padding: 3px 8px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .content {
+        padding: 20px;
+        box-sizing: border-box;
+
+        .gallery {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 5px -10px 0 0;
+
+            li {
+                margin: 10px 10px 0 0;
+            }
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
 }
