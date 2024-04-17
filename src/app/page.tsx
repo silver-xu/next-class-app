@@ -17,7 +17,7 @@ export default function Home() {
         <Layout>
             <div>
                 <div className={styles.splash}>
-                    <Header lightTheme={false} />
+                    <Header theme="transparent" />
                     <h1>Experience trial class</h1>
                     <h2>Find talent of lifetime</h2>
                     <div className={styles.search}>

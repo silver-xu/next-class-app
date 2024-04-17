@@ -13,12 +13,20 @@ import styles from "./header.module.scss";
 import { useState } from "react";
 
 export interface HeaderProps {
-    lightTheme: boolean;
+    theme: HeaderTheme;
 }
+
+export type HeaderTheme = "light" | "dark" | "transparent";
 
 export const Header = (props: HeaderProps) => {
     const [showMenu, setShowMenu] = useState(false);
-    const { lightTheme: innerPage } = props;
+    const { theme } = props;
+
+    const headerClassNames = {
+        light: `${styles.header} ${styles.light}`,
+        dark: `${styles.header} ${styles.dark}`,
+        transparent: styles.header,
+    };
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -27,10 +35,6 @@ export const Header = (props: HeaderProps) => {
     const closeMenu = () => {
         setShowMenu(false);
     };
-
-    const headerClassNames = innerPage
-        ? `${styles.header} ${styles.light}`
-        : styles.header;
 
     const menu = showMenu ? (
         <div>
@@ -66,7 +70,7 @@ export const Header = (props: HeaderProps) => {
     ) : undefined;
 
     return (
-        <div className={headerClassNames}>
+        <div className={headerClassNames[theme]}>
             <div className={styles.logo}>nextclass.</div>
             <div className={styles.menu}>
                 <MenuOutlined

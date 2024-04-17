@@ -17,7 +17,7 @@ export default function SignUp() {
     return (
         <Layout>
             <div>
-                <Header lightTheme={true} />
+                <Header theme="light" />
                 <div className={styles.content}>
                     <div className={userStyles.loginBox}>
                         <h2>Welcome to Nextclass.</h2>

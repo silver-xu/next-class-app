@@ -17,7 +17,7 @@ export default function Signin() {
     return (
         <Layout>
             <div>
-                <Header lightTheme={true} />
+                <Header theme="light" />
                 <div className={styles.content}>
                     <div className={userStyles.loginBox}>
                         <h2>Welcome back</h2>
