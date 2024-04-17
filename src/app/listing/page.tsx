@@ -1,12 +1,16 @@
 import { EnvironmentOutlined } from "@ant-design/icons";
+import dynamic from "next/dynamic";
 import { Button } from "antd";
 
 import { Breadcrumb } from "@/components/breadcrumb";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { Map } from "@/components/map";
-
 import Layout from "../layout";
+
+const Map = dynamic(
+    () => import("../../components/map").then((module) => module.Map),
+    { ssr: false }
+);
 
 import styles from "./page.module.scss";
 
