@@ -13,6 +13,7 @@ const Map = dynamic(
     { ssr: false }
 );
 
+import { SessionList } from "@/components/session-list";
 import styles from "./page.module.scss";
 
 export default function Listing() {
@@ -36,9 +37,7 @@ export default function Listing() {
                             &nbsp;Black Burn North, Victoria
                         </p>
                         <Button className={styles.button} type="primary">
-                            <Link href="#AVAILABLE_SESSIONS">
-                                Request free trial
-                            </Link>
+                            <Link href="/listing/book">Book free trial</Link>
                         </Button>
                     </div>
                     <ul className={styles.gallery}>
@@ -59,73 +58,8 @@ export default function Listing() {
                         </li>
                     </ul>
                     <div className={styles.section}>
-                        <a className={styles.booking} id="AVAILABLE_SESSIONS" />
-                        <h2>Please click to book a session</h2>
-                        <ul className={styles.sessionList}>
-                            <li>
-                                <span>Monday</span>
-                                <ul>
-                                    <li>15:30 - 16:30</li>
-                                    <li>16:30 - 17:30</li>
-                                    <li>17:30 - 18:30</li>
-                                    <li>18:30 - 19:30</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Tuesday</span>
-                                <ul>
-                                    <li>15:30 - 16:30</li>
-                                    <li>16:30 - 17:30</li>
-                                    <li>17:30 - 18:30</li>
-                                    <li>18:30 - 19:30</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Wednesday</span>
-                                <ul>
-                                    <li>15:30 - 16:30</li>
-                                    <li>16:30 - 17:30</li>
-                                    <li>17:30 - 18:30</li>
-                                    <li>18:30 - 19:30</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Thursday</span>
-                                <ul>
-                                    <li>15:30 - 16:30</li>
-                                    <li>16:30 - 17:30</li>
-                                    <li>17:30 - 18:30</li>
-                                    <li>18:30 - 19:30</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Friday</span>
-                                <ul>
-                                    <li>15:30 - 16:30</li>
-                                    <li>16:30 - 17:30</li>
-                                    <li>17:30 - 18:30</li>
-                                    <li>18:30 - 19:30</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Saturday</span>
-                                <ul>
-                                    <li>15:30 - 16:30</li>
-                                    <li>16:30 - 17:30</li>
-                                    <li>17:30 - 18:30</li>
-                                    <li>18:30 - 19:30</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Sunday</span>
-                                <ul>
-                                    <li>15:30 - 16:30</li>
-                                    <li>16:30 - 17:30</li>
-                                    <li>17:30 - 18:30</li>
-                                    <li>18:30 - 19:30</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <h2>Available Sessions</h2>
+                        <SessionList />
                     </div>
                     <div className={styles.section}>
                         <h2>Overview</h2>

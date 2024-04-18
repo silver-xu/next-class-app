@@ -62,39 +62,6 @@
     .section:last-child {
         margin-bottom: 30px;
     }
-
-    .booking {
-        scroll-margin-top: 9em;
-    }
-
-    .sessionList {
-        li {
-            display: block;
-            padding: 8px 0 0 0;
-
-            span {
-                margin: 0 15px 0 0;
-                font-weight: 500;
-                color: #697488;
-            }
-            ul {
-                display: flex;
-                flex-wrap: wrap;
-                margin: 0 15px 0 0;
-
-                li {
-                    margin: 5px;
-                    font-size: 12px;
-                    font-weight: 300;
-                    color: #ffffff;
-                    background: #08979c;
-                    padding: 3px 8px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                }
-            }
-        }
-    }
 }
 
 @media only screen and (max-width: 767px) {

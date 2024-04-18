@@ -1,0 +1,40 @@
+.contentWrapper {
+    background: #ddd;
+    padding: 15px;
+
+    .wizardWrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 25px;
+        box-sizing: border-box;
+        border-radius: 10px;
+
+        h2 {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        p {
+            color: #697488;
+            font-size: 12px;
+            margin: 0 0 15px 0;
+        }
+
+        .field {
+            width: 100%;
+        }
+
+        .button {
+            margin: 0 20px 0 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .contentWrapper {
+        .steps {
+            display: none !important;
+        }
+    }
+}
