@@ -1,13 +1,6 @@
 "use client";
 
-import {
-    MenuOutlined,
-    CloseOutlined,
-    HomeOutlined,
-    UserOutlined,
-    InfoOutlined,
-    MessageOutlined,
-} from "@ant-design/icons";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 
 import styles from "./header.module.scss";
 import { useState } from "react";
