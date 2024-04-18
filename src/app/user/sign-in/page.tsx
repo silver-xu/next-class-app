@@ -7,6 +7,7 @@ import Layout from "../../layout";
 
 import userStyles from "../user.module.scss";
 import styles from "./page.module.scss";
+import Link from "next/link";
 
 export const metadata = {
     title: "nextclass. || The interest of lifetime - Home",
@@ -21,7 +22,10 @@ export default function Signin() {
                 <div className={styles.content}>
                     <div className={userStyles.loginBox}>
                         <h2>Welcome back</h2>
-                        <p>Don't have an account yet? Sign up for free</p>
+                        <p>
+                            Don't have an account yet?{" "}
+                            <Link href="/user/sign-up">Sign up for free</Link>
+                        </p>
                         <Input
                             className={userStyles.largeInput}
                             placeholder="Email"

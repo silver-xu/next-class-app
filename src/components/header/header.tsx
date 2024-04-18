@@ -11,6 +11,7 @@ import {
 
 import styles from "./header.module.scss";
 import { useState } from "react";
+import Link from "next/link";
 
 export interface HeaderProps {
     theme: HeaderTheme;
@@ -48,20 +49,16 @@ export const Header = (props: HeaderProps) => {
                 </div>
                 <ul>
                     <li>
-                        Home
-                        <HomeOutlined className={styles.icon} />
+                        <Link href="/">Home</Link>
                     </li>
                     <li>
-                        Sign In / Register
-                        <UserOutlined className={styles.icon} />
+                        <Link href="/user/sign-in">Sign In / Register</Link>
                     </li>
                     <li>
-                        About us
-                        <InfoOutlined className={styles.icon} />
+                        <Link href="/">About us</Link>
                     </li>
                     <li>
-                        Contact us
-                        <MessageOutlined className={styles.icon} />
+                        <Link href="/">Contact us</Link>
                     </li>
                 </ul>
             </div>

@@ -7,6 +7,7 @@ import Layout from "../../layout";
 
 import userStyles from "../user.module.scss";
 import styles from "./page.module.scss";
+import Link from "next/link";
 
 export const metadata = {
     title: "nextclass. || The interest of lifetime - Home",
@@ -21,7 +22,10 @@ export default function SignUp() {
                 <div className={styles.content}>
                     <div className={userStyles.loginBox}>
                         <h2>Welcome to Nextclass.</h2>
-                        <p>Already have an account? Sign in</p>
+                        <p>
+                            Already have an account?{" "}
+                            <Link href="/user/sign-in">Sign in</Link>
+                        </p>
                         <Input
                             className={userStyles.largeInput}
                             placeholder="Email"
@@ -41,7 +45,7 @@ export default function SignUp() {
                             I agree to the terms and conditions
                         </Checkbox>
                         <Checkbox className={userStyles.checkBox}>
-                            Opt in latest promotions
+                            I agree to receive the latest promotions
                         </Checkbox>
                         <Button
                             className={userStyles.largeButton}

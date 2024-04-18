@@ -63,6 +63,10 @@
         margin-bottom: 30px;
     }
 
+    .booking {
+        scroll-margin-top: 9em;
+    }
+
     .sessionList {
         li {
             display: block;
@@ -111,6 +115,10 @@
 
         .button {
             width: 100%;
+        }
+
+        .booking {
+            scroll-margin-top: 12em;
         }
     }
 }

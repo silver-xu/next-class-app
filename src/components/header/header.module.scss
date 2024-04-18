@@ -59,14 +59,21 @@
                 margin-top: 15px;
 
                 li {
-                    color: #697488;
-                    padding: 20px 35px;
-                    font-size: 14px;
-                    display: flex;
-                    justify-content: space-between;
+                    a {
+                        color: #697488;
+                        padding: 20px 35px;
+                        font-size: 14px;
+                        display: flex;
+                        justify-content: space-between;
 
-                    .icon {
-                        margin: 0 10px 0 0;
+                        .icon {
+                            margin: 0 10px 0 0;
+                        }
+                    }
+
+                    a:link,
+                    a:visited {
+                        text-decoration: none;
                     }
                 }
 

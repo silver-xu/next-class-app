@@ -1,6 +1,7 @@
 import { EnvironmentOutlined } from "@ant-design/icons";
 import dynamic from "next/dynamic";
 import { Button } from "antd";
+import Link from "next/link";
 
 import { Breadcrumb } from "@/components/breadcrumb";
 import { Footer } from "@/components/footer";
@@ -35,7 +36,9 @@ export default function Listing() {
                             &nbsp;Black Burn North, Victoria
                         </p>
                         <Button className={styles.button} type="primary">
-                            Request free trial
+                            <Link href="#AVAILABLE_SESSIONS">
+                                Request free trial
+                            </Link>
                         </Button>
                     </div>
                     <ul className={styles.gallery}>
@@ -56,7 +59,8 @@ export default function Listing() {
                         </li>
                     </ul>
                     <div className={styles.section}>
-                        <h2>Available Sessions</h2>
+                        <a className={styles.booking} id="AVAILABLE_SESSIONS" />
+                        <h2>Please click to book a session</h2>
                         <ul className={styles.sessionList}>
                             <li>
                                 <span>Monday</span>
