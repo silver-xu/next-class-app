@@ -11,6 +11,13 @@
         font-size: 32px;
         color: white;
         padding: 13px 30px;
+
+        a,
+        a:hover,
+        a:visited {
+            color: var(--white-color);
+            text-decoration: none;
+        }
     }
 
     .menu {
@@ -23,7 +30,7 @@
         }
 
         .submenu {
-            background: #ffffff;
+            background: var(--secondary-color);
             width: 70%;
             max-width: 360px;
             height: 100%;
@@ -34,13 +41,13 @@
 
             .menuHeader {
                 padding: 15px;
-                border: 1px solid #dddddd;
+                border: 1px solid var(--light-grey-color) ddd;
                 display: flex;
                 justify-content: space-between;
-                color: #697488;
+                color: var(--medium-grey-color);
 
                 h1 {
-                    color: #697488;
+                    color: var(--medium-grey-color);
                     font-size: 24px;
                     font-family: "Roboto", sans-serif;
                     font-weight: 100;
@@ -60,7 +67,7 @@
 
                 li {
                     a {
-                        color: #697488;
+                        color: var(--medium-grey-color);
                         padding: 20px 35px;
                         font-size: 14px;
                         display: flex;
@@ -78,14 +85,14 @@
                 }
 
                 li:hover {
-                    background: #efefef;
+                    background: var(--light-grey-color);
                     cursor: pointer;
                 }
             }
         }
 
         .overlay {
-            background: #000000;
+            background: var(--black-color);
             position: fixed;
             top: 0px;
             left: 0px;
@@ -101,17 +108,23 @@
     background: none;
 
     .logo {
-        color: #051036;
         padding: 13x 30px;
+
+        a,
+        a:hover,
+        a:visited {
+            color: var(--dark-grey-color);
+            text-decoration: none;
+        }
     }
 
     .menu {
         .menuIcon {
-            color: #051036;
+            color: var(--dark-grey-color);
         }
     }
 }
 
 .dark {
-    background: #2f4a4d;
+    background: var(--dark-green-color);
 }

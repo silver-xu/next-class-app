@@ -1,13 +1,13 @@
 .breadcrumbWrapper {
-    background: #ecf3f4;
+    background: var(--super-light-cyan-color);
     width: 100%;
 
     .breadcrumb {
         max-width: 1200px;
         margin: 0 auto;
-        background: #ecf3f4;
+        background: var(--super-light-cyan-color);
         font-size: 12px;
         padding: 15px 25px;
-        color: #697488;
+        color: var(--medium-grey-color);
     }
 }

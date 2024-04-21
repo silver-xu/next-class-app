@@ -1,6 +1,6 @@
 .loginBox {
     width: 360px;
-    background-color: #ffffff;
+    background-color: var(--secondary-color);
     padding: 25px;
     box-sizing: border-box;
     border-radius: 3px;
@@ -13,7 +13,7 @@
 
     p {
         margin: 10px 0 0 0;
-        color: #697488;
+        color: var(--medium-grey-color);
     }
 
     .largeInput {

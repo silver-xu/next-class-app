@@ -61,7 +61,9 @@ export const Header = (props: HeaderProps) => {
 
     return (
         <div className={headerClassNames[theme]}>
-            <div className={styles.logo}>nextclass.</div>
+            <div className={styles.logo}>
+                <Link href="/">nextclass.</Link>
+            </div>
             <div className={styles.menu}>
                 <MenuOutlined
                     className={styles.menuIcon}

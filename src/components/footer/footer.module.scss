@@ -1,7 +1,7 @@
 .footer {
     width: 100%;
     padding: 35px 20px;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--light-grey-color);
     box-sizing: border-box;
 
     .footerWrapper {
@@ -13,7 +13,7 @@
             margin: 4px 55px 0 0;
             padding: 0;
             font-size: 12px;
-            color: #697488;
+            color: var(--medium-grey-color);
             flex-grow: 1;
         }
 
@@ -31,12 +31,12 @@
 
                 a:link {
                     text-decoration: none;
-                    color: #697488;
+                    color: var(--medium-grey-color);
                 }
 
                 a:visited {
                     text-decoration: none;
-                    color: #697488;
+                    color: var(--medium-grey-color);
                 }
             }
         }
@@ -71,7 +71,7 @@
 }
 
 .sticky {
-    background: #ffffff;
+    background: var(--secondary-color);
     position: fixed;
     bottom: 0;
     left: 0;

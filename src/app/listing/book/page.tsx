@@ -66,6 +66,14 @@ export default function Book() {
             label: "Special Notes",
             children: "N/A",
         },
+        {
+            label: "Contact Mobile",
+            children: "0401234567",
+        },
+        {
+            label: "Contact Email",
+            children: "abc@abc.com",
+        },
     ];
 
     const screens = [
@@ -104,13 +112,40 @@ export default function Book() {
             </Form>
         </>,
         <>
-            <h2>Check again before booking</h2>
+            <h2>Check again before confirming</h2>
             <Descriptions bordered items={items} column={1} />
         </>,
         <>
-            <h2>Your booking is complete</h2>
+            <h2>Your booking is confirmed</h2>
             <p>An email to confirm your booking will be sent shortly.</p>
+            <h3>Booking details</h3>
             <Descriptions bordered items={items} column={1} />
+            <Divider />
+            <h3>Navigation Instructions</h3>
+            <div>
+                <img src="/map.png" />
+                <p>
+                    Head eastward, guided by the neon quill sign, until you
+                    reach the grand fountain; then, take a right and follow the
+                    cobblestone path, passing by a mural of philosophers as
+                    inspiration. Finally, spot the door adorned with the emblem
+                    of wisdom, and with confidence, step into Classroom 101,
+                    where enlightenment eagerly awaits your arrival.
+                </p>
+            </div>
+            <Divider />
+            <h3>What you need to bring</h3>
+            <div>
+                <p>
+                    No Stress! The school will provide all required gears for
+                    Trial classes. However in the students are expected to bring
+                    their own gears for any following classes.
+                </p>
+                <p>
+                    The instructors will give more information about recommended
+                    gears after the Trial classes.
+                </p>
+            </div>
         </>,
     ];
 
