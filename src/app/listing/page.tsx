@@ -16,6 +16,11 @@ const Map = dynamic(
 import { SessionList } from "@/components/session-list";
 import styles from "./page.module.scss";
 
+export const metadata = {
+    title: "nextclass. | The interest of lifetime - Listing",
+    description: "nextclass. | The interest of lifetime - Listing",
+};
+
 export default function Listing() {
     const mapBoxApiKey = process.env.MAPBOX_API_KEY;
     return (

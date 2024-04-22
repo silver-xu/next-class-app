@@ -9,8 +9,8 @@ import styles from "./page.module.scss";
 import Link from "next/link";
 
 export const metadata = {
-    title: "nextclass. || The interest of lifetime - Home",
-    description: "nextclass. || The interest of lifetime - Home",
+    title: "nextclass. | The interest of lifetime - Home",
+    description: "nextclass. | The interest of lifetime - Home",
 };
 
 export default function Home() {
