@@ -42,16 +42,31 @@ export const Header = (props: HeaderProps) => {
                 </div>
                 <ul>
                     <li>
-                        <Link href="/">Home</Link>
+                        <Link href="/">
+                            <img src="/icons/home.svg" />
+                            Home
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/user/sign-in">Sign In / Register</Link>
+                        <Link href="/user/sign-in">
+                            {" "}
+                            <img src="/icons/signin.svg" />
+                            Sign In / Register
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">About us</Link>
+                        <Link href="/">
+                            {" "}
+                            <img src="/icons/info.svg" />
+                            About us
+                        </Link>
                     </li>
                     <li>
-                        <Link href="/">Contact us</Link>
+                        <Link href="/">
+                            {" "}
+                            <img src="/icons/contact.svg" />
+                            Contact us
+                        </Link>
                     </li>
                 </ul>
             </div>

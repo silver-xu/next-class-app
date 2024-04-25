@@ -1,0 +1,29 @@
+.logo {
+    font-family: var(--font-roboto);
+    font-weight: 300;
+    font-style: normal;
+    font-size: 32px;
+    color: var(--dark-grey-color);
+    padding: 13px 30px;
+    box-shadow: 0 5px 5px var(--light-grey-color);
+    display: flex;
+    align-items: flex-start;
+
+    a,
+    a:hover,
+    a:visited {
+        color: var(--dark-grey-color);
+        text-decoration: none;
+    }
+
+    span {
+        font-size: 10px;
+        margin: 0;
+        font-weight: 500;
+        background: var(--super-light-cyan-color);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+}

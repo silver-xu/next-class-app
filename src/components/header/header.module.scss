@@ -63,9 +63,18 @@
             }
 
             ul {
-                margin-top: 15px;
+                border-top: 1px solid var(--light-grey-color);
+                padding-top: 15px;
 
                 li {
+                    display: flex;
+
+                    img {
+                        display: block;
+                        width: 20px;
+                        margin-right: 20px;
+                    }
+
                     a {
                         color: var(--medium-grey-color);
                         padding: 20px 35px;

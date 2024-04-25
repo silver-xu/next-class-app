@@ -1,0 +1,37 @@
+.menu {
+    margin-top: 15px;
+    padding: 15px;
+    li {
+        a {
+            display: block;
+            padding: 15px 20px;
+            font-weight: 400;
+            border-radius: 3px;
+            display: flex;
+
+            img {
+                margin: 0 10px 0 0;
+                width: 20px;
+                display: block;
+            }
+        }
+
+        a,
+        a:visited {
+            color: var(--dark-grey-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            background: var(--super-light-cyan-color);
+        }
+
+        .selected,
+        .selected:hover,
+        .selected:visited {
+            color: var(--primary-color);
+            background: var(--super-light-cyan-color);
+        }
+    }
+}
