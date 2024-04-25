@@ -55,6 +55,13 @@ export const Header = (props: HeaderProps) => {
                         </Link>
                     </li>
                     <li>
+                        <Link href="/admin/dashboard">
+                            {" "}
+                            <img src="/icons/partner.svg" />
+                            Partner Sign In
+                        </Link>
+                    </li>
+                    <li>
                         <Link href="/">
                             {" "}
                             <img src="/icons/info.svg" />
