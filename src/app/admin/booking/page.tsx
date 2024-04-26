@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 
 import { Header } from "@/components/admin/header";
 
+import { QrReader } from "@/components/admin/qr-scanner/qr-scanner";
 import styles from "../common.module.scss";
 
 const Menu = dynamic(
@@ -23,7 +24,9 @@ export default function Page() {
             <div className={styles.menuWrapper}>
                 <Menu selected="booking" />
             </div>
-            <div className={styles.contentWrapper}></div>
+            <div className={styles.contentWrapper}>
+                <QrReader />
+            </div>
         </>
     );
 }
