@@ -9,31 +9,21 @@ const Menu = dynamic(
     { ssr: false }
 );
 
-const Dashboard = dynamic(
-    () =>
-        import("../../../components/admin/dashboard").then(
-            (mod) => mod.Dashboard
-        ),
-    { ssr: false }
-);
-
 export const metadata = {
-    title: "nextclass. | Partner Dashboard",
-    description: "nextclass. | Partner Dashboard",
+    title: "nextclass. | Manage Bookings",
+    description: "nextclass. | Manage Bookings",
 };
 
 export default function Page() {
     return (
         <>
             <div className={styles.headerWrapper}>
-                <Header selected="dashboard" />
+                <Header selected="booking" />
             </div>
             <div className={styles.menuWrapper}>
-                <Menu selected="dashboard" />
+                <Menu selected="booking" />
             </div>
-            <div className={styles.contentWrapper}>
-                <Dashboard />
-            </div>
+            <div className={styles.contentWrapper}></div>
         </>
     );
 }

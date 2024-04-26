@@ -1,0 +1,37 @@
+.headerWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.menuWrapper {
+    position: fixed;
+    top: 75px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+}
+
+.contentWrapper {
+    position: fixed;
+    top: 75px;
+    left: 300px;
+    right: 0;
+    bottom: 0;
+    background: var(--super-light-cyan-color);
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 796px) {
+    .menuWrapper {
+        display: none;
+    }
+
+    .contentWrapper {
+        left: 0px;
+    }
+}

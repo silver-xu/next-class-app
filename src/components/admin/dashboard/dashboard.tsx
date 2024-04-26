@@ -9,9 +9,9 @@ import styles from "./dashboard.module.scss";
 
 const options = [
     { label: "Today", value: "Today" },
-    { label: "This Week", value: "This Week" },
-    { label: "This Month", value: "This Month" },
-    { label: "This Year", value: "This Year" },
+    { label: "Weekly", value: "Weekly" },
+    { label: "Monthly", value: "Monthly" },
+    { label: "Annually", value: "Annually" },
 ];
 
 export const Dashboard = () => (

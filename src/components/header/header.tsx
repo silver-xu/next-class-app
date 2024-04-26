@@ -49,28 +49,24 @@ export const Header = (props: HeaderProps) => {
                     </li>
                     <li>
                         <Link href="/user/sign-in">
-                            {" "}
                             <img src="/icons/signin.svg" />
                             Sign In / Register
                         </Link>
                     </li>
                     <li>
                         <Link href="/admin/dashboard">
-                            {" "}
                             <img src="/icons/partner.svg" />
                             Partner Sign In
                         </Link>
                     </li>
                     <li>
                         <Link href="/">
-                            {" "}
                             <img src="/icons/info.svg" />
                             About us
                         </Link>
                     </li>
                     <li>
                         <Link href="/">
-                            {" "}
                             <img src="/icons/contact.svg" />
                             Contact us
                         </Link>
