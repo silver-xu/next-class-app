@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import { Header } from "@/components/admin/header";
 
-import { QrReader } from "@/components/admin/qr-scanner/qr-scanner";
+import { QrReader } from "@/components/admin/qr-reader/qr-reader";
 import styles from "../common.module.scss";
 
 const Menu = dynamic(

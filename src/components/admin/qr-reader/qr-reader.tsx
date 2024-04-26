@@ -13,7 +13,6 @@ export const QrReader = () => {
     const scanner = useRef<QrScanner>();
     const videoEl = useRef<HTMLVideoElement>(null);
     const qrBoxEl = useRef<HTMLDivElement>(null);
-    const [qrOn, setQrOn] = useState<boolean>(true);
 
     // Result
     const [scannedResult, setScannedResult] = useState<string | undefined>("");
@@ -49,12 +48,7 @@ export const QrReader = () => {
             });
 
             // 🚀 Start QR Scanner
-            scanner?.current
-                ?.start()
-                .then(() => setQrOn(true))
-                .catch((err) => {
-                    if (err) setQrOn(false);
-                });
+            scanner?.current?.start();
         }
 
         // 🧹 Clean up on unmount.

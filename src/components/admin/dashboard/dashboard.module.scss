@@ -44,10 +44,14 @@
 
 @media only screen and (max-width: 1250px) {
     .content {
-        padding: 0;
-
         .cards {
             display: block;
         }
+    }
+}
+
+@media only screen and (max-width: 796px) {
+    .content {
+        padding: 0;
     }
 }
