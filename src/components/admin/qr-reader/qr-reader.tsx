@@ -3,10 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 // Styles
-import "./qr-scanner.css";
+import "./qr-reader.css";
 
 // Qr Scanner
-import QrFrame from "../assets/qr-frame.svg";
 import QrScanner from "qr-scanner";
 
 export const QrReader = () => {
