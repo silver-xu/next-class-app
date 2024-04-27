@@ -5,6 +5,7 @@ import { Card, Radio } from "antd";
 import { StatsCard } from "../stats-card";
 import { LineChart } from "../line-chart";
 
+import commonStyles from "../common.module.scss";
 import styles from "./dashboard.module.scss";
 
 const options = [
@@ -15,8 +16,8 @@ const options = [
 ];
 
 export const Dashboard = () => (
-    <div className={styles.content}>
-        <div className={styles.title}>
+    <div className={`${commonStyles.content} ${styles.content}`}>
+        <div className={commonStyles.title}>
             <div className={styles.dashboardTitle}>
                 <h1>Dashboard</h1>
                 <p>Booking analytics, statistics and more.</p>
@@ -25,7 +26,7 @@ export const Dashboard = () => (
                 options={options}
                 value="Today"
                 optionType="button"
-                className={styles.options}
+                className={commonStyles.options}
             />
         </div>
         <div className={styles.cards}>

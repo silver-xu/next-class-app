@@ -20,6 +20,7 @@
     "bingmaps-react": "^1.2.10",
     "bootstrap": "^5.3.3",
     "core-js": "^3.36.0",
+    "dayjs": "^1.11.10",
     "google-map-react": "^2.2.1",
     "leaflet": "^1.9.4",
     "mapbox-gl": "^3.3.0",
@@ -32,6 +33,7 @@
     "react-map-gl": "^7.1.7"
   },
   "devDependencies": {
+    "@ngneat/falso": "^7.2.0",
     "@types/leaflet": "^1.9.11",
     "@types/node": "^20",
     "@types/react": "^18",

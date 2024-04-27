@@ -21,7 +21,7 @@ export const Menu = (props: MenuProps) => (
                     }
                 >
                     <img src="/icons/monitor.svg" />
-                    Partner Dashboard
+                    Dashboard
                 </Link>
             </li>
             <li>
@@ -32,7 +32,7 @@ export const Menu = (props: MenuProps) => (
                     }
                 >
                     <img src="/icons/calendar.svg" />
-                    Manage Bookings
+                    Bookings
                 </Link>
             </li>
             <li>

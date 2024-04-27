@@ -1,12 +1,12 @@
 import dynamic from "next/dynamic";
 
-import { Booking } from "@/components/admin/booking";
+import { ManageBooking } from "@/components/admin/manage-booking";
 import { Header } from "@/components/admin/header";
 
-import styles from "../common.module.scss";
+import styles from "../../common.module.scss";
 
 const Menu = dynamic(
-    () => import("../../../components/admin/menu").then((mod) => mod.Menu),
+    () => import("../../../../components/admin/menu").then((mod) => mod.Menu),
     { ssr: false }
 );
 
@@ -25,7 +25,7 @@ export default function Page() {
                 <Menu selected="booking" />
             </div>
             <div className={styles.contentWrapper}>
-                <Booking />
+                <ManageBooking />
             </div>
         </>
     );
