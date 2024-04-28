@@ -1,0 +1,65 @@
+.form {
+    margin: 30px 0 !important;
+
+    p {
+        margin: 0px;
+    }
+
+    .addDateRange {
+        margin: 15px 0;
+    }
+}
+
+.multiTab {
+    display: flex;
+    width: 100%;
+
+    li {
+        border-top: 1px solid var(--light-grey-color);
+        border-left: 1px solid var(--light-grey-color);
+        border-bottom: 1px solid var(--light-grey-color);
+
+        padding: 5px 0;
+        text-align: center;
+        cursor: pointer;
+        width: 14.29%;
+        box-sizing: border-box;
+    }
+
+    li:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    li:last-child {
+        border-right: 1px solid var(--light-grey-color);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .notEmpty {
+        background-color: var(--super-light-cyan-color);
+    }
+
+    .active {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+    }
+}
+
+.sessions {
+    padding: 20px 0;
+}
+
+.sessionsForm {
+    .label {
+        display: block;
+        margin: 15px 0;
+    }
+
+    .trialVacancies {
+        display: block;
+        margin: 0 0 25px 0;
+        width: 100%;
+    }
+}

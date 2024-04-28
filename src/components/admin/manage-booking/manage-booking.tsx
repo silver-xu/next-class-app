@@ -8,10 +8,11 @@ import {
 } from "@ngneat/falso";
 import { Button, Card, DatePicker, Divider, Modal, TimePicker } from "antd";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import styles from "./manage-booking.module.scss";
-import commonStyles from "../common.module.scss";
 import { useState } from "react";
 import dayjs from "dayjs";
+
+import styles from "./manage-booking.module.scss";
+import commonStyles from "../common.module.scss";
 
 const name = randFullName();
 dayjs.extend(localizedFormat);

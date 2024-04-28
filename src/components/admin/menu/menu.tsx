@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import styles from "./menu.module.scss";
 
-export type SelectedMenuItem = "dashboard" | "booking" | "session" | "setting";
+export type SelectedMenuItem = "dashboard" | "booking" | "class" | "setting";
 
 export interface MenuProps {
     selected: SelectedMenuItem;
@@ -37,13 +37,13 @@ export const Menu = (props: MenuProps) => (
             </li>
             <li>
                 <Link
-                    href="/admin/session"
+                    href="/admin/class"
                     className={
-                        props.selected === "session" ? styles.selected : ""
+                        props.selected === "class" ? styles.selected : ""
                     }
                 >
                     <img src="/icons/clock.svg" />
-                    Manage Sessions
+                    Classes
                 </Link>
             </li>
             <li>
