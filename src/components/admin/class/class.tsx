@@ -33,7 +33,10 @@ export const Class = () => {
                                 <h3>{className}</h3>
                                 <p>Multi-location in Melbourne Metropolitan</p>
                                 <div>
-                                    <Button className={styles.button}>
+                                    <Button
+                                        className={styles.button}
+                                        href="/admin/class/add"
+                                    >
                                         Edit
                                     </Button>
                                     <Button className={styles.button}>
