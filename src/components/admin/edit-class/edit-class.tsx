@@ -241,8 +241,8 @@ export const EditClass = () => {
             label: "Details",
             key: "0",
             children: (
-                <div className={styles.form}>
-                    <Form layout="vertical" form={form}>
+                <div className={styles.formWrapper}>
+                    <Form layout="vertical" form={form} className={styles.form}>
                         <Form.Item label="Class Name *">
                             <Input
                                 placeholder="Please enter a class name"
@@ -330,7 +330,7 @@ export const EditClass = () => {
                         type="vertical"
                         className={styles.verticalDivider}
                     />
-                    <Form form={form} layout="vertical">
+                    <Form form={form} layout="vertical" className={styles.form}>
                         <Form.Item label="Session Time">
                             <TimePicker className={styles.input} />
                         </Form.Item>

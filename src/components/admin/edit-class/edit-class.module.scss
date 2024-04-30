@@ -1,4 +1,4 @@
-.form,
+.formWrapper,
 .verticalForm {
     border-left: 1px solid var(--super-light-grey-color);
     border-right: 1px solid var(--super-light-grey-color);
@@ -7,7 +7,7 @@
     border-bottom-right-radius: 5px;
 }
 
-.form {
+.formWrapper {
     padding: 15px 25px 0 25px;
 
     p {
@@ -17,6 +17,11 @@
     .className {
         max-width: 500px;
     }
+}
+
+.form {
+    width: 100% !important;
+    max-width: 300px;
 }
 
 .verticalForm {
