@@ -303,28 +303,30 @@ export const EditClass = () => {
                     className={styles.verticalForm}
                     style={{ paddingBottom: 15 }}
                 >
-                    <div>
+                    <div className={styles.leftPanel}>
                         <Tree
                             showLine={true}
                             showIcon={false}
                             treeData={treeData}
                         />
-                        <Button
-                            type="dashed"
-                            block
-                            size="small"
-                            className={styles.addDateRange}
-                        >
-                            <PlusOutlined /> Add dates
-                        </Button>
-                        <Button
-                            type="dashed"
-                            block
-                            size="small"
-                            className={styles.addDateRange}
-                        >
-                            <DeleteOutlined /> Remove dates
-                        </Button>
+                        <div>
+                            <Button
+                                type="dashed"
+                                block
+                                size="small"
+                                className={styles.addDateRange}
+                            >
+                                <PlusOutlined /> Add dates
+                            </Button>
+                            <Button
+                                type="dashed"
+                                block
+                                size="small"
+                                className={styles.addDateRange}
+                            >
+                                <DeleteOutlined /> Remove dates
+                            </Button>
+                        </div>
                     </div>
                     <Divider
                         type="vertical"
@@ -348,7 +350,7 @@ export const EditClass = () => {
                         <Form.Item label="Trial vacancy">
                             <InputNumber className={styles.input} />
                         </Form.Item>
-                        <Form.Item>
+                        <Form.Item className={styles.noBottomMargin}>
                             <Button
                                 type="primary"
                                 icon={<SaveOutlined />}

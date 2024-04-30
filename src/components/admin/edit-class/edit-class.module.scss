@@ -47,3 +47,13 @@
     width: 110px;
     margin: 0 10px 10px 0;
 }
+
+.leftPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.noBottomMargin {
+    margin-bottom: 0 !important;
+}
