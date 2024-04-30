@@ -20,13 +20,16 @@
 }
 
 .form {
-    width: 100% !important;
-    max-width: 300px;
+    h3 {
+        font-weight: 500;
+    }
 }
 
 .verticalForm {
+    box-sizing: border-box;
     padding: 15px 25px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .verticalDivider {
@@ -34,18 +37,25 @@
     height: auto !important;
 }
 
+.horizontalDivider {
+    display: none !important;
+}
+
 .input {
     width: 100% !important;
 }
 
-.addDateRange {
+.topMargin {
     margin: 10px 0 0 0;
-    font-size: 14px !important;
+}
+
+.bottomMargin {
+    margin: 0 0 10px 0;
 }
 
 .buttonGroup {
     width: 110px;
-    margin: 0 10px 10px 0;
+    margin: 30px 10px 10px 0;
 }
 
 .leftPanel {
@@ -56,4 +66,32 @@
 
 .noBottomMargin {
     margin-bottom: 0 !important;
+}
+
+.removeLink {
+    svg {
+        color: var(--primary-color);
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .verticalDivider {
+        display: none !important;
+    }
+
+    .horizontalDivider {
+        display: block !important;
+    }
+
+    .leftPanel {
+        width: 100%;
+    }
+
+    .form {
+        width: 100%;
+
+        h3 {
+            margin-top: 0px !important;
+        }
+    }
 }

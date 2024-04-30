@@ -2,11 +2,18 @@ import dynamic from "next/dynamic";
 
 import { Header } from "@/components/admin/header";
 
-import { EditClass } from "@/components/admin/edit-class";
 import styles from "../../common.module.scss";
 
 const Menu = dynamic(
     () => import("../../../../components/admin/menu").then((mod) => mod.Menu),
+    { ssr: false }
+);
+
+const EditClass = dynamic(
+    () =>
+        import("../../../../components/admin/edit-class").then(
+            (mod) => mod.EditClass
+        ),
     { ssr: false }
 );
 

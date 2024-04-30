@@ -10,17 +10,32 @@ import {
     Tabs,
     Divider,
     Tree,
+    Table,
+    Modal,
     TimePicker,
-    InputNumber,
     Select,
+    InputNumber,
+    DatePicker,
 } from "antd";
-import { PlusOutlined, DeleteOutlined, SaveOutlined } from "@ant-design/icons";
-import type { GetProp, UploadFile, UploadProps, TreeDataNode } from "antd";
+import type {
+    GetProp,
+    UploadFile,
+    UploadProps,
+    TreeDataNode,
+    TableProps,
+} from "antd";
+import { PlusOutlined, SaveOutlined, DeleteOutlined } from "@ant-design/icons";
+
+const ReactQuill = dynamic(() => import("react-quill").then((mod) => mod), {
+    ssr: false,
+});
 
 import commonStyles from "../common.module.scss";
 import styles from "./edit-class.module.scss";
+import "react-quill/dist/quill.snow.css";
 import "./edit-class.css";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
@@ -35,6 +50,8 @@ const getBase64 = (file: FileType): Promise<string> =>
 
 export const EditClass = () => {
     const [form] = Form.useForm();
+    const [addSessionOpen, setAddSessionOpen] = useState(false);
+    const [addDateRangeOpen, setAddDateRangeOpen] = useState(false);
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState("");
     const [fileList, setFileList] = useState<UploadFile[]>([
@@ -91,20 +108,6 @@ export const EditClass = () => {
                 {
                     title: "Monday",
                     key: "0-0",
-                    children: [
-                        {
-                            title: "2:30pm",
-                            key: "0-0-0-0",
-                        },
-                        {
-                            title: "3:30pm",
-                            key: "0-0-0-1",
-                        },
-                        {
-                            title: "4:30pm",
-                            key: "0-0-0-2",
-                        },
-                    ],
                 },
                 {
                     title: "Tuesday",
@@ -236,6 +239,61 @@ export const EditClass = () => {
         },
     ];
 
+    interface DataType {
+        time: string;
+        location: string;
+        trialQuantity: number;
+    }
+
+    const columns: TableProps<DataType>["columns"] = [
+        {
+            title: "Session",
+            dataIndex: "time",
+            key: "time",
+            render: (text) => <div>{text}</div>,
+        },
+        {
+            title: "Location",
+            dataIndex: "location",
+            key: "location",
+        },
+        {
+            title: "Trial Quantity",
+            dataIndex: "trialQuantity",
+            key: "trialQuantity",
+            responsive: ["lg"],
+        },
+        {
+            title: "Remove",
+            key: "action",
+            render: () => (
+                <Button
+                    type="link"
+                    icon={<DeleteOutlined />}
+                    className={styles.removeLink}
+                ></Button>
+            ),
+        },
+    ];
+
+    const data: DataType[] = [
+        {
+            time: "1:30 pm",
+            location: "Blackburn North Campus",
+            trialQuantity: 1,
+        },
+        {
+            time: "2:30 pm",
+            location: "Blackburn North Campus",
+            trialQuantity: 1,
+        },
+        {
+            time: "3:30 pm",
+            location: "Blackburn North Campus",
+            trialQuantity: 1,
+        },
+    ];
+
     const tabItems = [
         {
             label: "Details",
@@ -250,7 +308,7 @@ export const EditClass = () => {
                                 className={styles.className}
                             />
                         </Form.Item>
-                        <Form.Item label="Thursdaymbnail Images">
+                        <Form.Item label="Images">
                             <p>You may upload a maximum of 5 images</p>
                             <Upload
                                 action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
@@ -273,10 +331,16 @@ export const EditClass = () => {
                                     }}
                                     src={previewImage}
                                 />
-                            )}{" "}
+                            )}
+                        </Form.Item>
+                        <Form.Item label="Description">
+                            <ReactQuill
+                                theme="snow"
+                                style={{ height: 300 }}
+                                placeholder="Type some class description here"
+                            />
                         </Form.Item>
                         <Form.Item>
-                            <Divider />
                             <Button
                                 type="primary"
                                 icon={<SaveOutlined />}
@@ -314,7 +378,8 @@ export const EditClass = () => {
                                 type="dashed"
                                 block
                                 size="small"
-                                className={styles.addDateRange}
+                                className={styles.topMargin}
+                                onClick={() => setAddDateRangeOpen(true)}
                             >
                                 <PlusOutlined /> Add dates
                             </Button>
@@ -322,7 +387,7 @@ export const EditClass = () => {
                                 type="dashed"
                                 block
                                 size="small"
-                                className={styles.addDateRange}
+                                className={styles.topMargin}
                             >
                                 <DeleteOutlined /> Remove dates
                             </Button>
@@ -332,39 +397,23 @@ export const EditClass = () => {
                         type="vertical"
                         className={styles.verticalDivider}
                     />
+                    <Divider
+                        type="horizontal"
+                        className={styles.horizontalDivider}
+                    />
                     <Form form={form} layout="vertical" className={styles.form}>
-                        <Form.Item label="Session Time">
-                            <TimePicker className={styles.input} />
-                        </Form.Item>
-                        <Form.Item label="Location">
-                            <Select
-                                className={styles.input}
-                                options={[
-                                    {
-                                        value: 1,
-                                        label: "Blackburn North",
-                                    },
-                                ]}
-                            />
-                        </Form.Item>
-                        <Form.Item label="Trial vacancy">
-                            <InputNumber className={styles.input} />
-                        </Form.Item>
-                        <Form.Item className={styles.noBottomMargin}>
-                            <Button
-                                type="primary"
-                                icon={<SaveOutlined />}
-                                className={styles.buttonGroup}
-                            >
-                                Save
-                            </Button>
-                            <Button
-                                icon={<DeleteOutlined />}
-                                className={styles.buttonGroup}
-                            >
-                                Remove
-                            </Button>
-                        </Form.Item>
+                        <h3>Jan 24, 2024 - Mar 28, 2024</h3>
+                        <p>Every Monday</p>
+                        <Button
+                            type="dashed"
+                            block
+                            icon={<PlusOutlined />}
+                            className={styles.bottomMargin}
+                            onClick={() => setAddSessionOpen(true)}
+                        >
+                            Add Session
+                        </Button>
+                        <Table columns={columns} dataSource={data} />
                     </Form>
                 </div>
             ),
@@ -381,6 +430,46 @@ export const EditClass = () => {
                     type="card"
                 />
             </Card>
+            <Modal
+                title="Add date range"
+                open={addDateRangeOpen}
+                onCancel={() => setAddDateRangeOpen(false)}
+                onOk={() => setAddDateRangeOpen(false)}
+            >
+                <Form form={form} layout="vertical" className={styles.form}>
+                    <Form.Item label="Specify           Range">
+                        <DatePicker.RangePicker />
+                    </Form.Item>
+                </Form>
+            </Modal>
+            <Modal
+                title="Every Monday"
+                open={addSessionOpen}
+                onCancel={() => setAddSessionOpen(false)}
+                onOk={() => setAddSessionOpen(false)}
+            >
+                <Form form={form} layout="vertical" className={styles.form}>
+                    <p>Jan 29, 2024 - Mar 28, 2024</p>
+                    <Divider />
+                    <Form.Item label="Session">
+                        <TimePicker />
+                    </Form.Item>
+                    <Form.Item label="Campus">
+                        <Select
+                            defaultValue="Blackburn North"
+                            options={[
+                                {
+                                    value: "Blackburn North",
+                                    label: "Blackburn North",
+                                },
+                            ]}
+                        />
+                    </Form.Item>
+                    <Form.Item label="Trial quantity">
+                        <InputNumber defaultValue={1} />
+                    </Form.Item>
+                </Form>
+            </Modal>
         </div>
     );
 };
