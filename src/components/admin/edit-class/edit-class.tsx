@@ -452,7 +452,11 @@ export const EditClass = () => {
                     <p>Jan 29, 2024 - Mar 28, 2024</p>
                     <Divider />
                     <Form.Item label="Session">
-                        <TimePicker />
+                        <TimePicker
+                            minuteStep={15}
+                            needConfirm={true}
+                            format={"hh:mm a"}
+                        />
                     </Form.Item>
                     <Form.Item label="Campus">
                         <Select

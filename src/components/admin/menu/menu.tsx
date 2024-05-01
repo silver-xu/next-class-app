@@ -4,7 +4,12 @@ import Link from "next/link";
 
 import styles from "./menu.module.scss";
 
-export type SelectedMenuItem = "dashboard" | "booking" | "class" | "setting";
+export type SelectedMenuItem =
+    | "dashboard"
+    | "booking"
+    | "class"
+    | "campus"
+    | "setting";
 
 export interface MenuProps {
     selected: SelectedMenuItem;
@@ -32,7 +37,7 @@ export const Menu = (props: MenuProps) => (
                     }
                 >
                     <img src="/icons/calendar.svg" />
-                    Bookings
+                    Manage Bookings
                 </Link>
             </li>
             <li>
@@ -43,7 +48,18 @@ export const Menu = (props: MenuProps) => (
                     }
                 >
                     <img src="/icons/clock.svg" />
-                    Classes
+                    Manage Classes
+                </Link>
+            </li>
+            <li>
+                <Link
+                    href="/admin/campus"
+                    className={
+                        props.selected === "campus" ? styles.selected : ""
+                    }
+                >
+                    <img src="/icons/school.svg" />
+                    Manage Campuses
                 </Link>
             </li>
             <li>

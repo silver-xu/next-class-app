@@ -18,14 +18,15 @@ const name = randFullName();
 dayjs.extend(localizedFormat);
 
 export const ManageBooking = () => {
-    const [updatingSession, setUpdatingSession] = useState<boolean>(false);
+    const [updateSessionModalOpen, setUpdateSessionModalOpen] =
+        useState<boolean>(false);
     const [updateSessionTimeModalOpen, setUpdateSessionTimeModalOpen] =
         useState<boolean>(false);
     const [cancelBookingModalOpen, setCancelBookingModalOpen] =
         useState<boolean>(false);
 
     const updateSessionTime = () => {
-        setUpdatingSession(false);
+        setUpdateSessionModalOpen(false);
         setUpdateSessionTimeModalOpen(false);
     };
 
@@ -33,42 +34,7 @@ export const ManageBooking = () => {
         setCancelBookingModalOpen(false);
     };
 
-    const session = updatingSession ? (
-        <>
-            <h3>Alternative Session Time</h3>
-            <p>
-                Once confirmed the {name} will receive an email highlighting the
-                new session time.
-            </p>
-            <div>
-                <DatePicker
-                    needConfirm={true}
-                    defaultValue={dayjs()}
-                    className={styles.input}
-                />
-                <TimePicker
-                    needConfirm={true}
-                    defaultValue={dayjs()}
-                    className={styles.input}
-                />
-            </div>
-            <div>
-                <Button
-                    type="primary"
-                    className={styles.input}
-                    onClick={() => setUpdateSessionTimeModalOpen(true)}
-                >
-                    Confirm
-                </Button>
-                <Button
-                    className={styles.input}
-                    onClick={() => setUpdatingSession(false)}
-                >
-                    Cancel
-                </Button>
-            </div>
-        </>
-    ) : (
+    const session = (
         <>
             <h3>Session Time</h3>
             <span className={styles.sessionTime}>{dayjs().format("LLL")}</span>
@@ -76,7 +42,10 @@ export const ManageBooking = () => {
                 Please contact {name} to discuss alternative session time before
                 updating.
             </p>
-            <Button type="primary" onClick={() => setUpdatingSession(true)}>
+            <Button
+                type="primary"
+                onClick={() => setUpdateSessionModalOpen(true)}
+            >
                 Update
             </Button>
         </>
@@ -159,6 +128,32 @@ export const ManageBooking = () => {
                     operation cannot be undone. Once proceed {name} will receive
                     an email highlighting the new session time.
                 </p>
+            </Modal>
+            <Modal
+                title="Update Session Time"
+                open={updateSessionModalOpen}
+                onOk={() => setUpdateSessionModalOpen(false)}
+                onCancel={() => setUpdateSessionModalOpen(false)}
+            >
+                <p>
+                    Once confirmed the {name} will receive an email highlighting
+                    the new session time.
+                </p>
+                <div>
+                    <DatePicker
+                        needConfirm={true}
+                        defaultValue={dayjs()}
+                        className={styles.input}
+                    />
+                    &nbsp;
+                    <TimePicker
+                        minuteStep={15}
+                        needConfirm={true}
+                        defaultValue={dayjs()}
+                        className={styles.input}
+                        format={"hh:mm a"}
+                    />
+                </div>
             </Modal>
         </div>
     );
