@@ -7,7 +7,7 @@ import "./layout.css";
 import theme from "@/theme/themeConfig";
 import { Viewport } from "next";
 
-const jost = Jost({ subsets: ["latin"] });
+const jost = Jost({ subsets: ["latin"], display: "swap" });
 
 export const viewport: Viewport = {
     width: "device-width",

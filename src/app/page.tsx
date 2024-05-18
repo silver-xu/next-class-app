@@ -16,7 +16,7 @@ export default function Home() {
                 <div className={styles.splash}>
                     <Header theme="transparent" />
                     <div className={styles.searchBox}>
-                        <h1>Search afterschool class</h1>
+                        <h1>Search afterschool classes</h1>
                         <h2>Find talent of lifetime</h2>
                         <Search />
                     </div>
