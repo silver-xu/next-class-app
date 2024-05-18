@@ -14,7 +14,11 @@ export const Search = () => (
             <Form.Item label="Where?">
                 <Input placeholder="Melbourne" variant="borderless" />
             </Form.Item>
-            <Button type="primary" className={styles.searchButton}>
+            <Button
+                type="primary"
+                className={styles.searchButton}
+                href="search"
+            >
                 <SearchOutlined />
                 Search
             </Button>

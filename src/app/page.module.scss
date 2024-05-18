@@ -6,7 +6,7 @@
     bottom: 0;
     background-image: url(../../public/images/splash.jpeg);
     background-size: 100% auto;
-    background-position: 50% 65%;
+    background-position: center;
 
     .searchBox {
         position: fixed;
@@ -45,6 +45,8 @@
 
 @media (max-width: 500px) {
     .splash {
+        background-position: 50% 65%;
+
         h1 {
             margin: 250px 0 0 0;
         }

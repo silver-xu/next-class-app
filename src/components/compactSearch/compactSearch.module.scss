@@ -1,0 +1,13 @@
+.searchBox {
+    background: var(--white-color);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--light-grey-color);
+
+    .searchField {
+        margin-bottom: 10px;
+    }
+
+    .searchButtonWrapper {
+        text-align: right;
+    }
+}

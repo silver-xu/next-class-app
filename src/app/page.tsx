@@ -6,7 +6,8 @@ import styles from "./page.module.scss";
 
 export const metadata = {
     title: "nextclass. | The interest of lifetime - Home",
-    description: "nextclass. | The interest of lifetime - Home",
+    description:
+        "nextclass. | Home - Search after school classes, find talent of lifetime",
 };
 
 export default function Home() {
