@@ -23,7 +23,7 @@ export default function Home() {
                         <h2>Find talent of lifetime</h2>
                         <div className={styles.search}>
                             <Input
-                                placeholder="Art school"
+                                placeholder="Arts schools"
                                 variant="borderless"
                             />{" "}
                             <span>in</span>{" "}
