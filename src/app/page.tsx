@@ -26,7 +26,7 @@ export default function Home() {
                                 placeholder="Arts schools"
                                 variant="borderless"
                             />{" "}
-                            <span>in</span>{" "}
+                            <span className={styles.in}>in</span>{" "}
                             <Input
                                 placeholder="Melbourne"
                                 variant="borderless"
