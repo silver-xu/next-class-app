@@ -18,20 +18,27 @@ export default function Home() {
             <div>
                 <div className={styles.splash}>
                     <Header theme="transparent" />
-                    <h1>Search afterschool class</h1>
-                    <h2>Find talent of lifetime</h2>
-                    <div className={styles.search}>
-                        <Input
-                            placeholder="Art school in Melbourne"
-                            variant="borderless"
-                        />
-                        <Button
-                            type="primary"
-                            shape="circle"
-                            icon={<SearchOutlined />}
-                        />
+                    <div className={styles.searchBox}>
+                        <h1>Search afterschool class</h1>
+                        <h2>Find talent of lifetime</h2>
+                        <div className={styles.search}>
+                            <Input
+                                placeholder="Art school"
+                                variant="borderless"
+                            />{" "}
+                            <span>in</span>{" "}
+                            <Input
+                                placeholder="Melbourne"
+                                variant="borderless"
+                            />
+                            <Button
+                                type="primary"
+                                shape="circle"
+                                icon={<SearchOutlined />}
+                            />
+                        </div>
                     </div>
-                </div>                
+                </div>
                 <Footer isSticky={false} />
             </div>
         </Layout>
