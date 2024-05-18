@@ -1,6 +1,13 @@
 "use client";
 
-import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import {
+    MenuOutlined,
+    CloseOutlined,
+    HomeOutlined,
+    InfoCircleOutlined,
+    RadarChartOutlined,
+    MailOutlined,
+} from "@ant-design/icons";
 
 import styles from "./header.module.scss";
 import { useState } from "react";
@@ -43,32 +50,24 @@ export const Header = (props: HeaderProps) => {
                 <ul>
                     <li>
                         <Link href="/">
-                            <img src="/icons/home.svg" />
+                            <HomeOutlined />
                             Home
                         </Link>
                     </li>
                     <li>
-                        <Link href="/user/sign-in">
-                            <img src="/icons/signin.svg" />
-                            Sign In / Register
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/admin/dashboard">
-                            <img src="/icons/partner.svg" />
-                            Partner Sign In
-                        </Link>
-                    </li>
-                    <li>
                         <Link href="/">
-                            <img src="/icons/info.svg" />
+                            <InfoCircleOutlined />
                             About us
                         </Link>
                     </li>
                     <li>
                         <Link href="/">
-                            <img src="/icons/contact.svg" />
-                            Contact us
+                            <RadarChartOutlined /> Sitemap
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/">
+                            <MailOutlined /> Contact us
                         </Link>
                     </li>
                 </ul>

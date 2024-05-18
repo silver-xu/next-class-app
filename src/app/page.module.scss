@@ -6,11 +6,11 @@
     bottom: 0;
     background-image: url(../../public/images/splash.jpeg);
     background-size: 100% auto;
-    background-position: center;
+    background-position: 60% 50%;
 
     .searchBox {
         position: fixed;
-        top: 25px;
+        top: 50px;
         left: 0;
         right: 0;
         bottom: 0;
@@ -23,7 +23,7 @@
             font-size: 32px;
             font-weight: 300;
             text-align: center;
-            margin: 100px 0 0 0;
+            margin: 150px 0 0 0;
         }
 
         h2 {
