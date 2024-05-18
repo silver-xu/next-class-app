@@ -2,6 +2,7 @@ import { RightOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import { Button, Rate } from "antd";
 
 import { CompactSearch } from "@/components/compactSearch";
+import { Header } from "@/components/header";
 import styles from "./page.module.scss";
 
 export const metadata = {
@@ -12,6 +13,7 @@ export const metadata = {
 export default function Result() {
     return (
         <div className={styles.contentWrapper}>
+            <Header theme="light" />
             <CompactSearch />
             <div className={styles.floatButton}>
                 <Button type="primary">

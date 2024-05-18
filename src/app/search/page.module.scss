@@ -6,6 +6,14 @@
     right: 0;
     bottom: 0;
 
+    h1 {
+        margin: 0;
+        background: var(--white-color);
+        font-size: 24px;
+        font-weight: 300;
+        padding: 10px 0 0 18px;
+    }
+
     .floatButton {
         z-index: 1000;
         position: fixed;
@@ -18,7 +26,7 @@
         background: var(--white-color);
         border-radius: 10px;
         position: fixed;
-        top: 105px;
+        top: 160px;
         left: 0;
         right: 0;
         bottom: 0;
