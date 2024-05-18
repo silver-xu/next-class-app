@@ -1,10 +1,7 @@
-import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
-
 import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import Layout from "./layout";
 
+import { Search } from "@/components/search";
 import styles from "./page.module.scss";
 
 export const metadata = {
@@ -21,25 +18,9 @@ export default function Home() {
                     <div className={styles.searchBox}>
                         <h1>Search afterschool class</h1>
                         <h2>Find talent of lifetime</h2>
-                        <div className={styles.search}>
-                            <Input
-                                placeholder="Arts schools"
-                                variant="borderless"
-                            />{" "}
-                            <span className={styles.in}>in</span>{" "}
-                            <Input
-                                placeholder="Melbourne"
-                                variant="borderless"
-                            />
-                            <Button
-                                type="primary"
-                                shape="circle"
-                                icon={<SearchOutlined />}
-                            />
-                        </div>
+                        <Search />
                     </div>
                 </div>
-                <Footer isSticky={false} />
             </div>
         </Layout>
     );
