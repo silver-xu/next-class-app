@@ -11,10 +11,11 @@ export const CompactSearch = () => (
             placeholder="Arts schools"
             value="Arts schools"
             className={styles.searchField}
+            size="large"
         />
         <Space.Compact style={{ width: "100%" }}>
-            <Input defaultValue="Melbourne" />
-            <Button type="primary">
+            <Input defaultValue="Melbourne" size="large" />
+            <Button type="primary" size="large">
                 <SearchOutlined />
             </Button>
         </Space.Compact>
