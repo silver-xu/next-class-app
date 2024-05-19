@@ -9,12 +9,13 @@
     .heading {
         background: #08979c;
         padding: 15px;
+        display: flex;
+        align-items: start;
 
         h2 {
             margin: 0 10px 0 0;
             font-weight: 400;
             font-size: 18px;
-            display: inline-block;
             color: var(--white-color);
         }
 
