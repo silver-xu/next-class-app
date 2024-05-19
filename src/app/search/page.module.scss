@@ -33,43 +33,70 @@
         padding-bottom: 50px;
         overflow-y: scroll;
 
-        ul {
-            .searchResult {
-                padding: 10px 15px;
-                border-bottom: 1px solid var(--light-grey-color);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+        .searchResult {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--light-grey-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-                .infoWrapper {
-                    h2 {
-                        margin: 0;
-                        font-weight: 400;
-                        font-size: 18px;
-                    }
-
-                    .ratingLabel {
-                        font-size: 14px;
-                        font-weight: 300;
-                        color: var(--medium-grey-color);
-                        display: inline-block;
-                        margin: 5px 10px 5px 0;
-                    }
-
-                    .rating {
-                        font-size: 14px;
-                    }
-
-                    .address {
-                        font-size: 14px;
-                        color: var(--medium-grey-color);
-                        margin: 10px 0 5px 0;
-                    }
+            .infoWrapper {
+                h2 {
+                    margin: 0;
+                    font-weight: 400;
+                    font-size: 18px;
                 }
 
-                .chevron {
+                .ratingLabel {
+                    font-size: 14px;
+                    font-weight: 300;
                     color: var(--medium-grey-color);
-                    margin: 0 15px 0 0;
+                    display: inline-block;
+                    margin: 5px 10px 5px 0;
+                }
+
+                .rating {
+                    font-size: 14px;
+                }
+
+                .address {
+                    font-size: 14px;
+                    color: var(--medium-grey-color);
+                    margin: 10px 0 5px 0;
+                }
+            }
+
+            .chevron {
+                color: var(--medium-grey-color);
+                margin: 0 15px 0 0;
+            }
+
+            .gallery {
+                display: flex;
+                margin-top: 10px;
+
+                .gallery1,
+                .gallery2,
+                .gallery3,
+                .gallery4,
+                .gallery5 {
+                    width: 75px;
+                    height: 75px;
+                    border: 1px solid var(--light-grey-color);
+                    margin: 5px 5px 5px 0;
+                    background-size: 75px;
+                }
+
+                .gallery1 {
+                    background-image: url(/school-images/1.jpeg);
+                }
+
+                .gallery2 {
+                    background-image: url(/school-images/2.jpeg);
+                }
+
+                .gallery3 {
+                    background-image: url(/school-images/3.jpeg);
                 }
             }
         }
