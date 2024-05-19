@@ -1,0 +1,64 @@
+.searchResult {
+    margin: 0 auto;
+    max-width: 1024px;
+    border-bottom: 1px solid var(--light-grey-color);
+    background: var(--white-color);
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+    .heading {
+        background: #08979c;
+        padding: 15px;
+
+        h2 {
+            margin: 0 10px 0 0;
+            font-weight: 400;
+            font-size: 18px;
+            display: inline-block;
+            color: var(--white-color);
+        }
+
+        .tag {
+            background: var(--light-grey-color);
+            color: var(--dark-grey-color);
+            padding: 2px 5px;
+            border-radius: 5px;
+            font-size: 11px;
+        }
+    }
+
+    .infoWrapper {
+        padding: 10px 15px;
+
+        .ratingLabel {
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--medium-grey-color);
+            display: inline-block;
+            margin: 5px 10px 5px 0;
+        }
+
+        .rating {
+            font-size: 12px;
+        }
+
+        .address {
+            font-size: 14px;
+            color: var(--medium-grey-color);
+            margin: 10px 0 5px 0;
+        }
+    }
+
+    .chevron {
+        color: var(--medium-grey-color);
+        margin: 0 15px 0 0;
+    }
+
+    .gallery {
+        div,
+        img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+    }
+}
