@@ -113,7 +113,7 @@
 }
 
 .light {
-    background: var(--white-color);
+    background: #0bcbd2;
     border-bottom: 1px solid var(--light-grey-color);
 
     .logo {
@@ -123,7 +123,7 @@
         a,
         a:hover,
         a:visited {
-            color: var(--primary-color);
+            color: var(--white-color);
             text-decoration: none;
         }
     }
@@ -132,7 +132,7 @@
         margin: 18px 30px 0 0;
 
         .menuIcon {
-            color: var(--primary-color);
+            color: var(--white-color);
         }
     }
 }

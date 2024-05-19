@@ -23,8 +23,6 @@
 
     .searchResultWrapper {
         margin: 10px;
-        background: var(--white-color);
-        border-radius: 10px;
         position: fixed;
         top: 160px;
         left: 0;
@@ -34,21 +32,37 @@
         overflow-y: scroll;
 
         .searchResult {
-            padding: 10px 15px;
             border-bottom: 1px solid var(--light-grey-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--white-color);
+            margin-bottom: 10px;
+            border-radius: 10px;
 
-            .infoWrapper {
+            .heading {
+                background: #08979c;
+                padding: 15px;
+
                 h2 {
-                    margin: 0;
+                    margin: 0 10px 0 0;
                     font-weight: 400;
                     font-size: 18px;
+                    display: inline-block;
+                    color: var(--white-color);
                 }
 
+                .tag {
+                    background: var(--light-grey-color);
+                    color: var(--dark-grey-color);
+                    padding: 2px 5px;
+                    border-radius: 5px;
+                    font-size: 11px;
+                }
+            }
+
+            .infoWrapper {
+                padding: 10px 15px;
+
                 .ratingLabel {
-                    font-size: 14px;
+                    font-size: 12px;
                     font-weight: 300;
                     color: var(--medium-grey-color);
                     display: inline-block;
@@ -56,7 +70,7 @@
                 }
 
                 .rating {
-                    font-size: 14px;
+                    font-size: 12px;
                 }
 
                 .address {
@@ -72,31 +86,10 @@
             }
 
             .gallery {
-                display: flex;
-                margin-top: 10px;
-
-                .gallery1,
-                .gallery2,
-                .gallery3,
-                .gallery4,
-                .gallery5 {
-                    width: 75px;
-                    height: 75px;
-                    border: 1px solid var(--light-grey-color);
-                    margin: 5px 5px 5px 0;
-                    background-size: 75px;
-                }
-
-                .gallery1 {
-                    background-image: url(/school-images/1.jpeg);
-                }
-
-                .gallery2 {
-                    background-image: url(/school-images/2.jpeg);
-                }
-
-                .gallery3 {
-                    background-image: url(/school-images/3.jpeg);
+                div,
+                img {
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
                 }
             }
         }
