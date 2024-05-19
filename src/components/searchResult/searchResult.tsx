@@ -9,7 +9,7 @@ export const SearchResult = (props: { startIndex: number }) => (
         <Gallery startIndex={props.startIndex} />
         <div className={styles.heading}>
             <h2>Mock Arts Studio</h2>
-            <span className={styles.tag}>150m</span>
+            <span className={styles.tag}>{150 * (props.startIndex + 1)}m</span>
         </div>
         <div className={styles.infoWrapper}>
             <span className={styles.ratingLabel}>5.0</span>
