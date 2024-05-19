@@ -4,11 +4,17 @@ import {
     GlobalOutlined,
     HeartOutlined,
 } from "@ant-design/icons";
+import dynamic from "next/dynamic";
+import { Rate } from "antd";
+
 import { Gallery } from "@/components/gallery";
 import { Header } from "@/components/header";
 import styles from "./page.module.scss";
-import { Map } from "@/components/map";
-import { Rate } from "antd";
+
+const Map = dynamic(
+    () => import("../../components/map").then((mod) => mod.Map),
+    { ssr: false }
+);
 
 const mapBoxApiKey = process.env.MAPBOX_API_KEY;
 
