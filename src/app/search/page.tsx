@@ -17,7 +17,7 @@ export const metadata = {
     description: "nextclass. | Search Result",
 };
 
-export default function Result() {
+export default function Search() {
     const searchResults = Array.from(Array(15).keys()).map((i) => (
         <SearchResult startIndex={i % 5} />
     ));

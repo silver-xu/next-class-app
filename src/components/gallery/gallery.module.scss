@@ -5,3 +5,47 @@
         border-top-right-radius: 10px;
     }
 }
+.leftChev {
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    padding: 12px;
+    box-sizing: border-box;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: none;
+
+    svg {
+        color: var(--white-color);
+    }
+}
+
+.leftChev:hover {
+    background-color: var(--primary-color);
+}
+
+.rightChev {
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    padding: 12px;
+    box-sizing: border-box;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    svg {
+        color: var(--white-color);
+    }
+}
+
+.rightChev:hover {
+    background-color: var(--primary-color);
+}

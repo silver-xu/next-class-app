@@ -6,7 +6,7 @@ import { Gallery } from "../gallery";
 
 export const SearchResult = (props: { startIndex: number }) => (
     <li className={styles.searchResult}>
-        <Gallery startIndex={props.startIndex} />
+        <Gallery startIndex={props.startIndex} curveTop={true} />
         <div className={styles.heading}>
             <h2>Mock Arts Studio</h2>
             <span className={styles.tag}>{150 * (props.startIndex + 1)}m</span>
