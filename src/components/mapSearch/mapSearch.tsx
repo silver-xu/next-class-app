@@ -32,7 +32,7 @@ export const MapSearch = (props: MapSearchProps) => {
             mapboxAccessToken={mapBoxApiKey}
             initialViewState={{
                 ...centreLocation,
-                zoom: 13,
+                zoom: 14,
             }}
             style={{ width: "100%", height: "100%" }}
             mapStyle="mapbox://styles/mapbox/streets-v9"
