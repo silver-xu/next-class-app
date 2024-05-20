@@ -18,6 +18,7 @@ export const Search = () => (
                 type="primary"
                 className={styles.searchButton}
                 href="search"
+                size="large"
             >
                 <SearchOutlined />
                 Search

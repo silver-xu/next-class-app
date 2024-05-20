@@ -8,7 +8,7 @@ import {
     RadarChartOutlined,
     MailOutlined,
 } from "@ant-design/icons";
-
+import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -38,9 +38,25 @@ export const Header = (props: HeaderProps) => {
         setShowMenu(false);
     };
 
-    const menu = showMenu ? (
-        <div>
-            <div className={styles.submenu}>
+    const menu = (
+        <>
+            <motion.div
+                initial={{ right: 0 }}
+                animate={
+                    showMenu
+                        ? { display: "block", opacity: 0.2 }
+                        : { display: "none", opacity: 0 }
+                }
+                transition={{ duration: 0.2 }}
+                className={styles.overlay}
+                onClick={closeMenu}
+            ></motion.div>
+            <motion.div
+                initial={{ right: -360 }}
+                animate={showMenu ? { right: 0 } : { right: -360 }}
+                transition={{ duration: 0.2 }}
+                className={styles.submenu}
+            >
                 <div className={styles.menuHeader}>
                     <h1>nextclass.</h1>
                     <CloseOutlined
@@ -72,10 +88,9 @@ export const Header = (props: HeaderProps) => {
                         </Link>
                     </li>
                 </ul>
-            </div>
-            <div className={styles.overlay} onClick={closeMenu}></div>
-        </div>
-    ) : undefined;
+            </motion.div>
+        </>
+    );
 
     return (
         <div className={headerClassNames[theme]}>

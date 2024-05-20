@@ -35,8 +35,7 @@
             height: 100%;
             position: fixed;
             top: 0px;
-            right: 0px;
-            z-index: 1000;
+            z-index: 9999;
 
             .menuHeader {
                 padding: 15px;
@@ -67,17 +66,18 @@
 
                 li {
                     display: flex;
+                    align-items: center;
 
-                    img {
+                    span {
                         display: block;
-                        width: 20px;
-                        margin-right: 20px;
+                        font-size: 20px;
+                        margin-right: 10px;
                     }
 
                     a {
                         color: var(--medium-grey-color);
                         padding: 20px 35px;
-                        font-size: 14px;
+                        font-size: 16px;
                         display: flex;
                         justify-content: space-between;
 
@@ -104,10 +104,9 @@
             position: fixed;
             top: 0px;
             left: 0px;
-            width: 100%;
+            right: 0px;
             height: 100%;
-            z-index: 999;
-            opacity: 0.2;
+            z-index: 100;
         }
     }
 }
