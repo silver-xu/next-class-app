@@ -49,14 +49,20 @@ export const Gallery = (props: GalleryProps) => (
         startIndex={props.startIndex}
         renderLeftNav={(onClick, disabled) => (
             <LeftOutlined
-                onClick={onClick}
+                onClick={(e) => {
+                    e.preventDefault();
+                    onClick(e);
+                }}
                 disabled={disabled}
                 className={styles.leftChev}
             />
         )}
         renderRightNav={(onClick, disabled) => (
             <RightOutlined
-                onClick={onClick}
+                onClick={(e) => {
+                    e.preventDefault();
+                    onClick(e);
+                }}
                 disabled={disabled}
                 className={styles.rightChev}
             />
