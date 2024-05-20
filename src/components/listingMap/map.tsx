@@ -15,7 +15,7 @@ export interface MapProps {
 
 export const ListingMap = (props: MapProps) => {
     const { streetAddress, location, mapBoxApiKey } = props;
-    const { lng: longitude, lat: latitude } = location;
+    const { lng, lat } = location;
 
     const popup = useMemo(() => {
         return new mapboxgl.Popup().setText(streetAddress);
@@ -25,18 +25,15 @@ export const ListingMap = (props: MapProps) => {
         <MapBox
             mapboxAccessToken={mapBoxApiKey}
             initialViewState={{
-                ...location,
+                longitude: location.lng,
+                latitude: location.lat,
                 zoom: 14,
             }}
             style={{ width: "100%", height: "350px" }}
             mapStyle="mapbox://styles/mapbox/streets-v9"
             attributionControl={false}
         >
-            <Marker
-                longitude={longitude}
-                latitude={latitude}
-                popup={popup}
-            ></Marker>
+            <Marker longitude={lng} latitude={lat} popup={popup}></Marker>
         </MapBox>
     );
 };
