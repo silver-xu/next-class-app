@@ -48,7 +48,7 @@ export default function Listing() {
                 <h3>Directions</h3>
                 <Map
                     mapBoxApiKey={mapBoxApiKey}
-                    location={{ latitude: -37.8126, longitude: 145.08014 }}
+                    location={{ lat: -37.8126, lng: 145.08014 }}
                     streetAddress="327 Whitehorse Rd, Balwyn VIC 3103"
                 />
             </div>

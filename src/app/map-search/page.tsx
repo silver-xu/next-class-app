@@ -1,6 +1,3 @@
-import { UnorderedListOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-
 import { CompactSearch } from "@/components/compactSearch";
 import { Location } from "@/components/models/location";
 import { MapSearch } from "@/components/mapSearch";
@@ -16,25 +13,25 @@ export const metadata = {
 const mapBoxApiKey = process.env.MAPBOX_API_KEY;
 
 const getCentroid = (locations: Location[]): Location => {
-    const centroid = { latitude: 0, longitude: 0 };
+    const centroid = { lat: 0, lng: 0 };
 
     for (let i = 0; i < locations.length; i++) {
         const location = locations[i];
-        centroid.latitude += location.latitude;
-        centroid.longitude += location.longitude;
+        centroid.lat += location.lat;
+        centroid.lng += location.lng;
     }
 
-    centroid.latitude /= locations.length;
-    centroid.longitude /= locations.length;
+    centroid.lat /= locations.length;
+    centroid.lng /= locations.length;
 
     return centroid;
 };
 
 export default function Search() {
     const locations = [
-        { latitude: -37.8117, longitude: 145.13638 },
-        { latitude: -37.80466, longitude: 145.13119 },
-        { latitude: -37.82034, longitude: 145.12699 },
+        { lat: -37.8117, lng: 145.13638 },
+        { lat: -37.80466, lng: 145.13119 },
+        { lat: -37.82034, lng: 145.12699 },
     ];
 
     const centroid = getCentroid(locations);
@@ -43,11 +40,6 @@ export default function Search() {
         <div className={styles.contentWrapper}>
             <Header theme="light" />
             <CompactSearch />
-            <div className={styles.floatButton}>
-                <Button type="primary" href="/search">
-                    <UnorderedListOutlined /> List View
-                </Button>
-            </div>
             <div className={styles.mapView}>
                 <MapSearch
                     mapBoxApiKey={mapBoxApiKey}

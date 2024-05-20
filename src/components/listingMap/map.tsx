@@ -15,7 +15,7 @@ export interface MapProps {
 
 export const ListingMap = (props: MapProps) => {
     const { streetAddress, location, mapBoxApiKey } = props;
-    const { longitude, latitude } = location;
+    const { lng: longitude, lat: latitude } = location;
 
     const popup = useMemo(() => {
         return new mapboxgl.Popup().setText(streetAddress);

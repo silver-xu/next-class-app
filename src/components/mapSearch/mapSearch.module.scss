@@ -5,3 +5,31 @@
         color: var(--primary-color);
     }
 }
+
+.popup {
+    z-index: 1000;
+    position: fixed;
+    left: calc(50% - 215px);
+
+    bottom: 0;
+    background: white;
+
+    .searchResult {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+}
+
+.floatButton {
+    z-index: 1000;
+    position: fixed;
+    left: calc(50% - 70px);
+    bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .popup {
+        left: 0;
+        right: 0;
+    }
+}
