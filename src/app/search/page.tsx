@@ -1,16 +1,10 @@
 import { EnvironmentOutlined } from "@ant-design/icons";
-import dynamic from "next/dynamic";
 import { Button } from "antd";
 
 import { CompactSearch } from "@/components/compactSearch";
+import { SearchResult } from "@/components/searchResult";
 import { Header } from "@/components/header";
 import styles from "./page.module.scss";
-
-const SearchResult = dynamic(
-    () =>
-        import("../../components/searchResult").then((mod) => mod.SearchResult),
-    { ssr: false }
-);
 
 export const metadata = {
     title: "nextclass. | Search Result",
@@ -27,7 +21,7 @@ export default function Search() {
             <Header theme="light" />
             <CompactSearch />
             <div className={styles.floatButton}>
-                <Button type="primary">
+                <Button type="primary" href="/map-search">
                     <EnvironmentOutlined />
                     Map View
                 </Button>

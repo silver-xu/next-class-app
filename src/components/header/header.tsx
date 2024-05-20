@@ -9,9 +9,10 @@ import {
     MailOutlined,
 } from "@ant-design/icons";
 
-import styles from "./header.module.scss";
 import { useState } from "react";
 import Link from "next/link";
+
+import styles from "./header.module.scss";
 
 export interface HeaderProps {
     theme: HeaderTheme;

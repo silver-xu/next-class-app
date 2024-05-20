@@ -3,12 +3,9 @@ import MapBox, { Marker } from "react-map-gl";
 import mapboxgl from "mapbox-gl";
 import { useMemo } from "react";
 
-import "mapbox-gl/dist/mapbox-gl.css";
+import { Location } from "../models/location";
 
-export interface Location {
-    longitude: number;
-    latitude: number;
-}
+import "mapbox-gl/dist/mapbox-gl.css";
 
 export interface MapProps {
     streetAddress: string;
@@ -16,7 +13,7 @@ export interface MapProps {
     mapBoxApiKey: string | undefined;
 }
 
-export const Map = (props: MapProps) => {
+export const ListingMap = (props: MapProps) => {
     const { streetAddress, location, mapBoxApiKey } = props;
     const { longitude, latitude } = location;
 

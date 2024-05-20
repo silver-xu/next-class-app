@@ -12,7 +12,7 @@ import { Header } from "@/components/header";
 import styles from "./page.module.scss";
 
 const Map = dynamic(
-    () => import("../../components/map").then((mod) => mod.Map),
+    () => import("../../components/listingMap").then((mod) => mod.ListingMap),
     { ssr: false }
 );
 
