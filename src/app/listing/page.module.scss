@@ -8,7 +8,7 @@
 
         h2 {
             margin: 0;
-            color: var(--medium-grey-color);
+            color: var(--dark-text-color);
             background: var(--light-grey-color);
             padding: 10px 15px;
             display: flex;
@@ -54,14 +54,14 @@
 
         .infoWrapper {
             .category {
-                color: var(--medium-grey-color);
+                color: var(--dark-text-color);
                 font-size: 18px;
                 padding: 10px 0 0 0;
             }
 
             .address {
                 font-size: 18px;
-                color: var(--medium-grey-color);
+                color: var(--dark-text-color);
                 margin: 10px 0 5px 0;
             }
         }
@@ -70,7 +70,7 @@
             .ratingLabel {
                 font-size: 18px;
                 font-weight: 300;
-                color: var(--medium-grey-color);
+                color: var(--dark-text-color);
                 display: inline-block;
                 margin: 5px 10px 5px 0;
             }
@@ -83,7 +83,7 @@
             p {
                 margin: 10px 0 0 0;
                 font-size: 18px;
-                color: var(--medium-grey-color);
+                color: var(--dark-text-color);
             }
         }
 
@@ -106,7 +106,7 @@
         .courses {
             p {
                 font-size: 18px;
-                color: var(--medium-grey-color);
+                color: var(--dark-text-color);
             }
 
             ul {
@@ -118,7 +118,7 @@
 
                     li {
                         list-style: disc;
-                        margin: 10px 0;
+                        margin: px 0;
                     }
                 }
             }

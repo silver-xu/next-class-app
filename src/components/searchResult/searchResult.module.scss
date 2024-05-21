@@ -7,7 +7,7 @@
     border-radius: 10px;
 
     .heading {
-        background: #08979c;
+        background: var(--light-grey-color);
         padding: 15px;
         display: flex;
         align-items: flex-start;
@@ -16,15 +16,15 @@
             margin: 0 10px 0 0;
             font-weight: 400;
             font-size: 18px;
-            color: var(--white-color);
+            color: var(--dark-text-color);
         }
 
         .tag {
-            background: var(--light-grey-color);
-            color: var(--dark-grey-color);
+            background: var(--primary-color);
+            color: var(--white-color);
             padding: 2px 5px;
             border-radius: 5px;
-            font-size: 11px;
+            font-size: 14px;
         }
     }
 
@@ -32,19 +32,19 @@
         padding: 10px 15px;
 
         .ratingLabel {
-            font-size: 12px;
-            font-weight: 300;
+            font-size: 14px;
+            font-weight: 400;
             color: var(--medium-grey-color);
             display: inline-block;
             margin: 5px 10px 5px 0;
         }
 
         .rating {
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .address {
-            font-size: 14px;
+            font-size: 16px;
             color: var(--medium-grey-color);
             margin: 10px 0 5px 0;
         }
