@@ -95,7 +95,9 @@ export const Header = (props: HeaderProps) => {
     return (
         <div className={headerClassNames[theme]}>
             <div className={styles.logo}>
-                <Link href="/">nextclass.</Link>
+                <Link href="/">
+                    <span>next</span>class.
+                </Link>
             </div>
             <div className={styles.menu}>
                 <MenuOutlined
