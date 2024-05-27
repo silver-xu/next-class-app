@@ -10,7 +10,7 @@ import { Button } from "antd";
 import Link from "next/link";
 import { Rate } from "antd";
 
-import { Location } from "../models/location";
+import { MapLocation } from "../../models/map-location";
 
 import searchResultStyles from "../searchResult/searchResult.module.scss";
 import styles from "./mapSearch.module.scss";
@@ -21,16 +21,16 @@ const boundsFactor = 1;
 
 export interface MapSearchProps {
     mapBoxApiKey: string | undefined;
-    markerLocations: Location[];
-    centreLocation: Location;
+    markerLocations: MapLocation[];
+    centreLocation: MapLocation;
 }
 
 interface Bounds {
-    southwest: Location;
-    northeast: Location;
+    southwest: MapLocation;
+    northeast: MapLocation;
 }
 
-const getBounds = (locations: Location[]): Bounds => {
+const getBounds = (locations: MapLocation[]): Bounds => {
     let minLat = Number.MAX_VALUE,
         maxLat = -1 * Number.MAX_VALUE,
         minLng = Number.MAX_VALUE,
@@ -72,7 +72,7 @@ export const MapSearch = (props: MapSearchProps) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mapRef = useRef<any>(null);
 
-    const onMarkerClick = (location: Location) => {
+    const onMarkerClick = (location: MapLocation) => {
         setMarkerClicked(true);
         if (popupOpen) {
             setPopupOpen(false);

@@ -1,28 +1,33 @@
 "use client";
 
-import { SearchOutlined } from "@ant-design/icons";
-import { Form, Input, Button } from "antd";
+import { EnvironmentOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+
+import { CompactSearch } from "../compactSearch";
+import { SearchResult } from "../searchResult";
+import { Header } from "../header";
 
 import styles from "./search.module.scss";
 
-export const Search = () => (
-    <div className={styles.search}>
-        <Form layout="vertical">
-            <Form.Item label="Which Activity?">
-                <Input placeholder="Arts schools" variant="borderless" />
-            </Form.Item>
-            <Form.Item label="Where?">
-                <Input placeholder="Melbourne" variant="borderless" />
-            </Form.Item>
-            <Button
-                type="primary"
-                className={styles.searchButton}
-                href="search"
-                size="large"
-            >
-                <SearchOutlined />
-                Search
-            </Button>
-        </Form>
-    </div>
-);
+export const Search = () => {
+    const searchResults = Array.from(Array(15).keys()).map((i) => (
+        <SearchResult startIndex={i % 5} />
+    ));
+
+    return (
+        <div className={styles.contentWrapper}>
+            <Header theme="light" />
+            <CompactSearch />
+            <div className={styles.floatButton}>
+                <Button type="primary" href="/map-search">
+                    <EnvironmentOutlined />
+                    Map View
+                </Button>
+            </div>
+
+            <div className={styles.searchResultWrapper}>
+                <ul>{searchResults}</ul>
+            </div>
+        </div>
+    );
+};

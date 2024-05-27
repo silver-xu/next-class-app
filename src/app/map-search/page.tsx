@@ -1,9 +1,10 @@
 import { CompactSearch } from "@/components/compactSearch";
-import { Location } from "@/components/models/location";
+import { MapLocation } from "@/models/map-location";
 import { MapSearch } from "@/components/mapSearch";
 import { Header } from "@/components/header";
 
 import styles from "./page.module.scss";
+import { Suspense } from "react";
 
 export const metadata = {
     title: "nextclass. | Search Result",
@@ -12,7 +13,7 @@ export const metadata = {
 
 const mapBoxApiKey = process.env.MAPBOX_API_KEY;
 
-const getCentroid = (locations: Location[]): Location => {
+const getCentroid = (locations: MapLocation[]): MapLocation => {
     const centroid = { lat: 0, lng: 0 };
 
     for (let i = 0; i < locations.length; i++) {
@@ -39,7 +40,9 @@ export default function Search() {
     return (
         <div className={styles.contentWrapper}>
             <Header theme="light" />
-            <CompactSearch />
+            <Suspense>
+                <CompactSearch />
+            </Suspense>
             <div className={styles.mapView}>
                 <MapSearch
                     mapBoxApiKey={mapBoxApiKey}

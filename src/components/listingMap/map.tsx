@@ -3,13 +3,13 @@ import MapBox, { Marker } from "react-map-gl";
 import mapboxgl from "mapbox-gl";
 import { useMemo } from "react";
 
-import { Location } from "../models/location";
+import { MapLocation } from "../../models/map-location";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export interface MapProps {
     streetAddress: string;
-    location: Location;
+    location: MapLocation;
     mapBoxApiKey: string | undefined;
 }
 

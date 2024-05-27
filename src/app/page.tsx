@@ -1,7 +1,7 @@
 import { Header } from "@/components/header";
 import Layout from "./layout";
 
-import { Search } from "@/components/search";
+import { HomeSearch } from "@/components/home-search";
 import styles from "./page.module.scss";
 
 export const metadata = {
@@ -19,7 +19,7 @@ export default function Home() {
                     <div className={styles.searchBox}>
                         <h1>Search afterschool classes</h1>
                         <h2>Find talent of lifetime</h2>
-                        <Search />
+                        <HomeSearch />
                     </div>
                 </div>
             </div>
