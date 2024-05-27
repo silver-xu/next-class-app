@@ -1,8 +1,6 @@
 import { Db, MongoClient, ServerApiVersion } from "mongodb";
 
-export const dbUri =
-    process.env.CONNECTION_STRING ||
-    "mongodb+srv://<User>>:<Password>.@next-class-db.p6abndm.mongodb.net/?retryWrites=true&w=majority&appName=next-class-db;";
+export const dbUri = process.env.CONNECTION_STRING ?? "";
 
 export class DbContext {
     private readonly client: MongoClient;
