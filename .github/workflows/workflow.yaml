@@ -23,7 +23,7 @@ jobs:
                   ECR_REPOSITORY: next-class-app
                   IMAGE_TAG: ${{github.sha}}
                   MAPBOX_API_KEY: ${{secrets.MAPBOX_API_KEY}}
-                  CONNECTIONSTRING: ${{secrets.CONNECTIONSTRING}}
+                  CONNECTIONSTRING: ${{secrets.CONNECTION_STRING}}
 
               run: |
                   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg MAPBOX_API_KEY="$MAPBOX_API_KEY" --build-arg CONNECTIONSTRING="$CONNECTION_STRING" .
