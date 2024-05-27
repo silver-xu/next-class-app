@@ -23,8 +23,10 @@ jobs:
                   ECR_REPOSITORY: next-class-app
                   IMAGE_TAG: ${{github.sha}}
                   MAPBOX_API_KEY: ${{secrets.MAPBOX_API_KEY}}
+                  CONNECTIONSTRING: ${{secrets.CONNECTIONSTRING}}
+
               run: |
-                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg MAPBOX_API_KEY=$MAPBOX_API_KEY .
+                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg MAPBOX_API_KEY=$MAPBOX_API_KEY CONNECTIONSTRING=$CONNECTION_STRING.
                   docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
             - name: Deploy to AWS Fargate using CDK
               uses: youyo/aws-cdk-github-actions@v2
