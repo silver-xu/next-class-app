@@ -10,4 +10,14 @@
     .searchButtonWrapper {
         text-align: right;
     }
+
+    .errorQuery {
+        border: 1px solid var(--pink-color) !important;
+    }
+
+    .errorSuburb {
+        > div {
+            border: 1px solid var(--pink-color) !important;
+        }
+    }
 }

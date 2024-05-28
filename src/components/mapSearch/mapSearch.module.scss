@@ -1,35 +1,24 @@
-.marker {
-    font-size: 36px;
-
-    svg {
-        color: var(--light-orange-color);
-    }
-}
-
-.popup {
-    z-index: 1000;
+.mapWrapper {
+    background: var(--super-light-cyan-color);
     position: fixed;
-    left: calc(50% - 215px);
-
+    top: 0;
+    left: 0;
+    right: 0;
     bottom: 0;
-    background: white;
 
-    .searchResult {
-        border-bottom: none;
-        margin-bottom: 0;
+    h1 {
+        margin: 0;
+        background: var(--white-color);
+        font-size: 24px;
+        font-weight: 300;
+        padding: 10px 0 0 18px;
     }
-}
 
-.floatButton {
-    z-index: 1000;
-    position: fixed;
-    left: calc(50% - 70px);
-    bottom: 20px;
-}
-
-@media (max-width: 500px) {
-    .popup {
+    .mapView {
+        position: fixed;
+        top: 178px;
         left: 0;
         right: 0;
+        bottom: 0;
     }
 }

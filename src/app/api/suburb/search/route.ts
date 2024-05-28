@@ -1,4 +1,4 @@
-import { SuburbRepository } from "@/db /suburbRepository";
+import { SuburbRepository } from "@/db/suburbRepository";
 import { NextRequest, NextResponse } from "next/server";
 
 const suburbRepository = new SuburbRepository();

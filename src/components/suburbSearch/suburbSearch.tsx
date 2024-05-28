@@ -17,7 +17,9 @@ interface SuburbSearchProps {
     defaultSuburb?: Suburb | undefined;
     variant?: "borderless" | "outlined" | "filled" | undefined;
     size?: "small" | "middle" | "large" | undefined;
+    className?: string | undefined;
     onSuburbSelect: (suburb: Suburb) => void;
+    onSuburbDeselect: () => void;
 }
 
 export const SuburbSearch = (props: SuburbSearchProps) => {
@@ -26,7 +28,9 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
         variant,
         defaultSuburb,
         size,
+        className,
         onSuburbSelect: triggerSuburbSelect,
+        onSuburbDeselect: triggerSuburbDeselect,
     } = props;
 
     const [options, setOptions] = useState<Option[]>([]);
@@ -79,6 +83,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
     const onSuburbBlur = () => {
         if (suburbValue !== selectedSuburb?.fullName) {
             setSuburbValue("");
+            triggerSuburbDeselect();
         }
     };
 
@@ -92,7 +97,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
             onChange={onSuburbChange}
             onBlur={onSuburbBlur}
             value={suburbValue}
-            className={styles.autoComplete}
+            className={`${styles.autoComplete} ${className}`}
             size={size}
             defaultValue={selectedSuburb?.fullName}
             allowClear={{ clearIcon: <CloseSquareFilled /> }}

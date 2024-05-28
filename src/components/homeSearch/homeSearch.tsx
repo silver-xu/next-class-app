@@ -24,6 +24,8 @@ export const HomeSearch = () => {
 
     const onSuburbSelect = (suburb: Suburb) => setSelectedSuburb(suburb);
 
+    const onSuburbDeselect = () => setSelectedSuburb(undefined);
+
     const onQueryChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         setQuery(e.currentTarget.value);
 
@@ -103,6 +105,7 @@ export const HomeSearch = () => {
                             placeholder="Type Suburb, Town or Postcode"
                             variant="borderless"
                             onSuburbSelect={onSuburbSelect}
+                            onSuburbDeselect={onSuburbDeselect}
                         />
                     </motion.div>
                 </Form.Item>

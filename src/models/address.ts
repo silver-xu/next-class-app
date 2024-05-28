@@ -1,6 +1,6 @@
 export interface Location {
     type: string;
-    coordinates: number[] | undefined[];
+    coordinates: number[];
 }
 
 export interface AddressBreakdown {
@@ -14,5 +14,5 @@ export interface AddressBreakdown {
 export interface Address {
     fullAddress: string | undefined;
     addressBreakdown: AddressBreakdown | undefined;
-    location: Location | undefined;
+    location: Location;
 }

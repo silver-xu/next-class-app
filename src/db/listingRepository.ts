@@ -19,7 +19,11 @@ export class ListingRepository {
         return result ?? undefined;
     }
 
-    public async search(query: string, location: Location): Promise<Listing[]> {
+    public async search(
+        query: string,
+        location: Location,
+        radius: number
+    ): Promise<Listing[]> {
         const db = await this.dbContext.connect();
 
         const result = await db
@@ -34,7 +38,7 @@ export class ListingRepository {
                                     geoWithin: {
                                         circle: {
                                             center: location,
-                                            radius: 5000,
+                                            radius,
                                         },
                                         path: "address.location",
                                     },
@@ -65,7 +69,7 @@ export class ListingRepository {
                     },
                 },
                 {
-                    $limit: 10,
+                    $limit: 20,
                 },
                 {
                     $sort: { score: -1 },
