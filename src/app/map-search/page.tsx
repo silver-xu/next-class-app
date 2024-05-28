@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 
 import styles from "./page.module.scss";
 import { Suspense } from "react";
+import Layout from "../layout";
 
 export const metadata = {
     title: "nextclass. | Search Result",
@@ -38,18 +39,20 @@ export default function Search() {
     const centroid = getCentroid(locations);
 
     return (
-        <div className={styles.contentWrapper}>
-            <Header theme="light" />
-            <Suspense>
-                <CompactSearch />
-            </Suspense>
-            <div className={styles.mapView}>
-                <MapSearch
-                    mapBoxApiKey={mapBoxApiKey}
-                    centreLocation={centroid}
-                    markerLocations={locations}
-                />
+        <Layout>
+            <div className={styles.contentWrapper}>
+                <Header theme="light" />
+                <Suspense>
+                    <CompactSearch />
+                </Suspense>
+                <div className={styles.mapView}>
+                    <MapSearch
+                        mapBoxApiKey={mapBoxApiKey}
+                        centreLocation={centroid}
+                        markerLocations={locations}
+                    />
+                </div>
             </div>
-        </div>
+        </Layout>
     );
 }

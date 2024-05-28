@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Layout from "@/app/layout";
 
 const SearchClientComponent = dynamic(
     () => import("../../../components/search").then((mod) => mod.Search),
@@ -11,5 +12,9 @@ export const metadata = {
 };
 
 export default function Search() {
-    return <SearchClientComponent />;
+    return (
+        <Layout>
+            <SearchClientComponent />
+        </Layout>
+    );
 }
