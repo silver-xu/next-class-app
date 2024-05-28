@@ -6,10 +6,14 @@ import { Form, Input, Button } from "antd";
 import { useState } from "react";
 
 import { SuburbSearch } from "../suburbSearch/suburbSearch";
+import { motion, useAnimation } from "framer-motion";
 import styles from "./homeSearch.module.scss";
 import { Suburb } from "@/models/suburb";
 
 export const HomeSearch = () => {
+    const queryValidationControl = useAnimation();
+    const suburbValidationControl = useAnimation();
+
     const [selectedSuburb, setSelectedSuburb] = useState<Suburb | undefined>(
         undefined
     );
@@ -24,26 +28,83 @@ export const HomeSearch = () => {
         setQuery(e.currentTarget.value);
 
     const onSearchClick = () => {
-        router.push(`/search/${selectedSuburb?.suburbId}/?q=${query}`);
+        if (!query || query === "") {
+            queryValidationControl.start("start");
+            setTimeout(() => queryValidationControl.stop(), 1000);
+        }
+
+        if (!selectedSuburb) {
+            suburbValidationControl.start("start");
+            setTimeout(() => suburbValidationControl.stop(), 1000);
+        }
+
+        if (query && query !== "" && selectedSuburb) {
+            router.push(`/search/${selectedSuburb?.suburbId}/?q=${query}`);
+        }
     };
+
+    const getRandomTransformOrigin = () => {
+        const value = (50 + 40 * Math.random()) / 100;
+        const value2 = (50 + 36 * Math.random()) / 100;
+        return {
+            originX: value,
+            originY: value2,
+        };
+    };
+
+    const variants = {
+        start: (i: number) => ({
+            rotate: i % 2 === 0 ? [-1, 1.3, 0] : [1, -1.4, 0],
+            transition: {
+                delay: getRandomDelay(),
+                repeat: Infinity,
+                duration: randomDuration(),
+            },
+        }),
+        reset: {
+            rotate: 0,
+        },
+    };
+
+    const getRandomDelay = () => -(Math.random() * 0.7 + 0.05);
+
+    const randomDuration = () => Math.random() * 0.07 + 0.13;
 
     return (
         <div className={styles.search}>
             <Form layout="vertical">
                 <Form.Item label="Which Activity?">
-                    <Input
-                        placeholder="Arts schools"
-                        variant="borderless"
-                        onChange={onQueryChange}
-                        name="keywords"
-                    />
+                    <motion.div
+                        style={{
+                            ...getRandomTransformOrigin(),
+                        }}
+                        variants={variants}
+                        animate={queryValidationControl}
+                    >
+                        <Input
+                            placeholder="Arts schools"
+                            autoComplete="off"
+                            variant="borderless"
+                            onChange={onQueryChange}
+                            name="keywords"
+                            className={styles.input}
+                        />
+                    </motion.div>
                 </Form.Item>
                 <Form.Item label="Where?">
-                    <SuburbSearch
-                        placeholder="Type Suburb, Town or Postcode"
-                        variant="borderless"
-                        onSuburbSelect={onSuburbSelect}
-                    />
+                    <motion.div
+                        style={{
+                            ...getRandomTransformOrigin(),
+                        }}
+                        variants={variants}
+                        animate={suburbValidationControl}
+                    >
+                        <SuburbSearch
+                            placeholder="Type Suburb, Town or Postcode"
+                            variant="borderless"
+                            onSuburbSelect={onSuburbSelect}
+                        />
+                    </motion.div>
                 </Form.Item>
                 <Button
                     type="primary"

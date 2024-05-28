@@ -78,7 +78,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
 
     const onSuburbBlur = () => {
         if (suburbValue !== selectedSuburb?.fullName) {
-            setSuburbValue(selectedSuburb?.fullName ?? "");
+            setSuburbValue("");
         }
     };
 
