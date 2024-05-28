@@ -1,7 +1,7 @@
 import { Header } from "@/components/header";
 import Layout from "./layout";
 
-import { HomeSearch } from "@/components/home-search";
+import { HomeSearch } from "@/components/homeSearch";
 import styles from "./page.module.scss";
 
 export const metadata = {

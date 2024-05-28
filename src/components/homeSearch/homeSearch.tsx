@@ -1,48 +1,30 @@
 "use client";
 
-import { Form, Input, Button, AutoComplete } from "antd";
-import { CloseSquareFilled } from "@ant-design/icons";
 import { SearchOutlined } from "@ant-design/icons";
-import { useCallback, useState } from "react";
-import axios from "axios";
-
-import { Suburb } from "../../models/suburb";
-
-import styles from "./home-search.module.scss";
 import { useRouter } from "next/navigation";
-import debounce from "lodash.debounce";
+import { Form, Input, Button } from "antd";
+import { useState } from "react";
+
+import { SuburbSearch } from "../suburbSearch/suburbSearch";
+import styles from "./homeSearch.module.scss";
+import { Suburb } from "@/models/suburb";
 
 export const HomeSearch = () => {
-    const [options, setOptions] = useState<{ value: string }[]>([]);
-    const [selectedSuburb, setSelectedSuburb] = useState<string | undefined>(
+    const [selectedSuburb, setSelectedSuburb] = useState<Suburb | undefined>(
         undefined
     );
+
     const [query, setQuery] = useState<string | undefined>(undefined);
 
     const router = useRouter();
 
-    const searchSuburb = useCallback(
-        async (value: string): Promise<void> => {
-            const response = await axios.get("/api/suburb/search?q=" + value);
-
-            setOptions(
-                response.data.map((suburb: Suburb) => ({
-                    value: `${suburb.name}, ${suburb.state} ${suburb.postcode}`,
-                }))
-            );
-        },
-        [options]
-    );
-
-    const onSuburbSelect = (value: string) => {
-        setSelectedSuburb(value);
-    };
+    const onSuburbSelect = (suburb: Suburb) => setSelectedSuburb(suburb);
 
     const onQueryChange = (e: React.ChangeEvent<HTMLInputElement>) =>
         setQuery(e.currentTarget.value);
 
     const onSearchClick = () => {
-        router.push(`/search/${selectedSuburb}/?q=${query}`);
+        router.push(`/search/${selectedSuburb?.suburbId}/?q=${query}`);
     };
 
     return (
@@ -57,13 +39,10 @@ export const HomeSearch = () => {
                     />
                 </Form.Item>
                 <Form.Item label="Where?">
-                    <AutoComplete
-                        options={options}
+                    <SuburbSearch
                         placeholder="Type Suburb, Town or Postcode"
                         variant="borderless"
-                        onSearch={debounce(searchSuburb, 300)}
-                        onSelect={onSuburbSelect}
-                        allowClear={{ clearIcon: <CloseSquareFilled /> }}
+                        onSuburbSelect={onSuburbSelect}
                     />
                 </Form.Item>
                 <Button

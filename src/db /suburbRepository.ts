@@ -8,10 +8,20 @@ export class SuburbRepository {
         this.dbContext = new DbContext();
     }
 
+    public async getOne(suburbId: string): Promise<Suburb | undefined> {
+        const db = await this.dbContext.connect();
+
+        const result = await db
+            .collection<Suburb>("suburbs")
+            .findOne({ suburbId });
+
+        return result ?? undefined;
+    }
+
     public async search(query: string): Promise<Suburb[]> {
         const db = await this.dbContext.connect();
 
-        return await db
+        const result = await db
             .collection("suburbs")
             .aggregate<Suburb>([
                 {
@@ -21,14 +31,7 @@ export class SuburbRepository {
                             should: [
                                 {
                                     autocomplete: {
-                                        path: "name",
-                                        query,
-                                        tokenOrder: "sequential",
-                                    },
-                                },
-                                {
-                                    autocomplete: {
-                                        path: "postcode",
+                                        path: "fullName",
                                         query,
                                         tokenOrder: "sequential",
                                     },
@@ -52,5 +55,7 @@ export class SuburbRepository {
                 },
             ])
             .toArray();
+
+        return result;
     }
 }

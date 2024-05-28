@@ -1,4 +1,9 @@
-import { Search as SearchComponent } from "@/components/search";
+import dynamic from "next/dynamic";
+
+const SearchClientComponent = dynamic(
+    () => import("../../../components/search").then((mod) => mod.Search),
+    { ssr: false }
+);
 
 export const metadata = {
     title: "nextclass. | Search Result",
@@ -6,5 +11,5 @@ export const metadata = {
 };
 
 export default function Search() {
-    return <SearchComponent />;
+    return <SearchClientComponent />;
 }
