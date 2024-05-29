@@ -58,7 +58,11 @@ export const Header = (props: HeaderProps) => {
                 className={styles.submenu}
             >
                 <div className={styles.menuHeader}>
-                    <h1>nextclass.</h1>
+                    <div className={styles.logo}>
+                        <Link href="/">
+                            <span>Wel</span>come.
+                        </Link>
+                    </div>
                     <CloseOutlined
                         className={styles.close}
                         onClick={closeMenu}
