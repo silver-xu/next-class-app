@@ -1,5 +1,5 @@
 .contentWrapper {
-    background: var(--super-light-cyan-color);
+    background: var(--super-light-bg-color);
     position: fixed;
     top: 0;
     left: 0;
@@ -24,7 +24,7 @@
     .searchResultWrapper {
         padding: 15px 15px 50px 15px;
         position: fixed;
-        top: 194px;
+        top: 197px;
         left: 0;
         right: 0;
         bottom: 0;
@@ -45,8 +45,13 @@
             .dropdown {
                 box-sizing: content-box;
 
-                span {
-                    font-size: 16px !important;
+                :global {
+                    .ant-select-selector {
+                        border-radius: 3px;
+                    }
+                    .ant-select-selection-item {
+                        font-size: 16px !important;
+                    }
                 }
             }
         }
@@ -56,7 +61,7 @@
             max-width: 640px;
             border-bottom: 1px solid var(--light-grey-color);
             background: var(--white-color);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border-radius: 3px;
         }
     }
