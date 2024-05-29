@@ -157,10 +157,10 @@ export const MapView = (props: MapSearchProps) => {
                     // zoom: 14,
                     fitBoundsOptions: {
                         padding: {
-                            top: 100,
-                            right: 100,
-                            bottom: 100,
-                            left: 100,
+                            top: 50,
+                            right: 50,
+                            bottom: 50,
+                            left: 50,
                         },
                     },
                     bounds: [bounds.southwest, bounds.northeast],

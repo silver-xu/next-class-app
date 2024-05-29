@@ -14,6 +14,7 @@ import {
 import { SuburbSearch } from "../suburbSearch/suburbSearch";
 import { CloseSquareFilled } from "@ant-design/icons";
 import styles from "./compactSearch.module.scss";
+import { Sort } from "@/db/listingRepository";
 import { SearchContext } from "../search";
 import { Suburb } from "@/models/suburb";
 import axios from "axios";
@@ -32,6 +33,9 @@ export const CompactSearch = () => {
         selectedSuburb,
         setSelectedSuburb,
         setSearchResult,
+        searchRadius,
+        searchSorting,
+        setLoading,
     } = useContext(SearchContext);
 
     const [query, setQuery] = useState<string | undefined>(q as string);
@@ -43,7 +47,12 @@ export const CompactSearch = () => {
         (async function () {
             setSearchSuburb(selectedSuburb);
             await fetchSuburb();
-            await searchListings(query!, selectedSuburb!);
+            await searchListings(
+                query!,
+                selectedSuburb!,
+                searchRadius,
+                searchSorting
+            );
         })();
     }, [suburbId]);
 
@@ -55,14 +64,22 @@ export const CompactSearch = () => {
     };
 
     const searchListings = useCallback(
-        async (query: string, suburb: Suburb) => {
+        async (
+            query: string,
+            suburb: Suburb,
+            searchRadius: number,
+            searchSorting: Sort
+        ) => {
             const suburbParam = suburb?.suburbId ?? suburbId;
 
+            setLoading(true);
             const response = await axios.get(
-                `/api/listing/search?suburb=${suburbParam}&q=${query}&radius=10000`
+                `/api/listing/search?suburb=${suburbParam}&q=${query}&radius=${searchRadius}&sort=${searchSorting}`
             );
 
             setSearchResult(response.data);
+
+            setLoading(false);
         },
         [suburbId, query]
     );
@@ -72,7 +89,12 @@ export const CompactSearch = () => {
         setSuburbError(!searchSuburb);
 
         if (query && query !== "" && selectedSuburb) {
-            await searchListings(query, selectedSuburb);
+            await searchListings(
+                query,
+                selectedSuburb,
+                searchRadius,
+                searchSorting
+            );
             setSearchSuburb(selectedSuburb);
         }
     };

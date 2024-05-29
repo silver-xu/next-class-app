@@ -11,8 +11,8 @@ export default function ListView() {
     return (
         listings && (
             <ul>
-                {listings.map((listing) => (
-                    <li className={styles.searchResult}>
+                {listings.map((listing, idx) => (
+                    <li className={styles.searchResult} key={idx}>
                         <ListViewItem listing={listing} />
                     </li>
                 ))}

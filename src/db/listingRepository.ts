@@ -3,6 +3,13 @@ import { Listing } from "@/models/listing";
 import { DbContext } from "./dbContext";
 import { Db } from "mongodb";
 
+export type Sort = "relevance" | "rating";
+
+const sortCriterias = {
+    relevance: { score: { $meta: "searchScore", order: -1 } },
+    rating: { rating: -1 },
+};
+
 export class ListingRepository {
     private dbContext: DbContext;
     private static db: Db;
@@ -26,12 +33,14 @@ export class ListingRepository {
     public async search(
         query: string,
         location: Location,
-        radius: number
+        radius: number,
+        sort: Sort
     ): Promise<Listing[]> {
         if (!ListingRepository.db) {
             ListingRepository.db = await this.dbContext.connect();
         }
 
+        const sortCriteria = sortCriterias[sort];
         const result = await ListingRepository.db
             .collection("listings")
             .aggregate<Listing>([
@@ -49,8 +58,6 @@ export class ListingRepository {
                                         path: "address.location",
                                     },
                                 },
-                            ],
-                            should: [
                                 {
                                     text: {
                                         path: [
@@ -65,6 +72,7 @@ export class ListingRepository {
                                 },
                             ],
                         },
+                        sort: sortCriteria,
                     },
                 },
                 {
@@ -76,9 +84,6 @@ export class ListingRepository {
                 },
                 {
                     $limit: 20,
-                },
-                {
-                    $sort: { score: -1 },
                 },
             ])
             .toArray();

@@ -10,6 +10,7 @@ import { Listing } from "@/models/listing";
 import { SearchContext } from "../search";
 import { Suburb } from "@/models/suburb";
 
+import { Sort } from "@/db/listingRepository";
 import styles from "./mapSearch.module.scss";
 
 interface MapSearchProps {
@@ -27,6 +28,10 @@ export const MapSearch = (props: MapSearchProps) => {
     );
     const [listings, setListings] = useState<Listing[] | undefined>(undefined);
 
+    const [searchSorting] = useState<Sort>("relevance");
+    const [searchRadius] = useState<number>(10000);
+    const [loading, setLoading] = useState<boolean>(false);
+
     const setSearchResult = (listings: Listing[]) => setListings(listings);
 
     const mapView = listings && (
@@ -41,7 +46,11 @@ export const MapSearch = (props: MapSearchProps) => {
                 selectedSuburb,
                 setSelectedSuburb,
                 setSearchResult,
+                searchRadius,
                 listings,
+                searchSorting,
+                loading,
+                setLoading,
             }}
         >
             <div className={styles.mapWrapper}>

@@ -31,6 +31,20 @@ const mapBoxApiKey = process.env.MAPBOX_API_KEY;
 
 const listingRepository = new ListingRepository();
 
+const isRelevant = (value: string | undefined): boolean => {
+    const irrelevantKeywords = ["various", "varies", "not specified"];
+
+    if (!value) {
+        return false;
+    }
+
+    if (irrelevantKeywords.includes(value.toLowerCase())) {
+        return false;
+    }
+
+    return true;
+};
+
 export default async function Listing({
     params,
 }: {
@@ -64,25 +78,19 @@ export default async function Listing({
         courseName && <h4>{courseName}</h4>;
 
     const getCourseDate = (date: string | undefined) =>
-        date &&
-        date !== "Not specified" && (
-            <div className={styles.date}>Date: {date}</div>
-        );
+        isRelevant(date) && <div className={styles.date}>Date: {date}</div>;
 
     const getCourseTime = (time: string | undefined) =>
-        time &&
-        time !== "Not specified" && (
-            <div className={styles.time}>Time: {time}</div>
-        );
+        isRelevant(time) && <div className={styles.time}>Time: {time}</div>;
 
     const getCoursePrice = (price: string | undefined) =>
-        price &&
+        isRelevant(price) &&
         price !== "Not specified" && (
             <div className={styles.technique}>Price: {price}</div>
         );
 
     const getCourseTechnique = (technique: string | undefined) =>
-        technique &&
+        isRelevant(technique) &&
         technique !== "Not specified" && (
             <div className={styles.technique}>Technique: {technique}</div>
         );
@@ -90,15 +98,15 @@ export default async function Listing({
     const getCourseBriefIntro = (courseBriefIntro: string | undefined) =>
         courseBriefIntro && <p>{courseBriefIntro}</p>;
 
-    const courses = listing.generatedContent?.courses?.map((course) => (
-        <>
+    const courses = listing.generatedContent?.courses?.map((course, idx) => (
+        <div key={idx}>
             {getCourseName(course.name)}
             {getCourseDate(course.date)}
             {getCourseTime(course.time)}
             {getCoursePrice(course.price)}
             {getCourseTechnique(course.technique)}
             {getCourseBriefIntro(course.briefIntro)}
-        </>
+        </div>
     ));
 
     const coursesSection = listing.generatedContent?.courses &&

@@ -38,6 +38,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
 
     const [options, setOptions] = useState<Option[]>([]);
     const [suburbs, setSuburbs] = useState<Suburb[]>([]);
+    const [loaded, setLoaded] = useState<boolean>(false);
 
     const [selectedSuburb, setSelectedSuburb] = useState<Suburb | undefined>(
         defaultSuburb
@@ -50,6 +51,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
         if (defaultSuburb) {
             setSelectedSuburb(defaultSuburb);
             setSuburbValue(defaultSuburb.fullName);
+            setLoaded(true);
         }
     }, [defaultSuburb]);
 
@@ -98,7 +100,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
             onSelect={onSuburbSelect}
             onChange={onSuburbChange}
             onBlur={onSuburbBlur}
-            value={suburbValue === "" ? defaultValue : suburbValue}
+            value={!loaded ? defaultValue : suburbValue}
             className={`${styles.autoComplete} ${className}`}
             size={size}
             defaultValue={selectedSuburb?.fullName ?? defaultValue}
