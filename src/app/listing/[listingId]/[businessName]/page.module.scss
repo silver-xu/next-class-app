@@ -42,6 +42,10 @@
             border-bottom: 1px solid var(--light-grey-color);
         }
 
+        .info:last-child {
+            border-bottom: none;
+        }
+
         .contacts {
             padding: 15px 0 25px 0;
         }
@@ -104,24 +108,44 @@
 
         .aboutUs,
         .courses {
+            h4 {
+                text-decoration: underline;
+            }
+
             p {
-                font-size: 18px;
+                font-size: 16px;
                 color: var(--dark-text-color);
+                margin: 5px 0;
+            }
+
+            .date,
+            .time,
+            .technique,
+            .price {
+                font-size: 14px;
+                color: var(--medium-grey-color);
+                font-style: italic;
             }
 
             ul {
                 font-size: 18px;
-                margin: 0 0 0 15px;
+                margin: 15px 0 15px 25px;
 
-                ul {
-                    margin: 0 0 0 30px;
-
-                    li {
-                        list-style: disc;
-                        margin: px 0;
-                    }
+                li {
+                    list-style: disc !important;
+                    color: var(--medium-grey-color);
+                    margin: 10px 0;
+                    font-size: 14px;
                 }
             }
+
+            strong {
+                font-weight: 500;
+                color: var(--dark-grey-color);
+            }
+        }
+
+        .aboutUs {
         }
     }
 }

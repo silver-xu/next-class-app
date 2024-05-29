@@ -13,6 +13,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
+import { Logo } from "../logo";
 
 export interface HeaderProps {
     theme: HeaderTheme;
@@ -98,11 +99,7 @@ export const Header = (props: HeaderProps) => {
 
     return (
         <div className={headerClassNames[theme]}>
-            <div className={styles.logo}>
-                <Link href="/">
-                    <span>next</span>class.
-                </Link>
-            </div>
+            <Logo />
             <div className={styles.menu}>
                 <MenuOutlined
                     className={styles.menuIcon}

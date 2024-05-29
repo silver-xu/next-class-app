@@ -1,5 +1,5 @@
 import { MapSearch } from "@/components/mapSearch";
-import Layout from "../../layout";
+import Layout from "../../../layout";
 
 import styles from "./page.module.scss";
 

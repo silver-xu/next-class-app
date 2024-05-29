@@ -3,15 +3,16 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { createContext, useState } from "react";
-import { Button, Select } from "antd";
+import { Button, Select, Skeleton } from "antd";
 
 import { CompactSearch } from "../compactSearch";
-import { ListViewItem } from "../listViewItem";
 import { Listing } from "@/models/listing";
 import { Suburb } from "@/models/suburb";
 import { Header } from "../header";
+import { Footer } from "../footer";
 
 import styles from "./search.module.scss";
+import ListView from "../listView";
 
 interface SearchContextProps {
     searchSuburb: Suburb | undefined;
@@ -19,6 +20,7 @@ interface SearchContextProps {
     selectedSuburb: Suburb | undefined;
     setSelectedSuburb: (suburb: Suburb | undefined) => void;
     setSearchResult: (listings: Listing[]) => void;
+    listings: Listing[] | undefined;
 }
 
 export const SearchContext = createContext<SearchContextProps>({
@@ -27,6 +29,7 @@ export const SearchContext = createContext<SearchContextProps>({
     selectedSuburb: undefined,
     setSelectedSuburb: () => {},
     setSearchResult: () => {},
+    listings: undefined,
 });
 
 export const Search = () => {
@@ -42,15 +45,19 @@ export const Search = () => {
     const [selectedSuburb, setSelectedSuburb] = useState<Suburb | undefined>(
         undefined
     );
-    const [listings, setListings] = useState<Listing[]>([]);
-
-    const searchResults = listings.map((listing) => (
-        <li className={styles.searchResult}>
-            <ListViewItem listing={listing} />
-        </li>
-    ));
+    const [listings, setListings] = useState<Listing[] | undefined>(undefined);
 
     const setSearchResult = (listings: Listing[]) => setListings(listings);
+
+    const progress = !listings && (
+        <>
+            <Skeleton active={true} />
+            <Skeleton active={true} />
+            <Skeleton active={true} />
+            <Skeleton active={true} />
+            <Skeleton active={true} />
+        </>
+    );
 
     return (
         <div className={styles.contentWrapper}>
@@ -61,6 +68,7 @@ export const Search = () => {
                     selectedSuburb,
                     setSelectedSuburb,
                     setSearchResult,
+                    listings,
                 }}
             >
                 <Header theme="light" />
@@ -89,8 +97,10 @@ export const Search = () => {
                             ]}
                         />
                     </div>
-                    <ul>{searchResults}</ul>
+                    <ListView />
+                    {progress}
                 </div>
+                <Footer />
             </SearchContext.Provider>
         </div>
     );

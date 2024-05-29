@@ -41,6 +41,7 @@ export const MapSearch = (props: MapSearchProps) => {
                 selectedSuburb,
                 setSelectedSuburb,
                 setSearchResult,
+                listings,
             }}
         >
             <div className={styles.mapWrapper}>

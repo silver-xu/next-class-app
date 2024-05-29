@@ -1,10 +1,5 @@
 .contentWrapper {
     background: var(--super-light-bg-color);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
 
     h1 {
         margin: 0;
@@ -22,14 +17,8 @@
     }
 
     .searchResultWrapper {
-        padding: 15px 15px 50px 15px;
-        position: fixed;
-        top: 197px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding-bottom: 50px;
-        overflow-y: scroll;
+        padding: 15px;
+        min-height: 500px;
 
         .filters {
             margin: 0 auto;
@@ -54,15 +43,6 @@
                     }
                 }
             }
-        }
-
-        .searchResult {
-            margin: 0 auto;
-            max-width: 640px;
-            border-bottom: 1px solid var(--light-grey-color);
-            background: var(--white-color);
-            margin-bottom: 20px;
-            border-radius: 3px;
         }
     }
 }

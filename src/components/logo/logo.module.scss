@@ -1,0 +1,21 @@
+.logo {
+    font-family: var(--font-roboto);
+    font-weight: 300;
+    font-style: normal;
+    font-size: 32px;
+    color: white;
+    padding: 5px 25px 10px 15px;
+
+    a,
+    a:hover,
+    a:visited {
+        color: var(--white-color);
+        text-decoration: none;
+    }
+
+    span {
+        color: var(--primary-color);
+        display: inline-block;
+        margin-right: 2px;
+    }
+}

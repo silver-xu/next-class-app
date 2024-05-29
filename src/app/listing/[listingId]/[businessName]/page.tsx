@@ -4,13 +4,18 @@ import {
     GlobalOutlined,
     HeartOutlined,
 } from "@ant-design/icons";
+import parse from "html-react-parser";
 import dynamic from "next/dynamic";
+import { remark } from "remark";
+import html from "remark-html";
 import { Rate } from "antd";
 
 import { ListingRepository } from "@/db/listingRepository";
 import { Listing as ListingModel } from "@/models/listing";
+import { ReadMore } from "@/components/readMore/readMore";
 import { Gallery } from "@/components/gallery";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import styles from "./page.module.scss";
 import Layout from "../../../layout";
 
@@ -55,6 +60,80 @@ export default async function Listing({
         lng,
     };
 
+    const getCourseName = (courseName: string | undefined) =>
+        courseName && <h4>{courseName}</h4>;
+
+    const getCourseDate = (date: string | undefined) =>
+        date &&
+        date !== "Not specified" && (
+            <div className={styles.date}>Date: {date}</div>
+        );
+
+    const getCourseTime = (time: string | undefined) =>
+        time &&
+        time !== "Not specified" && (
+            <div className={styles.time}>Time: {time}</div>
+        );
+
+    const getCoursePrice = (price: string | undefined) =>
+        price &&
+        price !== "Not specified" && (
+            <div className={styles.technique}>Price: {price}</div>
+        );
+
+    const getCourseTechnique = (technique: string | undefined) =>
+        technique &&
+        technique !== "Not specified" && (
+            <div className={styles.technique}>Technique: {technique}</div>
+        );
+
+    const getCourseBriefIntro = (courseBriefIntro: string | undefined) =>
+        courseBriefIntro && <p>{courseBriefIntro}</p>;
+
+    const courses = listing.generatedContent?.courses?.map((course) => (
+        <>
+            {getCourseName(course.name)}
+            {getCourseDate(course.date)}
+            {getCourseTime(course.time)}
+            {getCoursePrice(course.price)}
+            {getCourseTechnique(course.technique)}
+            {getCourseBriefIntro(course.briefIntro)}
+        </>
+    ));
+
+    const coursesSection = listing.generatedContent?.courses &&
+        listing.generatedContent?.courses.length > 0 && (
+            <div className={`${styles.courses}  ${styles.info}`}>
+                <h3>Courses</h3>
+                <ReadMore
+                    collapsedByDefault={true}
+                    numOfChildrenWhenCollapsed={2}
+                >
+                    {courses as JSX.Element[]}
+                </ReadMore>
+            </div>
+        );
+
+    const aboutUs =
+        listing.generatedContent?.aboutUs &&
+        (
+            await remark()
+                .use(html)
+                .process(
+                    listing.generatedContent.aboutUs.replace(/###/g, "####")
+                )
+        ).toString();
+
+    const aboutUsSection = aboutUs && (
+        <div className={`${styles.aboutUs} ${styles.info}`}>
+            <h3>About Us</h3>
+
+            <ReadMore collapsedByDefault={true} numOfChildrenWhenCollapsed={2}>
+                {parse(aboutUs) as JSX.Element[]}
+            </ReadMore>
+        </div>
+    );
+
     return (
         listing && (
             <Layout>
@@ -63,7 +142,7 @@ export default async function Listing({
                     <div className={styles.contentWrapper}>
                         <Gallery listing={listing} curveTop={false} />
                         <h2>{listing.businessName}</h2>
-                        <div className={styles.infoWrapper}>
+                        <div className={`${styles.infoWrapper} ${styles.info}`}>
                             <div className={styles.category}>
                                 {listing.category}
                             </div>
@@ -71,20 +150,20 @@ export default async function Listing({
                                 {listing.address.fullAddress}
                             </p>
                         </div>
-                        <div className={styles.reviews}>
+                        <div className={`${styles.reviews} ${styles.info}`}>
                             <h3>Reviews</h3>
                             {rating}
                             <span className={styles.ratingLabel}>
                                 {listing.numOfReviews} Reviews
                             </span>
                         </div>
-                        <div className={styles.contacts}>
+                        <div className={`${styles.contacts} ${styles.info}`}>
                             <PhoneOutlined />
                             <MailOutlined />
                             <GlobalOutlined />
                             <HeartOutlined />
                         </div>
-                        <div className={styles.directions}>
+                        <div className={`${styles.directions} ${styles.info}`}>
                             <h3>Directions</h3>
                             <Map
                                 mapBoxApiKey={mapBoxApiKey}
@@ -94,14 +173,11 @@ export default async function Listing({
                                 }
                             />
                         </div>
-                        <div className={styles.courses}>
-                            {listing.generatedContent?.courseDraft}
-                        </div>
-                        <div className={styles.aboutUs}>
-                            {listing.generatedContent?.aboutUs}
-                        </div>
+                        {coursesSection}
+                        {aboutUsSection}
                     </div>
                 </div>
+                <Footer />
             </Layout>
         )
     );

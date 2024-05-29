@@ -1,0 +1,30 @@
+.footer {
+    padding: 10px 15px;
+    background-color: var(--dark-grey-color);
+
+    .logoWrapper {
+        border-bottom: 1px solid var(--medium-grey-color);
+    }
+
+    .menu {
+        padding: 25px 0;
+        border-bottom: 1px solid var(--medium-grey-color);
+
+        li {
+            color: var(--light-grey-color);
+            padding: 10px 15px;
+        }
+    }
+
+    .copyright {
+        padding: 15px 15px;
+        color: var(--light-grey-color);
+        font-size: 14px;
+
+        a:visited,
+        a:link {
+            color: var(--light-grey-color);
+            font-size: 14px;
+        }
+    }
+}
