@@ -19,11 +19,17 @@ export const Gallery = (props: GalleryProps) => {
     const { listing } = props;
     const images = listing.thumbnailImagePaths
         ? listing.thumbnailImagePaths?.map((path) => ({
-              thumbnail: `${baseUrl}/${path}`,
-              original: `${baseUrl}/${path}`,
+              thumbnail: `${baseUrl}/${encodeURIComponent(path)}`,
+              original: `${baseUrl}/${encodeURIComponent(path)}`,
               thumbnailClass: "thumbnail",
           }))
-        : [];
+        : [
+              {
+                  thumbnail: `${baseUrl}/default/thumbnail.png`,
+                  original: `${baseUrl}/default/thumbnail.png`,
+                  thumbnailClass: "thumbnail",
+              },
+          ];
 
     return (
         <ImageGallery
