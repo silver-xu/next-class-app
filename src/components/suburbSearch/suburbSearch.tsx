@@ -89,7 +89,6 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
             triggerSuburbDeselect();
         }
     };
-
     return (
         <AutoComplete
             options={options}
@@ -99,7 +98,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
             onSelect={onSuburbSelect}
             onChange={onSuburbChange}
             onBlur={onSuburbBlur}
-            value={suburbValue}
+            value={suburbValue === "" ? defaultValue : suburbValue}
             className={`${styles.autoComplete} ${className}`}
             size={size}
             defaultValue={selectedSuburb?.fullName ?? defaultValue}

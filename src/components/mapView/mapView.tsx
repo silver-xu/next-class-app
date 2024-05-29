@@ -68,7 +68,10 @@ const getBounds = (listings: Listing[]): Bounds => {
 
 export const MapView = (props: MapSearchProps) => {
     const q = useSearchParams().get("q");
-    const suburbId = decodeURIComponent(useParams().suburb as string);
+    const suburbId = decodeURIComponent(useParams().suburbId as string);
+    const suburbFullname = decodeURIComponent(
+        useParams().suburbFullname as string
+    );
 
     const { listings, mapBoxApiKey } = props;
 
@@ -129,7 +132,10 @@ export const MapView = (props: MapSearchProps) => {
 
     const listView = !popupOpen && (
         <div className={styles.floatButton}>
-            <Button type="primary" href={`/search/${suburbId}?q=${q}`}>
+            <Button
+                type="primary"
+                href={`/search/${suburbId}/${suburbFullname}?q=${q}`}
+            >
                 <UnorderedListOutlined /> List View
             </Button>
         </div>

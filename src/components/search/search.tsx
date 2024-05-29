@@ -31,7 +31,10 @@ export const SearchContext = createContext<SearchContextProps>({
 
 export const Search = () => {
     const q = useSearchParams().get("q");
-    const suburbId = decodeURIComponent(useParams().suburb as string);
+    const suburbId = decodeURIComponent(useParams().suburbId as string);
+    const suburbFullname = decodeURIComponent(
+        useParams().suburbFullname as string
+    );
 
     const [searchSuburb, setSearchSuburb] = useState<Suburb | undefined>(
         undefined
@@ -65,7 +68,7 @@ export const Search = () => {
                 <div className={styles.floatButton}>
                     <Button
                         type="primary"
-                        href={`/map-search/${suburbId}?q=${q}`}
+                        href={`/map-search/${suburbId}/${suburbFullname}?q=${q}`}
                     >
                         <EnvironmentOutlined />
                         Map View
