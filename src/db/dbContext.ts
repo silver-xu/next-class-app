@@ -4,6 +4,7 @@ export const dbUri = process.env.CONNECTION_STRING ?? "";
 
 export class DbContext {
     private readonly client: MongoClient;
+    private readonly db: Db;
 
     public constructor() {
         this.client = new MongoClient(dbUri, {

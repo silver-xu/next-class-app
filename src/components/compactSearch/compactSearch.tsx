@@ -85,7 +85,7 @@ export const CompactSearch = () => {
             <Input
                 placeholder="Arts schools"
                 defaultValue={query ?? ""}
-                className={`${styles.searchField} ${queryError && styles.errorQuery}`}
+                className={`${styles.searchField} ${styles.input}  ${queryError && styles.errorQuery}`}
                 onChange={onQueryChange}
                 size="large"
             />
@@ -95,10 +95,15 @@ export const CompactSearch = () => {
                     onSuburbSelect={onSuburbSelected}
                     onSuburbDeselect={onSuburbDeselect}
                     defaultSuburb={selectedSuburb}
-                    className={(suburbError && styles.errorSuburb) as string}
+                    className={`${styles.autocomplete} ${suburbError && styles.errorSuburb}`}
                     size="large"
                 />
-                <Button type="primary" size="large" onClick={onSearchClicked}>
+                <Button
+                    type="primary"
+                    size="large"
+                    className={styles.searchButton}
+                    onClick={onSearchClicked}
+                >
                     <SearchOutlined />
                 </Button>
             </Space.Compact>

@@ -24,12 +24,30 @@
     .searchResultWrapper {
         padding: 15px 15px 50px 15px;
         position: fixed;
-        top: 177px;
+        top: 190px;
         left: 0;
         right: 0;
         bottom: 0;
         padding-bottom: 50px;
         overflow-y: scroll;
+
+        .filters {
+            padding: 5px 0 15px 0;
+
+            .text {
+                font-size: 18px;
+                color: var(--medium-grey-color);
+                margin-right: 10px;
+            }
+
+            .dropdown {
+                box-sizing: content-box;
+
+                span {
+                    font-size: 16px !important;
+                }
+            }
+        }
 
         .searchResult {
             margin: 0 auto;
@@ -37,7 +55,7 @@
             border-bottom: 1px solid var(--light-grey-color);
             background: var(--white-color);
             margin-bottom: 15px;
-            border-radius: 10px;
+            border-radius: 3px;
         }
     }
 }

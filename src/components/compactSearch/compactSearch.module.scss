@@ -1,14 +1,37 @@
 .searchBox {
     background: var(--white-color);
-    padding: 15px 20px;
+    padding: 20px 15px;
     border-bottom: 1px solid var(--light-grey-color);
 
     .searchField {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .input {
+        border-radius: 2px;
+        padding: 10px 10px;
+        font-size: 14px;
+    }
+
+    .autocomplete {
+        div {
+            border-radius: 2px !important;
+            font-size: 14px !important;
+
+            input {
+                padding: 10px 0px !important;
+                font-size: 14px;
+            }
+        }
     }
 
     .searchButtonWrapper {
         text-align: right;
+    }
+
+    .searchButton {
+        border-top-right-radius: 2px !important;
+        border-bottom-right-radius: 2px !important;
     }
 
     .errorQuery {

@@ -3,7 +3,7 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { createContext, useState } from "react";
-import { Button } from "antd";
+import { Button, Select } from "antd";
 
 import { CompactSearch } from "../compactSearch";
 import { ListViewItem } from "../listViewItem";
@@ -71,8 +71,21 @@ export const Search = () => {
                         Map View
                     </Button>
                 </div>
-
                 <div className={styles.searchResultWrapper}>
+                    <div className={styles.filters}>
+                        <span className={styles.text}>Distance: </span>
+                        <Select
+                            defaultValue="10 km"
+                            style={{ width: 120 }}
+                            className={styles.dropdown}
+                            size="large"
+                            options={[
+                                { value: "5 km", label: "5 km" },
+                                { value: "10 km", label: "10 km" },
+                                { value: "15 km", label: "15 km" },
+                            ]}
+                        />
+                    </div>
                     <ul>{searchResults}</ul>
                 </div>
             </SearchContext.Provider>

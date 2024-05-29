@@ -3,15 +3,17 @@ import { DbContext } from "./dbContext";
 
 export class SuburbRepository {
     private dbContext: DbContext;
+    private static db: Db;
 
     constructor() {
         this.dbContext = new DbContext();
     }
 
     public async getOne(suburbId: string): Promise<Suburb | undefined> {
-        const db = await this.dbContext.connect();
-
-        const result = await db
+        if (!SuburbRepository.db) {
+            SuburbRepository.db = await this.dbContext.connect();
+        }
+        const result = await SuburbRepository.db
             .collection<Suburb>("suburbs")
             .findOne({ suburbId });
 
@@ -19,9 +21,10 @@ export class SuburbRepository {
     }
 
     public async search(query: string): Promise<Suburb[]> {
-        const db = await this.dbContext.connect();
-
-        const result = await db
+        if (!SuburbRepository.db) {
+            SuburbRepository.db = await this.dbContext.connect();
+        }
+        const result = await SuburbRepository.db
             .collection("suburbs")
             .aggregate<Suburb>([
                 {
