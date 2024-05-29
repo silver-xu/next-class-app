@@ -38,6 +38,10 @@ export class SuburbRepository {
                                         path: "fullName",
                                         query,
                                         tokenOrder: "sequential",
+                                        fuzzy: {
+                                            maxEdits: 2,
+                                            prefixLength: 3,
+                                        },
                                     },
                                 },
                             ],

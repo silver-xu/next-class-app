@@ -24,7 +24,7 @@
     .searchResultWrapper {
         padding: 15px 15px 50px 15px;
         position: fixed;
-        top: 190px;
+        top: 194px;
         left: 0;
         right: 0;
         bottom: 0;
@@ -32,6 +32,8 @@
         overflow-y: scroll;
 
         .filters {
+            margin: 0 auto;
+            max-width: 640px;
             padding: 5px 0 15px 0;
 
             .text {

@@ -4,4 +4,10 @@
     input {
         font-size: 16px;
     }
+    :global {
+        .ant-select-clear {
+            margin-top: -10px !important;
+            margin-right: 5px;
+        }
+    }
 }

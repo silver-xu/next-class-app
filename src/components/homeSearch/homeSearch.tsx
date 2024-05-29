@@ -1,5 +1,6 @@
 "use client";
 
+import { CloseSquareFilled } from "@ant-design/icons";
 import { SearchOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { Form, Input, Button } from "antd";
@@ -41,7 +42,9 @@ export const HomeSearch = () => {
         }
 
         if (query && query !== "" && selectedSuburb) {
-            router.push(`/search/${selectedSuburb?.suburbId}/?q=${query}`);
+            router.push(
+                `/search/${selectedSuburb?.suburbId}/${selectedSuburb?.fullName}?q=${query}`
+            );
         }
     };
 
@@ -90,6 +93,13 @@ export const HomeSearch = () => {
                             onChange={onQueryChange}
                             name="keywords"
                             className={styles.input}
+                            allowClear={{
+                                clearIcon: (
+                                    <CloseSquareFilled
+                                        style={{ fontSize: "20px" }}
+                                    />
+                                ),
+                            }}
                         />
                     </motion.div>
                 </Form.Item>

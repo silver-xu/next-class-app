@@ -12,6 +12,7 @@ import {
     useState,
 } from "react";
 import { SuburbSearch } from "../suburbSearch/suburbSearch";
+import { CloseSquareFilled } from "@ant-design/icons";
 import styles from "./compactSearch.module.scss";
 import { SearchContext } from "../search";
 import { Suburb } from "@/models/suburb";
@@ -20,7 +21,10 @@ import React from "react";
 
 export const CompactSearch = () => {
     const q = useSearchParams().get("q");
-    const suburbId = decodeURIComponent(useParams().suburb as string);
+    const suburbId = decodeURIComponent(useParams().suburbId as string);
+    const suburbFullname = decodeURIComponent(
+        useParams().suburbFullname as string
+    );
 
     const {
         searchSuburb,
@@ -88,6 +92,11 @@ export const CompactSearch = () => {
                 className={`${styles.searchField} ${styles.input}  ${queryError && styles.errorQuery}`}
                 onChange={onQueryChange}
                 size="large"
+                allowClear={{
+                    clearIcon: (
+                        <CloseSquareFilled style={{ fontSize: "20px" }} />
+                    ),
+                }}
             />
             <Space.Compact style={{ width: "100%" }}>
                 <SuburbSearch
@@ -95,6 +104,7 @@ export const CompactSearch = () => {
                     onSuburbSelect={onSuburbSelected}
                     onSuburbDeselect={onSuburbDeselect}
                     defaultSuburb={selectedSuburb}
+                    defaultValue={suburbFullname}
                     className={`${styles.autocomplete} ${suburbError && styles.errorSuburb}`}
                     size="large"
                 />

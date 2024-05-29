@@ -6,6 +6,7 @@ import { AutoComplete } from "antd";
 import axios from "axios";
 
 import styles from "./suburbSearch.module.scss";
+import "./suburbSearch.module.css";
 
 interface Option {
     id: string;
@@ -15,6 +16,7 @@ interface Option {
 interface SuburbSearchProps {
     placeholder: string;
     defaultSuburb?: Suburb | undefined;
+    defaultValue?: string | undefined;
     variant?: "borderless" | "outlined" | "filled" | undefined;
     size?: "small" | "middle" | "large" | undefined;
     className?: string | undefined;
@@ -27,6 +29,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
         placeholder,
         variant,
         defaultSuburb,
+        defaultValue,
         size,
         className,
         onSuburbSelect: triggerSuburbSelect,
@@ -99,8 +102,10 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
             value={suburbValue}
             className={`${styles.autoComplete} ${className}`}
             size={size}
-            defaultValue={selectedSuburb?.fullName}
-            allowClear={{ clearIcon: <CloseSquareFilled /> }}
+            defaultValue={selectedSuburb?.fullName ?? defaultValue}
+            allowClear={{
+                clearIcon: <CloseSquareFilled style={{ fontSize: "20px" }} />,
+            }}
         />
     );
 };

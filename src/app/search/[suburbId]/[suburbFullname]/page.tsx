@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Layout from "@/app/layout";
 
 const SearchClientComponent = dynamic(
-    () => import("../../../components/search").then((mod) => mod.Search),
+    () => import("../../../../components/search").then((mod) => mod.Search),
     { ssr: false }
 );
 
