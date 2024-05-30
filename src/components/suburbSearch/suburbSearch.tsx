@@ -38,7 +38,6 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
 
     const [options, setOptions] = useState<Option[]>([]);
     const [suburbs, setSuburbs] = useState<Suburb[]>([]);
-    const [loaded, setLoaded] = useState<boolean>(false);
 
     const [selectedSuburb, setSelectedSuburb] = useState<Suburb | undefined>(
         defaultSuburb
@@ -51,7 +50,6 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
         if (defaultSuburb) {
             setSelectedSuburb(defaultSuburb);
             setSuburbValue(defaultSuburb.fullName);
-            setLoaded(true);
         }
     }, [defaultSuburb]);
 

@@ -1,6 +1,5 @@
 import { Suburb } from "@/models/suburb";
 import { DbContext } from "./dbContext";
-import { Db } from "mongodb";
 
 export class SuburbRepository {
     private dbContext: DbContext;

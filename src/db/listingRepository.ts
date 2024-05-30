@@ -2,7 +2,6 @@ import { ListingSearchResult } from "@/models/listingSearchResult";
 import { Location } from "@/models/address";
 import { Listing } from "@/models/listing";
 import { DbContext } from "./dbContext";
-import { Db } from "mongodb";
 
 export type Sort = "relevance" | "rating";
 
