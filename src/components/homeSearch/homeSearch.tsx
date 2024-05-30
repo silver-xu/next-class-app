@@ -2,7 +2,6 @@
 
 import { CloseSquareFilled } from "@ant-design/icons";
 import { SearchOutlined } from "@ant-design/icons";
-import { useRouter } from "next/navigation";
 import { Form, Input, Button } from "antd";
 import { useState } from "react";
 
@@ -21,8 +20,6 @@ export const HomeSearch = () => {
     );
 
     const [query, setQuery] = useState<string | undefined>(undefined);
-
-    const router = useRouter();
 
     const onSuburbSelect = (suburb: Suburb) => setSelectedSuburb(suburb);
 
@@ -43,9 +40,7 @@ export const HomeSearch = () => {
         }
 
         if (query && query !== "" && selectedSuburb) {
-            router.push(
-                `/search/${selectedSuburb?.suburbId}/${slugify(selectedSuburb?.fullName)}?q=${query}`
-            );
+            window.location.href = `/search/${selectedSuburb?.suburbId}/${slugify(selectedSuburb?.fullName)}?q=${query}`;
         }
     };
 

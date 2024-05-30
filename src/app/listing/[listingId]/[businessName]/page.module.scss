@@ -34,6 +34,7 @@
         .infoWrapper,
         .reviews,
         .contacts,
+        .openingHours,
         .directions,
         .aboutUs,
         .courses {
@@ -59,14 +60,24 @@
         .infoWrapper {
             .category {
                 color: var(--dark-text-color);
-                font-size: 18px;
+                font-size: 22px;
                 padding: 10px 0 0 0;
+                font-weight: 500;
             }
 
             .address {
                 font-size: 18px;
-                color: var(--dark-text-color);
+                color: var(--medium-text-color);
                 margin: 10px 0 5px 0;
+            }
+
+            .websiteUrl {
+                font-size: 18px;
+                margin: 20px 0 0 0;
+
+                a {
+                    color: var(--primary-color);
+                }
             }
         }
 
@@ -76,7 +87,7 @@
                 font-weight: 300;
                 color: var(--dark-text-color);
                 display: inline-block;
-                margin: 5px 10px 5px 0;
+                margin: 15px 10px 5px 0;
             }
 
             .rating {
@@ -91,19 +102,27 @@
             }
         }
 
-        .contacts {
-            display: flex;
-            justify-content: space-around;
-
-            svg,
-            img {
-                border: 2px solid var(--primary-color);
-                color: var(--primary-color);
-                padding: 10px;
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
+        .openingHours {
+            ul {
+                margin-top: 20px;
+                li {
+                    font-size: 16px;
+                    color: var(--dark-grey-color);
+                    margin: 5px 0 0 20px;
+                    font-weight: 400;
+                    list-style-type: disc;
+                }
             }
+
+            p {
+                color: var(--dark-grey-color);
+                font-weight: 300;
+                margin: 10px 0 0 0;
+            }
+        }
+
+        .contacts {
+            padding: 0 15px;
         }
 
         .aboutUs,

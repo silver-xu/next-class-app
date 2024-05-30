@@ -1,9 +1,3 @@
-import {
-    PhoneOutlined,
-    MailOutlined,
-    GlobalOutlined,
-    HeartOutlined,
-} from "@ant-design/icons";
 import parse from "html-react-parser";
 import dynamic from "next/dynamic";
 import { remark } from "remark";
@@ -13,11 +7,13 @@ import { Rate } from "antd";
 import { ListingRepository } from "@/db/listingRepository";
 import { Listing as ListingModel } from "@/models/listing";
 import { ReadMore } from "@/components/readMore/readMore";
+import { ContactUs } from "@/components/contactUs";
 import { Gallery } from "@/components/gallery";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import styles from "./page.module.scss";
 import Layout from "../../../layout";
+import Link from "next/link";
 
 const Map = dynamic(
     () =>
@@ -142,6 +138,16 @@ export default async function Listing({
         </div>
     );
 
+    const openingHours = (
+        <ul>
+            {listing.openingHours?.map((openingHour, idx) => (
+                <li key={idx}>
+                    {openingHour.name} {openingHour.value}
+                </li>
+            ))}
+        </ul>
+    );
+
     return (
         listing && (
             <Layout>
@@ -157,6 +163,11 @@ export default async function Listing({
                             <div className={styles.category}>
                                 {listing.category}
                             </div>
+                            <p className={styles.websiteUrl}>
+                                {listing.website && (
+                                    <Link href="/">{listing.website}</Link>
+                                )}
+                            </p>
                             <p className={styles.address}>
                                 {listing.address.fullAddress}
                             </p>
@@ -168,11 +179,23 @@ export default async function Listing({
                                 {listing.numOfReviews ?? 0} Reviews
                             </span>
                         </div>
-                        <div className={`${styles.contacts} ${styles.info}`}>
-                            <PhoneOutlined />
-                            <MailOutlined />
-                            <GlobalOutlined />
-                            <HeartOutlined />
+                        {openingHours && (
+                            <div
+                                className={`${styles.openingHours} ${styles.info}`}
+                            >
+                                <h3>Opening Hours</h3>
+                                {openingHours}
+                                <p>
+                                    * Opening hours are subjective to change,
+                                    please call prior to walk-in visit.
+                                </p>
+                            </div>
+                        )}
+                        <div className={`${styles.info} ${styles.contacts}`}>
+                            <ContactUs
+                                phoneNumber={listing.contact.phone}
+                                email="abc"
+                            />
                         </div>
                         <div className={`${styles.directions} ${styles.info}`}>
                             <h3>Directions</h3>

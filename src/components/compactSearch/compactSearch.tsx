@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, Button, Space } from "antd";
 import axios from "axios";
@@ -24,8 +24,6 @@ import { Suburb } from "@/models/suburb";
 const pageLimit = 20;
 
 export const CompactSearch = () => {
-    const router = useRouter();
-
     const q = useSearchParams().get("q");
     const suburbId = decodeURIComponent(useParams().suburbId as string);
     const suburbFullname = decodeURIComponent(
