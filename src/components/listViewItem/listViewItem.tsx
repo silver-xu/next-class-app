@@ -46,7 +46,10 @@ export const ListViewItem = (props: ListViewItemProps) => {
 
     return (
         <Link href={`/listing/${listing.listingId}/${prettyBusinessName}`}>
-            <Gallery listing={listing} curveTop={true} />
+            <Gallery
+                thumbnailImagePaths={listing.thumbnailImagePaths}
+                curveTop={true}
+            />
             <div className={styles.heading}>
                 <h2>{listing.businessName}</h2>
                 <span className={styles.tag}>{distance.toFixed(1)} kms</span>

@@ -20,6 +20,8 @@ import { Suburb } from "@/models/suburb";
 import axios from "axios";
 import React from "react";
 
+const pageLimit = 20;
+
 export const CompactSearch = () => {
     const q = useSearchParams().get("q");
     const suburbId = decodeURIComponent(useParams().suburbId as string);
@@ -74,7 +76,7 @@ export const CompactSearch = () => {
 
             setLoading(true);
             const response = await axios.get(
-                `/api/listing/search?suburb=${suburbParam}&q=${query}&radius=${searchRadius}&sort=${searchSorting}`
+                `/api/listing/search?suburb=${suburbParam}&q=${query}&limit=${pageLimit}&radius=${searchRadius}&sort=${searchSorting}`
             );
 
             setSearchResult(response.data);

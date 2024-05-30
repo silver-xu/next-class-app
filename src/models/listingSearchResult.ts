@@ -12,4 +12,12 @@ export interface ListingSearchResult {
     rating: number | undefined;
     numOfReviews: number | undefined;
     thumbnailImagePaths: string[] | undefined;
+    paginationToken: string | undefined;
+    searchMeta: {
+        meta: {
+            count: {
+                total: number;
+            };
+        };
+    };
 }

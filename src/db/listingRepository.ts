@@ -29,9 +29,11 @@ export class ListingRepository {
 
     public async search(
         query: string,
+        limit: number,
         location: Location,
         radius: number,
-        sort: Sort
+        sort: Sort,
+        searchAfter?: string
     ): Promise<ListingSearchResult[]> {
         const db = await this.dbContext.connect();
 
@@ -42,6 +44,7 @@ export class ListingRepository {
                 {
                     $search: {
                         index: "listings_search",
+                        searchAfter,
                         compound: {
                             must: [
                                 {
@@ -67,7 +70,11 @@ export class ListingRepository {
                                 },
                             ],
                         },
+
                         sort: sortCriteria,
+                        count: {
+                            type: "total",
+                        },
                     },
                 },
                 {
@@ -75,10 +82,12 @@ export class ListingRepository {
                         score: {
                             $meta: "searchScore",
                         },
+                        paginationToken: { $meta: "searchSequenceToken" },
+                        searchMeta: { meta: "$$SEARCH_META" },
                     },
                 },
                 {
-                    $limit: 20,
+                    $limit: limit,
                 },
             ])
             .toArray();

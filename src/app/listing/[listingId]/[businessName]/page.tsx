@@ -148,7 +148,10 @@ export default async function Listing({
                 <div className={styles.outerWrapper}>
                     <Header theme="light" />
                     <div className={styles.contentWrapper}>
-                        <Gallery listing={listing} curveTop={false} />
+                        <Gallery
+                            thumbnailImagePaths={listing.thumbnailImagePaths}
+                            curveTop={false}
+                        />
                         <h2>{listing.businessName}</h2>
                         <div className={`${styles.infoWrapper} ${styles.info}`}>
                             <div className={styles.category}>

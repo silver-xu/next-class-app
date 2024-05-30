@@ -42,6 +42,8 @@ export const SearchContext = createContext<SearchContextProps>({
     setLoading: () => {},
 });
 
+const pageLimit = 20;
+
 export const Search = () => {
     const q = useSearchParams().get("q");
     const suburbId = decodeURIComponent(useParams().suburbId as string);
@@ -73,35 +75,91 @@ export const Search = () => {
         </>
     );
 
-    const listView = !loading && <ListView />;
+    const currentResultSize = listingSearchResults
+        ? listingSearchResults[listingSearchResults.length - 1].searchMeta.meta
+              .count.total
+        : 0;
 
     const onSortingChange = async (value: string) => {
         setSearchSorting(value as Sort);
 
-        await searchListings(q!, selectedSuburb!, searchRadius, value as Sort);
+        await searchListings(
+            q!,
+            selectedSuburb!,
+            pageLimit,
+            searchRadius,
+            value as Sort
+        );
     };
 
     const onRadiusChange = async (radiusString: string) => {
         const radius = parseInt(radiusString);
         setSearchRadius(radius);
 
-        await searchListings(q!, selectedSuburb!, radius, searchSorting);
+        await searchListings(
+            q!,
+            selectedSuburb!,
+            pageLimit,
+            radius,
+            searchSorting
+        );
     };
+
+    const onLoadMoreClicked = async () => {
+        const lastListingSearchResult =
+            listingSearchResults![listingSearchResults!.length - 1];
+
+        await searchListings(
+            q!,
+            selectedSuburb!,
+            pageLimit,
+            searchRadius,
+            searchSorting,
+            listingSearchResults,
+            lastListingSearchResult.paginationToken
+        );
+    };
+
+    const listView = (
+        <>
+            <ListView />
+            {listingSearchResults &&
+                listingSearchResults.length > 0 &&
+                listingSearchResults.length < currentResultSize && (
+                    <Button onClick={onLoadMoreClicked}>Load more ...</Button>
+                )}
+        </>
+    );
 
     const searchListings = useCallback(
         async (
             query: string,
             suburb: Suburb,
+            limit: number,
             searchRadius: number,
-            searchSorting: Sort
+            searchSorting: Sort,
+            listingSearchResults?: ListingSearchResult[] | undefined,
+            searchAfter?: string | undefined
         ) => {
             const suburbParam = suburb?.suburbId ?? suburbId;
-
+            const searchAfterParam = searchAfter
+                ? `&searchAfter=${searchAfter}`
+                : "";
             setLoading(true);
+
             const response = await axios.get(
-                `/api/listing/search?suburb=${suburbParam}&q=${query}&radius=${searchRadius}&sort=${searchSorting}`
+                `/api/listing/search?suburb=${suburbParam}&q=${query}&limit=${limit}&radius=${searchRadius}&sort=${searchSorting}&${searchAfterParam}`
             );
-            setListingSearchResults(response.data);
+
+            // Pagination support
+            if (searchAfter) {
+                setListingSearchResults(
+                    listingSearchResults?.concat(response.data)
+                );
+            } else {
+                setListingSearchResults(response.data);
+            }
+
             setLoading(false);
         },
         [suburbId, q, searchRadius, searchSorting]

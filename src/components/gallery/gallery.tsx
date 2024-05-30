@@ -3,21 +3,20 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import ImageGallery from "react-image-gallery";
 
-import { ListingSearchResult } from "@/models/listingSearchResult";
 import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "./gallery.module.scss";
 
 const baseUrl = "https://next-class-images.s3.ap-southeast-2.amazonaws.com";
 
 export interface GalleryProps {
-    listing: ListingSearchResult;
+    thumbnailImagePaths: string[] | undefined;
     curveTop: boolean;
 }
 
 export const Gallery = (props: GalleryProps) => {
-    const { listing } = props;
-    const images = listing.thumbnailImagePaths
-        ? listing.thumbnailImagePaths?.map((path) => ({
+    const { thumbnailImagePaths } = props;
+    const images = thumbnailImagePaths
+        ? thumbnailImagePaths?.map((path) => ({
               thumbnail: `${baseUrl}/${encodeURIComponent(path)}`,
               original: `${baseUrl}/${encodeURIComponent(path)}`,
               thumbnailClass: "thumbnail",
