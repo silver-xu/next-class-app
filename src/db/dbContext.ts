@@ -1,26 +1,13 @@
-import { Db, MongoClient, ServerApiVersion } from "mongodb";
+import { clientPromise } from "./mongodb";
+import { Db } from "mongodb";
 
 export const dbUri = process.env.CONNECTION_STRING ?? "";
 
 export class DbContext {
-    private readonly client: MongoClient;
-
-    public constructor() {
-        this.client = new MongoClient(dbUri, {
-            serverApi: {
-                version: ServerApiVersion.v1,
-                strict: false,
-                deprecationErrors: true,
-            },
-        });
-    }
+    public constructor() {}
 
     public async connect(): Promise<Db> {
-        await this.client.connect();
-        return this.client.db("next-class");
-    }
-
-    public async close(): Promise<void> {
-        await this.client.close();
+        const client = await clientPromise;
+        return client.db("next-class");
     }
 }

@@ -16,7 +16,7 @@ interface Option {
 interface SuburbSearchProps {
     placeholder: string;
     defaultSuburb?: Suburb | undefined;
-    defaultValue?: string | undefined;
+    defaultValue: string;
     variant?: "borderless" | "outlined" | "filled" | undefined;
     size?: "small" | "middle" | "large" | undefined;
     className?: string | undefined;
@@ -100,7 +100,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
             onSelect={onSuburbSelect}
             onChange={onSuburbChange}
             onBlur={onSuburbBlur}
-            value={!loaded ? defaultValue : suburbValue}
+            value={suburbValue}
             className={`${styles.autoComplete} ${className}`}
             size={size}
             defaultValue={selectedSuburb?.fullName ?? defaultValue}

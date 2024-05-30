@@ -116,6 +116,7 @@ export const HomeSearch = () => {
                             variant="borderless"
                             onSuburbSelect={onSuburbSelect}
                             onSuburbDeselect={onSuburbDeselect}
+                            defaultValue=""
                         />
                     </motion.div>
                 </Form.Item>

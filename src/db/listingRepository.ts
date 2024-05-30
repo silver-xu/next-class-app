@@ -13,18 +13,15 @@ const sortCriterias = {
 
 export class ListingRepository {
     private dbContext: DbContext;
-    private static db: Db;
 
     constructor() {
         this.dbContext = new DbContext();
     }
 
     public async getOne(listingId: string): Promise<Listing | undefined> {
-        if (!ListingRepository.db) {
-            ListingRepository.db = await this.dbContext.connect();
-        }
+        const db = await this.dbContext.connect();
 
-        const result = await ListingRepository.db
+        const result = await db
             .collection<Listing>("listings")
             .findOne({ listingId });
 
@@ -37,12 +34,10 @@ export class ListingRepository {
         radius: number,
         sort: Sort
     ): Promise<ListingSearchResult[]> {
-        if (!ListingRepository.db) {
-            ListingRepository.db = await this.dbContext.connect();
-        }
+        const db = await this.dbContext.connect();
 
         const sortCriteria = sortCriterias[sort];
-        const result = await ListingRepository.db
+        const result = await db
             .collection("listings")
             .aggregate<ListingSearchResult>([
                 {

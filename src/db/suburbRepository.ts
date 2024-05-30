@@ -4,17 +4,15 @@ import { Db } from "mongodb";
 
 export class SuburbRepository {
     private dbContext: DbContext;
-    private static db: Db;
 
     constructor() {
         this.dbContext = new DbContext();
     }
 
     public async getOne(suburbId: string): Promise<Suburb | undefined> {
-        if (!SuburbRepository.db) {
-            SuburbRepository.db = await this.dbContext.connect();
-        }
-        const result = await SuburbRepository.db
+        const db = await this.dbContext.connect();
+
+        const result = await db
             .collection<Suburb>("suburbs")
             .findOne({ suburbId });
 
@@ -22,10 +20,9 @@ export class SuburbRepository {
     }
 
     public async search(query: string): Promise<Suburb[]> {
-        if (!SuburbRepository.db) {
-            SuburbRepository.db = await this.dbContext.connect();
-        }
-        const result = await SuburbRepository.db
+        const db = await this.dbContext.connect();
+
+        const result = await db
             .collection("suburbs")
             .aggregate<Suburb>([
                 {
