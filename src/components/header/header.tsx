@@ -61,7 +61,7 @@ export const Header = (props: HeaderProps) => {
                 <div className={styles.menuHeader}>
                     <div className={styles.logo}>
                         <Link href="/">
-                            <span>Wel</span>come.
+                            <span>wel</span>come.
                         </Link>
                     </div>
                     <CloseOutlined
@@ -71,26 +71,16 @@ export const Header = (props: HeaderProps) => {
                 </div>
                 <ul>
                     <li>
-                        <Link href="/">
-                            <HomeOutlined />
-                            Home
-                        </Link>
+                        <Link href="/">Home</Link>
                     </li>
                     <li>
-                        <Link href="/">
-                            <InfoCircleOutlined />
-                            About us
-                        </Link>
+                        <Link href="/">About us</Link>
                     </li>
                     <li>
-                        <Link href="/">
-                            <RadarChartOutlined /> Sitemap
-                        </Link>
+                        <Link href="/">Sitemap</Link>
                     </li>
                     <li>
-                        <Link href="/">
-                            <MailOutlined /> Contact us
-                        </Link>
+                        <Link href="/">Contact us</Link>
                     </li>
                 </ul>
             </motion.div>

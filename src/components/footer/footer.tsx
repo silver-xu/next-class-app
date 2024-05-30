@@ -18,7 +18,10 @@ export const Footer = () => (
             <li>Privacy Statement</li>
         </ul>
         <div className={styles.copyright}>
-            <Link href="/">nextclass.com.au</Link>, all rights reserved 2024
+            <Link href="https://www.nextclass.com.au">
+                www.nextclass.com.au
+            </Link>
+            , all rights reserved 2024
         </div>
     </div>
 );

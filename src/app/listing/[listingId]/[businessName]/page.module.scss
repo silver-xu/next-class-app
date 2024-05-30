@@ -110,10 +110,11 @@
         .courses {
             h4 {
                 text-decoration: underline;
+                font-size: 19px;
             }
 
             p {
-                font-size: 16px;
+                font-size: 17px;
                 color: var(--dark-text-color);
                 margin: 5px 0;
             }
@@ -135,7 +136,7 @@
                     list-style: disc !important;
                     color: var(--medium-grey-color);
                     margin: 10px 0;
-                    font-size: 14px;
+                    font-size: 16px;
                 }
             }
 

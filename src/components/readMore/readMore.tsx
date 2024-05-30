@@ -26,7 +26,7 @@ export const ReadMore = (props: ReadMoreProps) => {
     return (
         <div className={styles.readMore}>
             <div>{displayChildren}</div>
-            <div className={styles.mask}></div>
+            <div className={collapsed ? styles.mask : ""}></div>
             <Button
                 type="link"
                 className={styles.readMoreButton}
