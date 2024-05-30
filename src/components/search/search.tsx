@@ -1,8 +1,8 @@
 "use client";
 
+import { Button, Empty, Select, Skeleton, Space } from "antd";
 import { useParams, useSearchParams } from "next/navigation";
 import { createContext, useCallback, useState } from "react";
-import { Button, Select, Skeleton, Space } from "antd";
 import { Map } from "iconoir-react";
 
 import { CompactSearch } from "../compactSearch";
@@ -11,6 +11,7 @@ import { Header } from "../header";
 import { Footer } from "../footer";
 
 import { ListingSearchResult } from "@/models/listingSearchResult";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Sort } from "@/db/listingRepository";
 import styles from "./search.module.scss";
 import ListView from "../listView";
@@ -76,8 +77,8 @@ export const Search = () => {
     );
 
     const currentResultSize = listingSearchResults
-        ? listingSearchResults[listingSearchResults.length - 1].searchMeta.meta
-              .count.total
+        ? listingSearchResults[listingSearchResults.length - 1]?.searchMeta
+              ?.meta?.count?.total ?? 0
         : 0;
 
     const onSortingChange = async (value: string) => {
@@ -109,27 +110,22 @@ export const Search = () => {
         const lastListingSearchResult =
             listingSearchResults![listingSearchResults!.length - 1];
 
-        await searchListings(
-            q!,
-            selectedSuburb!,
-            pageLimit,
-            searchRadius,
-            searchSorting,
-            listingSearchResults,
-            lastListingSearchResult.paginationToken
-        );
+        if (
+            listingSearchResults &&
+            listingSearchResults.length > 0 &&
+            listingSearchResults.length < currentResultSize
+        ) {
+            await searchListings(
+                q!,
+                selectedSuburb!,
+                pageLimit,
+                searchRadius,
+                searchSorting,
+                listingSearchResults,
+                lastListingSearchResult.paginationToken
+            );
+        }
     };
-
-    const listView = (
-        <>
-            <ListView />
-            {listingSearchResults &&
-                listingSearchResults.length > 0 &&
-                listingSearchResults.length < currentResultSize && (
-                    <Button onClick={onLoadMoreClicked}>Load more ...</Button>
-                )}
-        </>
-    );
 
     const searchListings = useCallback(
         async (
@@ -163,6 +159,13 @@ export const Search = () => {
             setLoading(false);
         },
         [suburbId, q, searchRadius, searchSorting]
+    );
+
+    const empty = listingSearchResults && listingSearchResults.length === 0 && (
+        <Empty
+            className={styles.empty}
+            description={<span>There is no school matches your criteria</span>}
+        />
     );
 
     return (
@@ -227,7 +230,30 @@ export const Search = () => {
                             </Space.Compact>
                         </div>
                     </div>
-                    {listView} {progress}
+                    {listingSearchResults &&
+                        listingSearchResults.length > 0 && (
+                            <InfiniteScroll
+                                dataLength={listingSearchResults?.length ?? 0}
+                                next={onLoadMoreClicked}
+                                hasMore={
+                                    listingSearchResults
+                                        ? listingSearchResults.length <
+                                          currentResultSize
+                                        : false
+                                }
+                                loader={progress}
+                                endMessage={
+                                    <div className={styles.endScroll}>
+                                        There are no more results to be
+                                        displayed
+                                    </div>
+                                }
+                            >
+                                <ListView />
+                            </InfiniteScroll>
+                        )}
+                    {progress}
+                    {empty}
                 </div>
                 <Footer />
             </SearchContext.Provider>

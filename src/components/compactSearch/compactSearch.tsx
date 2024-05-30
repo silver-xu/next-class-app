@@ -1,8 +1,10 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, Button, Space } from "antd";
+import axios from "axios";
+import React from "react";
 
 import {
     ChangeEvent,
@@ -15,14 +17,15 @@ import { SuburbSearch } from "../suburbSearch/suburbSearch";
 import { CloseSquareFilled } from "@ant-design/icons";
 import styles from "./compactSearch.module.scss";
 import { Sort } from "@/db/listingRepository";
+import { slugify } from "@/utils/slugify";
 import { SearchContext } from "../search";
 import { Suburb } from "@/models/suburb";
-import axios from "axios";
-import React from "react";
 
 const pageLimit = 20;
 
 export const CompactSearch = () => {
+    const router = useRouter();
+
     const q = useSearchParams().get("q");
     const suburbId = decodeURIComponent(useParams().suburbId as string);
     const suburbFullname = decodeURIComponent(
@@ -91,13 +94,7 @@ export const CompactSearch = () => {
         setSuburbError(!searchSuburb);
 
         if (query && query !== "" && selectedSuburb) {
-            await searchListings(
-                query,
-                selectedSuburb,
-                searchRadius,
-                searchSorting
-            );
-            setSearchSuburb(selectedSuburb);
+            window.location.href = `/search/${selectedSuburb?.suburbId}/${slugify(selectedSuburb?.fullName)}?q=${query}`;
         }
     };
 

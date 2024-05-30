@@ -9,6 +9,7 @@ import { useState } from "react";
 import { SuburbSearch } from "../suburbSearch/suburbSearch";
 import { motion, useAnimation } from "framer-motion";
 import styles from "./homeSearch.module.scss";
+import { slugify } from "@/utils/slugify";
 import { Suburb } from "@/models/suburb";
 
 export const HomeSearch = () => {
@@ -43,7 +44,7 @@ export const HomeSearch = () => {
 
         if (query && query !== "" && selectedSuburb) {
             router.push(
-                `/search/${selectedSuburb?.suburbId}/${selectedSuburb?.fullName}?q=${query}`
+                `/search/${selectedSuburb?.suburbId}/${slugify(selectedSuburb?.fullName)}?q=${query}`
             );
         }
     };
