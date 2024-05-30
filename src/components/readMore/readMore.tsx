@@ -24,8 +24,9 @@ export const ReadMore = (props: ReadMoreProps) => {
     const onReadMoreClicked = () => setCollapsed(!collapsed);
 
     return (
-        <>
-            {displayChildren}
+        <div className={styles.readMore}>
+            <div>{displayChildren}</div>
+            <div className={styles.mask}></div>
             <Button
                 type="link"
                 className={styles.readMoreButton}
@@ -33,6 +34,6 @@ export const ReadMore = (props: ReadMoreProps) => {
             >
                 {collapsed ? "Read more ..." : "Read less ..."}
             </Button>
-        </>
+        </div>
     );
 };

@@ -112,7 +112,7 @@ export default async function Listing({
     const coursesSection = listing.generatedContent?.courses &&
         listing.generatedContent?.courses.length > 0 && (
             <div className={`${styles.courses}  ${styles.info}`}>
-                <h3>Courses</h3>
+                <h3>Classes</h3>
                 <ReadMore
                     collapsedByDefault={true}
                     numOfChildrenWhenCollapsed={2}
@@ -162,7 +162,7 @@ export default async function Listing({
                             <h3>Reviews</h3>
                             {rating}
                             <span className={styles.ratingLabel}>
-                                {listing.numOfReviews} Reviews
+                                {listing.numOfReviews ?? 0} Reviews
                             </span>
                         </div>
                         <div className={`${styles.contacts} ${styles.info}`}>

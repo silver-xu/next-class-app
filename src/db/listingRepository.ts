@@ -1,3 +1,4 @@
+import { ListingSearchResult } from "@/models/listingSearchResult";
 import { Location } from "@/models/address";
 import { Listing } from "@/models/listing";
 import { DbContext } from "./dbContext";
@@ -35,7 +36,7 @@ export class ListingRepository {
         location: Location,
         radius: number,
         sort: Sort
-    ): Promise<Listing[]> {
+    ): Promise<ListingSearchResult[]> {
         if (!ListingRepository.db) {
             ListingRepository.db = await this.dbContext.connect();
         }
@@ -43,7 +44,7 @@ export class ListingRepository {
         const sortCriteria = sortCriterias[sort];
         const result = await ListingRepository.db
             .collection("listings")
-            .aggregate<Listing>([
+            .aggregate<ListingSearchResult>([
                 {
                     $search: {
                         index: "listings_search",

@@ -3,19 +3,20 @@ import { useContext } from "react";
 import Link from "next/link";
 import { Rate } from "antd";
 
-import { Listing } from "@/models/listing";
 import { SearchContext } from "../search";
 import { Gallery } from "../gallery";
 
+import { ListingSearchResult } from "@/models/listingSearchResult";
 import { getDistanceInKms } from "@/utils/geoUtils";
 import styles from "./listViewItem.module.scss";
+import { slugify } from "@/utils/slugify";
 
 interface ListViewItemProps {
-    listing: Listing;
+    listingSearchResult: ListingSearchResult;
 }
 
 export const ListViewItem = (props: ListViewItemProps) => {
-    const { listing } = props;
+    const { listingSearchResult: listing } = props;
 
     const { searchSuburb } = useContext(SearchContext);
 
@@ -41,8 +42,10 @@ export const ListViewItem = (props: ListViewItemProps) => {
         </>
     );
 
+    const prettyBusinessName = slugify(listing.businessName).toLowerCase();
+
     return (
-        <Link href={`/listing/${listing.listingId}/${listing.businessName}`}>
+        <Link href={`/listing/${listing.listingId}/${prettyBusinessName}`}>
             <Gallery listing={listing} curveTop={true} />
             <div className={styles.heading}>
                 <h2>{listing.businessName}</h2>

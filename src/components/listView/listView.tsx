@@ -6,14 +6,16 @@ import { SearchContext } from "@/components/search";
 import styles from "./listView.module.scss";
 
 export default function ListView() {
-    const { listings } = useContext(SearchContext);
+    const { listingSearchResults } = useContext(SearchContext);
 
     return (
-        listings && (
+        listingSearchResults && (
             <ul>
-                {listings.map((listing, idx) => (
+                {listingSearchResults.map((listingSearchResult, idx) => (
                     <li className={styles.searchResult} key={idx}>
-                        <ListViewItem listing={listing} />
+                        <ListViewItem
+                            listingSearchResult={listingSearchResult}
+                        />
                     </li>
                 ))}
             </ul>

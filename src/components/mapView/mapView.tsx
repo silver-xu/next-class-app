@@ -10,9 +10,9 @@ import { Button } from "antd";
 import Link from "next/link";
 
 import { MapLocation } from "@/models/map-location";
-import { Listing } from "@/models/listing";
 
 import listViewItemStyles from "../listViewItem/listViewItem.module.scss";
+import { ListingSearchResult } from "@/models/listingSearchResult";
 import { ListViewItem } from "../listViewItem";
 import styles from "./mapView.module.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -21,7 +21,7 @@ const boundsFactor = 1;
 
 export interface MapSearchProps {
     mapBoxApiKey: string | undefined;
-    listings: Listing[];
+    listingSearchResults: ListingSearchResult[];
 }
 
 interface Bounds {
@@ -29,14 +29,15 @@ interface Bounds {
     northeast: MapLocation;
 }
 
-const getBounds = (listings: Listing[]): Bounds => {
+const getBounds = (listingSearchResults: ListingSearchResult[]): Bounds => {
     let minLat = Number.MAX_VALUE,
         maxLat = -1 * Number.MAX_VALUE,
         minLng = Number.MAX_VALUE,
         maxLng = -1 * Number.MAX_VALUE;
 
-    listings.forEach((listing) => {
-        const [longitude, latitude] = listing.address.location.coordinates;
+    listingSearchResults.forEach((listingSearchResult) => {
+        const [longitude, latitude] =
+            listingSearchResult.address.location.coordinates;
 
         if (latitude < minLat) {
             minLat = latitude;
@@ -73,18 +74,18 @@ export const MapView = (props: MapSearchProps) => {
         useParams().suburbFullname as string
     );
 
-    const { listings, mapBoxApiKey } = props;
+    const { listingSearchResults, mapBoxApiKey } = props;
 
     const [popupOpen, setPopupOpen] = useState(false);
     const [markerClicked, setMarkerClicked] = useState(false);
-    const [selectedListing, setSelectedListing] = useState<Listing | undefined>(
-        undefined
-    );
+    const [selectedListing, setSelectedListing] = useState<
+        ListingSearchResult | undefined
+    >(undefined);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mapRef = useRef<any>(null);
 
-    const onMarkerClick = (listing: Listing) => {
+    const onMarkerClick = (listing: ListingSearchResult) => {
         setMarkerClicked(true);
         setSelectedListing(listing);
 
@@ -112,8 +113,9 @@ export const MapView = (props: MapSearchProps) => {
         setTimeout(() => setMarkerClicked(false), 500);
     };
 
-    const markers = listings.map((listing, idx) => {
-        const [longitude, latitude] = listing.address.location.coordinates;
+    const markers = listingSearchResults.map((listingSearchResult, idx) => {
+        const [longitude, latitude] =
+            listingSearchResult.address.location.coordinates;
 
         return (
             <Marker
@@ -124,7 +126,7 @@ export const MapView = (props: MapSearchProps) => {
             >
                 <EnvironmentFilled
                     className={styles.marker}
-                    onClick={() => onMarkerClick(listing)}
+                    onClick={() => onMarkerClick(listingSearchResult)}
                 />
             </Marker>
         );
@@ -141,10 +143,10 @@ export const MapView = (props: MapSearchProps) => {
         </div>
     );
 
-    const bounds = getBounds(listings);
+    const bounds = getBounds(listingSearchResults);
 
     const listingView = selectedListing && (
-        <ListViewItem listing={selectedListing} />
+        <ListViewItem listingSearchResult={selectedListing} />
     );
 
     return (

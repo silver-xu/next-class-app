@@ -3,15 +3,14 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import ImageGallery from "react-image-gallery";
 
-import { Listing } from "@/models/listing";
-
+import { ListingSearchResult } from "@/models/listingSearchResult";
 import "react-image-gallery/styles/css/image-gallery.css";
 import styles from "./gallery.module.scss";
 
 const baseUrl = "https://next-class-images.s3.ap-southeast-2.amazonaws.com";
 
 export interface GalleryProps {
-    listing: Listing;
+    listing: ListingSearchResult;
     curveTop: boolean;
 }
 

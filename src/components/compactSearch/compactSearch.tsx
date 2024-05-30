@@ -32,7 +32,7 @@ export const CompactSearch = () => {
         setSearchSuburb,
         selectedSuburb,
         setSelectedSuburb,
-        setSearchResult,
+        setListingSearchResults: setSearchResult,
         searchRadius,
         searchSorting,
         setLoading,

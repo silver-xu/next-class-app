@@ -6,10 +6,10 @@ import { CompactSearch } from "@/components/compactSearch";
 import { MapView } from "@/components/mapView";
 import { Header } from "@/components/header";
 
-import { Listing } from "@/models/listing";
 import { SearchContext } from "../search";
 import { Suburb } from "@/models/suburb";
 
+import { ListingSearchResult } from "@/models/listingSearchResult";
 import { Sort } from "@/db/listingRepository";
 import styles from "./mapSearch.module.scss";
 
@@ -26,16 +26,19 @@ export const MapSearch = (props: MapSearchProps) => {
     const [selectedSuburb, setSelectedSuburb] = useState<Suburb | undefined>(
         undefined
     );
-    const [listings, setListings] = useState<Listing[] | undefined>(undefined);
+    const [listingSearchResults, setListingSearchResults] = useState<
+        ListingSearchResult[] | undefined
+    >(undefined);
 
     const [searchSorting] = useState<Sort>("relevance");
     const [searchRadius] = useState<number>(10000);
     const [loading, setLoading] = useState<boolean>(false);
 
-    const setSearchResult = (listings: Listing[]) => setListings(listings);
-
-    const mapView = listings && (
-        <MapView mapBoxApiKey={mapBoxApiKey} listings={listings} />
+    const mapView = listingSearchResults && (
+        <MapView
+            mapBoxApiKey={mapBoxApiKey}
+            listingSearchResults={listingSearchResults}
+        />
     );
 
     return (
@@ -45,9 +48,9 @@ export const MapSearch = (props: MapSearchProps) => {
                 setSearchSuburb,
                 selectedSuburb,
                 setSelectedSuburb,
-                setSearchResult,
+                setListingSearchResults,
                 searchRadius,
-                listings,
+                listingSearchResults,
                 searchSorting,
                 loading,
                 setLoading,
