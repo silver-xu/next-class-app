@@ -2,8 +2,8 @@
 
 import { useParams, useSearchParams } from "next/navigation";
 import { createContext, useCallback, useState } from "react";
-import { EnvironmentOutlined } from "@ant-design/icons";
 import { Button, Select, Skeleton, Space } from "antd";
+import { Map } from "iconoir-react";
 
 import { CompactSearch } from "../compactSearch";
 import { Suburb } from "@/models/suburb";
@@ -127,40 +127,47 @@ export const Search = () => {
                 <CompactSearch />
                 <div className={styles.searchResultWrapper}>
                     <div className={`${styles.filters} filters`}>
-                        <span className={styles.text}>Distance</span>
-                        <Select
-                            onChange={onRadiusChange}
-                            defaultValue="10km"
-                            className={styles.dropdown}
-                            size="large"
-                            style={{ width: "85px" }}
-                            options={[
-                                { value: "5000", label: "5km" },
-                                { value: "10000", label: "10km" },
-                                { value: "15000", label: "15km" },
-                            ]}
-                        />
-                        <span className={styles.text}>Sort</span>
-                        <Space.Compact>
+                        <div className={styles.filterItem}>
+                            <span className={styles.text}>Distance</span>
                             <Select
-                                onChange={onSortingChange}
-                                defaultValue="Relevance"
+                                onChange={onRadiusChange}
+                                defaultValue="10km"
                                 className={styles.dropdown}
-                                style={{ width: "120px" }}
                                 size="large"
+                                style={{ minWidth: "85px" }}
                                 options={[
-                                    { value: "relevance", label: "Relevance" },
-                                    { value: "rating", label: "Rating" },
+                                    { value: "5000", label: "5km" },
+                                    { value: "10000", label: "10km" },
+                                    { value: "15000", label: "15km" },
                                 ]}
                             />
-                            <Button
-                                size="large"
-                                type="primary"
-                                href={`/map-search/${suburbId}/${suburbFullname}?q=${q}`}
-                            >
-                                <EnvironmentOutlined />
-                            </Button>
-                        </Space.Compact>
+                        </div>
+                        <div className={styles.filterItem}>
+                            <span className={styles.text}>Sort</span>
+                            <Space.Compact className="compactWrapper">
+                                <Select
+                                    onChange={onSortingChange}
+                                    defaultValue="Relevance"
+                                    className={styles.dropdown}
+                                    style={{ minWidth: "120px" }}
+                                    size="large"
+                                    options={[
+                                        {
+                                            value: "relevance",
+                                            label: "Relevance",
+                                        },
+                                        { value: "rating", label: "Rating" },
+                                    ]}
+                                />
+                                <Button
+                                    size="large"
+                                    type="primary"
+                                    href={`/map-search/${suburbId}/${suburbFullname}?q=${q}`}
+                                >
+                                    <Map height={24} width={24} />
+                                </Button>
+                            </Space.Compact>
+                        </div>
                     </div>
                     {listView} {progress}
                 </div>

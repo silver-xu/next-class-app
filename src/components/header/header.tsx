@@ -1,13 +1,6 @@
 "use client";
 
-import {
-    MenuOutlined,
-    CloseOutlined,
-    HomeOutlined,
-    InfoCircleOutlined,
-    RadarChartOutlined,
-    MailOutlined,
-} from "@ant-design/icons";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
