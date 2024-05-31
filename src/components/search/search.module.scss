@@ -19,48 +19,6 @@
     .searchResultWrapper {
         padding: 0 15px 15px 15px;
         min-height: 500px;
-
-        .filters {
-            background-color: var(--super-light-bg-color);
-            position: sticky;
-            top: 0px;
-            margin: 0 auto;
-            max-width: 640px;
-            padding: 15px 0;
-            z-index: 1000;
-            display: flex;
-
-            .filterItem {
-                display: flex;
-                flex-grow: 1;
-                align-items: center;
-                .text {
-                    font-size: 18px;
-                    color: var(--medium-grey-color);
-                    margin: 0 15px 0 10px;
-                }
-
-                .dropdown {
-                    flex-grow: 4;
-                    box-sizing: content-box;
-
-                    :global {
-                        .ant-select-selector {
-                            border-radius: 3px;
-                        }
-                        .ant-select-selection-item {
-                            font-size: 16px !important;
-                        }
-                    }
-                }
-
-                :global {
-                    .ant-space-compact {
-                        flex-grow: 4 !important;
-                    }
-                }
-            }
-        }
     }
 
     .endScroll {

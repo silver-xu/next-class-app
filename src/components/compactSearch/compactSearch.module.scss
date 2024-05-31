@@ -1,7 +1,6 @@
 .searchBox {
     background: var(--white-color);
     padding: 20px 15px;
-    border-bottom: 1px solid var(--light-grey-color);
 
     .searchField {
         margin-bottom: 15px;
@@ -41,6 +40,46 @@
     .errorSuburb {
         > div {
             border: 1px solid var(--pink-color) !important;
+        }
+    }
+}
+.filterWrapper {
+    background: var(--white-color);
+
+    .filters {
+        display: flex;
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 15px 15px 15px;
+        .dropdown {
+            box-sizing: content-box;
+            flex-grow: 1;
+
+            :global {
+                .ant-select-selector {
+                    border-radius: 3px;
+                    font-size: 14px;
+                }
+                .ant-select-selection-item {
+                    font-size: 14px !important;
+                }
+            }
+        }
+
+        .mapView {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+
+            svg {
+                margin-right: 5px;
+            }
+        }
+
+        :global {
+            .ant-space-compact {
+                flex-grow: 4 !important;
+            }
         }
     }
 }
