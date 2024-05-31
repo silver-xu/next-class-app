@@ -1,4 +1,4 @@
-import { MapSearch } from "@/components/mapSearch";
+import { MapSearch } from "@/components/map/mapSearch";
 import Layout from "../../../layout";
 
 import styles from "./page.module.scss";

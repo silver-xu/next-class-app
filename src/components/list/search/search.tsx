@@ -1,60 +1,27 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
-import { createContext, useCallback, useState } from "react";
-import { Empty, Skeleton } from "antd";
-import { Map } from "iconoir-react";
-
-import { CompactSearch } from "../compactSearch";
-import { Suburb } from "@/models/suburb";
-import { Header } from "../header";
-import { Footer } from "../footer";
-
-import { ListingSearchResult } from "@/models/listingSearchResult";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Sort } from "@/db/listingRepository";
-import styles from "./search.module.scss";
-import ListView from "../listView";
+import { useParams, useSearchParams } from "next/navigation";
+import { useCallback, useState } from "react";
+import { Empty, Skeleton } from "antd";
 import axios from "axios";
 
-interface SearchContextProps {
-    searchSuburb: Suburb | undefined;
-    setSearchSuburb: (suburb: Suburb | undefined) => void;
-    selectedSuburb: Suburb | undefined;
-    setSelectedSuburb: (suburb: Suburb | undefined) => void;
-    setListingSearchResults: (listings: ListingSearchResult[]) => void;
-    listingSearchResults: ListingSearchResult[] | undefined;
-    searchSorting: Sort;
-    setSearchSorting: (sorting: Sort) => void;
-    searchRadius: number;
-    setSearchRadius: (radius: number) => void;
-    loading: boolean;
-    setLoading: (loading: boolean) => void;
-}
+import { SearchContext } from "@/components/context/searchContext";
+import { ListingSearchResult } from "@/models/listingSearchResult";
+import { CompactSearch } from "@/components/search/compactSearch";
+import { Sort } from "@/db/listingRepository";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Suburb } from "@/models/suburb";
 
-export const SearchContext = createContext<SearchContextProps>({
-    searchSuburb: undefined,
-    setSearchSuburb: () => {},
-    selectedSuburb: undefined,
-    setSelectedSuburb: () => {},
-    setListingSearchResults: () => {},
-    listingSearchResults: undefined,
-    searchSorting: "relevance",
-    setSearchSorting: () => {},
-    searchRadius: 10000,
-    setSearchRadius: () => {},
-    loading: false,
-    setLoading: () => {},
-});
+import styles from "./search.module.scss";
+import ListView from "../listView";
 
 const pageLimit = 20;
 
 export const Search = () => {
     const q = useSearchParams().get("q");
     const suburbId = decodeURIComponent(useParams().suburbId as string);
-    const suburbFullname = decodeURIComponent(
-        useParams().suburbFullname as string
-    );
 
     const [searchSuburb, setSearchSuburb] = useState<Suburb | undefined>(
         undefined
@@ -166,7 +133,7 @@ export const Search = () => {
                 }}
             >
                 <Header theme="light" />
-                <CompactSearch />
+                <CompactSearch type="list" />
                 <div className={styles.searchResultWrapper}>
                     {listingSearchResults &&
                         listingSearchResults.length > 0 && (

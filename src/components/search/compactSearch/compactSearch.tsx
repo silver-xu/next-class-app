@@ -1,13 +1,5 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
-import { Input, Button, Space, Select } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import { Map } from "iconoir-react";
-
-import axios from "axios";
-import React from "react";
-
 import {
     ChangeEvent,
     useCallback,
@@ -15,22 +7,36 @@ import {
     useEffect,
     useState,
 } from "react";
-import { SuburbSearch } from "../suburbSearch/suburbSearch";
+import { useParams, useSearchParams } from "next/navigation";
 import { CloseSquareFilled } from "@ant-design/icons";
-import styles from "./compactSearch.module.scss";
+import { Input, Button, Space, Select } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { List, Map } from "iconoir-react";
+import axios from "axios";
+import React from "react";
+
+import { SuburbSearch } from "@/components/search/suburbSearch/suburbSearch";
+import { SearchContext } from "@/components/context/searchContext";
 import { Sort } from "@/db/listingRepository";
 import { slugify } from "@/utils/slugify";
-import { SearchContext } from "../search";
 import { Suburb } from "@/models/suburb";
+
+import styles from "./compactSearch.module.scss";
 
 const pageLimit = 20;
 
-export const CompactSearch = () => {
+interface CompactSearchProps {
+    type: "list" | "map";
+}
+
+export const CompactSearch = (props: CompactSearchProps) => {
     const q = useSearchParams().get("q");
     const suburbId = decodeURIComponent(useParams().suburbId as string);
     const suburbFullname = decodeURIComponent(
         useParams().suburbFullname as string
     );
+
+    const { type } = props;
 
     const {
         searchSuburb,
@@ -172,41 +178,72 @@ export const CompactSearch = () => {
             </div>
             <div className={styles.filterWrapper}>
                 <div className={`${styles.filters}`}>
-                    <Select
-                        onChange={onRadiusChange}
-                        defaultValue="10km Radius"
-                        className={styles.dropdown}
-                        size="large"
-                        style={{ minWidth: "130px" }}
-                        options={[
-                            { value: "5000", label: "5km Radius" },
-                            { value: "10000", label: "10km Radius" },
-                            { value: "15000", label: "15km Radius" },
-                        ]}
-                    />
                     <Space.Compact className="compactWrapper">
-                        <Select
-                            onChange={onSortingChange}
-                            defaultValue="Relevance"
-                            className={styles.dropdown}
-                            style={{ minWidth: "120px" }}
-                            size="large"
-                            options={[
-                                {
-                                    value: "relevance",
-                                    label: "Relevance",
-                                },
-                                { value: "rating", label: "Rating" },
-                            ]}
-                        />
                         <Button
                             size="large"
                             type="primary"
                             className={styles.mapView}
-                            href={`/map-search/${suburbId}/${suburbFullname}?q=${q}`}
+                            href={
+                                type === "list"
+                                    ? `/map-search/${suburbId}/${suburbFullname}?q=${q}`
+                                    : `/search/${suburbId}/${suburbFullname}?q=${q}`
+                            }
                         >
-                            <Map height={20} width={20} /> Map View
+                            {type === "list" ? (
+                                <>
+                                    <Map height={20} width={20} /> Map
+                                </>
+                            ) : (
+                                <>
+                                    <List height={20} width={20} /> List view
+                                </>
+                            )}
                         </Button>
+                        <Select
+                            defaultValue="allages"
+                            className={styles.dropdown}
+                            style={{ minWidth: "110px" }}
+                            size="large"
+                            options={[
+                                {
+                                    value: "allages",
+                                    label: "All Ages",
+                                },
+                                { value: "preschool", label: "Preschool" },
+                                { value: "schoolage", label: "School" },
+                                { value: "youth", label: "Youth" },
+                            ]}
+                        />
+                        {type === "list" && (
+                            <>
+                                <Select
+                                    onChange={onRadiusChange}
+                                    defaultValue="10000"
+                                    className={styles.dropdown}
+                                    size="large"
+                                    style={{ minWidth: "84px" }}
+                                    options={[
+                                        { value: "5000", label: "5km" },
+                                        { value: "10000", label: "10km" },
+                                        { value: "15000", label: "15km" },
+                                    ]}
+                                />
+                                <Select
+                                    onChange={onSortingChange}
+                                    defaultValue="Relevance"
+                                    className={styles.dropdown}
+                                    style={{ minWidth: "115px" }}
+                                    size="large"
+                                    options={[
+                                        {
+                                            value: "relevance",
+                                            label: "Relevance",
+                                        },
+                                        { value: "rating", label: "Rating" },
+                                    ]}
+                                />
+                            </>
+                        )}
                     </Space.Compact>
                 </div>
             </div>

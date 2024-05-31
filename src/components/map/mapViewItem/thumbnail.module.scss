@@ -1,0 +1,15 @@
+.thumbnailWrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+
+    .thumbnail {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 100%;
+        width: auto;
+        transform: translate(-50%, -50%);
+    }
+}

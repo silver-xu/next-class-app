@@ -2,15 +2,14 @@
 
 import React, { useState } from "react";
 
-import { CompactSearch } from "@/components/compactSearch";
-import { MapView } from "@/components/mapView";
+import { SearchContext } from "@/components/context/searchContext";
+import { ListingSearchResult } from "@/models/listingSearchResult";
+import { CompactSearch } from "@/components/search/compactSearch";
+import { MapView } from "@/components/map/mapView";
+import { Sort } from "@/db/listingRepository";
 import { Header } from "@/components/header";
-
-import { SearchContext } from "../search";
 import { Suburb } from "@/models/suburb";
 
-import { ListingSearchResult } from "@/models/listingSearchResult";
-import { Sort } from "@/db/listingRepository";
 import styles from "./mapSearch.module.scss";
 
 interface MapSearchProps {
@@ -30,8 +29,8 @@ export const MapSearch = (props: MapSearchProps) => {
         ListingSearchResult[] | undefined
     >(undefined);
 
-    const [searchSorting] = useState<Sort>("relevance");
-    const [searchRadius] = useState<number>(10000);
+    const [searchSorting, setSearchSorting] = useState<Sort>("relevance");
+    const [searchRadius, setSearchRadius] = useState<number>(10000);
     const [loading, setLoading] = useState<boolean>(false);
 
     const mapView = listingSearchResults && (
@@ -50,15 +49,17 @@ export const MapSearch = (props: MapSearchProps) => {
                 setSelectedSuburb,
                 setListingSearchResults,
                 searchRadius,
+                setSearchRadius,
                 listingSearchResults,
                 searchSorting,
+                setSearchSorting,
                 loading,
                 setLoading,
             }}
         >
             <div className={styles.mapWrapper}>
                 <Header theme="light" />
-                <CompactSearch />
+                <CompactSearch type="map" />
                 <div className={styles.mapView}>{mapView}</div>
             </div>
         </SearchContext.Provider>

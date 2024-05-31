@@ -17,7 +17,8 @@
     }
 
     .searchResultWrapper {
-        padding: 0 15px 15px 15px;
+        padding: 15px;
+        border-top: 1px solid var(--light-grey-color);
         min-height: 500px;
     }
 

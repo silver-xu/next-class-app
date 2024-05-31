@@ -1,20 +1,17 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
-import { UnorderedListOutlined } from "@ant-design/icons";
-import { EnvironmentFilled } from "@ant-design/icons";
 import MapBox, { Marker } from "react-map-gl";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "antd";
 import Link from "next/link";
 
 import { MapLocation } from "@/models/map-location";
 
-import listViewItemStyles from "../listViewItem/listViewItem.module.scss";
+import listViewItemStyles from "../../list/listViewItem/listViewItem.module.scss";
 import { ListingSearchResult } from "@/models/listingSearchResult";
-import { ListViewItem } from "../listViewItem";
+import { MapViewItem } from "../mapViewItem/mapViewItem";
 import styles from "./mapView.module.scss";
+import { Circle } from "iconoir-react";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const boundsFactor = 1;
@@ -68,12 +65,6 @@ const getBounds = (listingSearchResults: ListingSearchResult[]): Bounds => {
 };
 
 export const MapView = (props: MapSearchProps) => {
-    const q = useSearchParams().get("q");
-    const suburbId = decodeURIComponent(useParams().suburbId as string);
-    const suburbFullname = decodeURIComponent(
-        useParams().suburbFullname as string
-    );
-
     const { listingSearchResults, mapBoxApiKey } = props;
 
     const [popupOpen, setPopupOpen] = useState(false);
@@ -124,7 +115,7 @@ export const MapView = (props: MapSearchProps) => {
                 latitude={latitude}
                 anchor="bottom"
             >
-                <EnvironmentFilled
+                <Circle
                     className={styles.marker}
                     onClick={() => onMarkerClick(listingSearchResult)}
                 />
@@ -132,21 +123,10 @@ export const MapView = (props: MapSearchProps) => {
         );
     });
 
-    const listView = !popupOpen && (
-        <div className={styles.floatButton}>
-            <Button
-                type="primary"
-                href={`/search/${suburbId}/${suburbFullname}?q=${q}`}
-            >
-                <UnorderedListOutlined /> List View
-            </Button>
-        </div>
-    );
-
     const bounds = getBounds(listingSearchResults);
 
     const listingView = selectedListing && (
-        <ListViewItem listingSearchResult={selectedListing} />
+        <MapViewItem listingSearchResult={selectedListing} />
     );
 
     return (
@@ -155,8 +135,6 @@ export const MapView = (props: MapSearchProps) => {
                 ref={mapRef}
                 mapboxAccessToken={mapBoxApiKey}
                 initialViewState={{
-                    // ...centreLocation,
-                    // zoom: 14,
                     fitBoundsOptions: {
                         padding: {
                             top: 50,
@@ -190,7 +168,6 @@ export const MapView = (props: MapSearchProps) => {
                     <Link href="/listing">{listingView}</Link>
                 </div>
             </motion.div>
-            {listView}
         </>
     );
 };

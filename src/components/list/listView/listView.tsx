@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { ListViewItem } from "@/components/listViewItem";
-import { SearchContext } from "@/components/search";
+import { SearchContext } from "@/components/context/searchContext";
+import { ListViewItem } from "@/components/list/listViewItem";
 
 import styles from "./listView.module.scss";
 

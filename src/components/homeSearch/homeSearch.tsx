@@ -5,7 +5,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Form, Input, Button } from "antd";
 import { useState } from "react";
 
-import { SuburbSearch } from "../suburbSearch/suburbSearch";
+import { SuburbSearch } from "../search/suburbSearch/suburbSearch";
 import { motion, useAnimation } from "framer-motion";
 import styles from "./homeSearch.module.scss";
 import { slugify } from "@/utils/slugify";

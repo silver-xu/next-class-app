@@ -4,10 +4,10 @@ import { remark } from "remark";
 import html from "remark-html";
 import { Rate } from "antd";
 
+import { ContactUs } from "@/components/listing/contactUs";
 import { ListingRepository } from "@/db/listingRepository";
 import { Listing as ListingModel } from "@/models/listing";
 import { ReadMore } from "@/components/readMore/readMore";
-import { ContactUs } from "@/components/contactUs";
 import { Gallery } from "@/components/gallery";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";

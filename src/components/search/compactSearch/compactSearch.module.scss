@@ -1,9 +1,9 @@
 .searchBox {
     background: var(--white-color);
-    padding: 20px 15px;
+    padding: 10px 15px;
 
     .searchField {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     .input {
@@ -50,10 +50,12 @@
         display: flex;
         max-width: 640px;
         margin: 0 auto;
-        padding: 0 15px 15px 15px;
+        padding: 0 15px 10px 15px;
+
         .dropdown {
             box-sizing: content-box;
             flex-grow: 1;
+            text-align: center;
 
             :global {
                 .ant-select-selector {
@@ -67,12 +69,20 @@
         }
 
         .mapView {
+            flex-grow: 1;
             font-size: 14px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
             display: flex;
-            align-items: center;
+            justify-content: center;
 
-            svg {
-                margin-right: 5px;
+            span {
+                display: flex;
+                align-items: center;
+
+                svg {
+                    margin-right: 5px;
+                }
             }
         }
 

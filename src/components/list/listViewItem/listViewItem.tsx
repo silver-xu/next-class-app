@@ -3,8 +3,8 @@ import { useContext } from "react";
 import Link from "next/link";
 import { Rate } from "antd";
 
-import { SearchContext } from "../search";
-import { Gallery } from "../gallery";
+import { SearchContext } from "@/components/context/searchContext";
+import { Gallery } from "@/components/gallery";
 
 import { ListingSearchResult } from "@/models/listingSearchResult";
 import { getDistanceInKms } from "@/utils/geoUtils";
