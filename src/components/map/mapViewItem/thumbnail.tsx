@@ -12,9 +12,12 @@ export const Thumbnail = (props: ThumbnailProps) => (
         style={{ backgroundImage: props.imageUrl }}
     >
         <Image
+            width="0"
+            height="0"
+            sizes="100vw"
             src={props.imageUrl}
-            className={styles.thumbnail}
             alt="Thumbnails"
+            className={styles.thumbnail}
         />
     </div>
 );
