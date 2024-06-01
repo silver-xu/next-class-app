@@ -1,9 +1,11 @@
 import dynamic from "next/dynamic";
 import Layout from "@/app/layout";
 
-const SearchClientComponent = dynamic(
+const CombinedSearch = dynamic(
     () =>
-        import("../../../../components/list/search").then((mod) => mod.Search),
+        import("../../../../components/search/combinedSearch").then(
+            (mod) => mod.CombinedSearch
+        ),
     { ssr: false }
 );
 
@@ -12,10 +14,12 @@ export const metadata = {
     description: "nextclass. | Search Result",
 };
 
+const mapBoxApiKey = process.env.MAPBOX_API_KEY ?? "";
+
 export default function Search() {
     return (
         <Layout>
-            <SearchClientComponent />
+            <CombinedSearch mapBoxApiKey={mapBoxApiKey} />
         </Layout>
     );
 }

@@ -25,7 +25,7 @@ export const GET = async (request: NextRequest) => {
         return NextResponse.json([], { status: 200 });
     }
 
-    const result = await listingRepository.search(
+    const result = await listingRepository.searchNearby(
         qParam!,
         limit,
         suburb.location,

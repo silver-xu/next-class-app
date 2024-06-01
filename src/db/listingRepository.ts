@@ -27,7 +27,7 @@ export class ListingRepository {
         return result ?? undefined;
     }
 
-    public async search(
+    public async searchNearby(
         query: string,
         limit: number,
         location: Location,
@@ -74,6 +74,81 @@ export class ListingRepository {
                         sort: sortCriteria,
                         count: {
                             type: "total",
+                        },
+                    },
+                },
+                {
+                    $addFields: {
+                        score: {
+                            $meta: "searchScore",
+                        },
+                        paginationToken: { $meta: "searchSequenceToken" },
+                        searchMeta: { meta: "$$SEARCH_META" },
+                    },
+                },
+                {
+                    $limit: limit,
+                },
+            ])
+            .toArray();
+
+        return result;
+    }
+
+    public async searchInbound(
+        query: string,
+        limit: number,
+        northEast: Location,
+        southWest: Location,
+        sort: Sort,
+        searchAfter?: string
+    ): Promise<ListingSearchResult[]> {
+        const db = await this.dbContext.connect();
+
+        const sortCriteria = sortCriterias[sort];
+
+        const result = await db
+            .collection("listings")
+            .aggregate<ListingSearchResult>([
+                {
+                    $search: {
+                        index: "listings_search",
+                        searchAfter,
+                        compound: {
+                            must: [
+                                {
+                                    geoWithin: {
+                                        box: {
+                                            topRight: northEast,
+                                            bottomLeft: southWest,
+                                        },
+                                        path: "address.location",
+                                    },
+                                },
+                                {
+                                    text: {
+                                        path: [
+                                            "businessName",
+                                            "description",
+                                            "generatedContent.aboutUs",
+                                            "generatedContent.courseDraft",
+                                        ],
+                                        query,
+                                        synonyms: "listing_synonyms_mapping",
+                                    },
+                                },
+                            ],
+                        },
+                        sort: sortCriteria,
+                        count: {
+                            type: "total",
+                        },
+                    },
+                },
+                {
+                    $addFields: {
+                        score: {
+                            $meta: "searchScore",
                         },
                     },
                 },

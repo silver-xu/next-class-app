@@ -60,7 +60,6 @@ export class SuburbRepository {
             ])
             .toArray();
 
-        console.log(result);
         return result;
     }
 }

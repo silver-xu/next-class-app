@@ -1,1 +1,1 @@
-export { default as default } from "./listView";
+export * from "./listView";

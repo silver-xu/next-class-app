@@ -1,29 +1,77 @@
-.marker {
-    font-size: 15px;
-    path {
-        stroke: var(--white-color);
-        stroke-width: 3px;
-        fill: var(--pink-color);
-    }
-}
-
-.popup {
-    z-index: 1000;
+.mapWrapper {
+    background: var(--super-light-bg-color);
     position: fixed;
-    left: calc(50% - 215px);
-
+    top: 226px;
+    left: 0;
+    right: 0;
     bottom: 0;
-    background: var(--white-color);
 
-    .searchResult {
-        border-bottom: none;
-        margin-bottom: 0;
+    h1 {
+        margin: 0;
+        background: var(--white-color);
+        font-size: 24px;
+        font-weight: 300;
+        padding: 10px 0 0 18px;
     }
-}
 
-@media (max-width: 500px) {
-    .popup {
+    .mapView {
+        position: absolute;
+        top: 0;
         left: 0;
         right: 0;
+        bottom: 0;
+
+        .marker {
+            font-size: 15px;
+            path {
+                stroke: var(--white-color);
+                stroke-width: 3px;
+                fill: var(--pink-color);
+            }
+        }
+
+        .popup {
+            z-index: 1000;
+            position: fixed;
+            left: calc(50% - 215px);
+
+            bottom: 0;
+            background: var(--white-color);
+
+            .searchResult {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+
+        .updateSearchArea {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            right: 0;
+            top: 226px;
+
+            text-align: center;
+            background-color: white;
+            padding: 0 0 20px 0;
+
+            p {
+                margin: 10px 0 20px 0;
+                color: var(--dark-grey-color);
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .searchAreaButton {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .popup {
+                left: 0;
+                right: 0;
+            }
+        }
     }
 }

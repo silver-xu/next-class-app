@@ -1,9 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
 import { CloseSquareFilled } from "@ant-design/icons";
-import { Suburb } from "@/models/suburb";
 import debounce from "lodash.debounce";
 import { AutoComplete } from "antd";
 import axios from "axios";
+
+import { MapArea } from "@/models/mapArea";
+import { Suburb } from "@/models/suburb";
 
 import styles from "./suburbSearch.module.scss";
 import "./suburbSearch.module.css";
@@ -15,8 +17,7 @@ interface Option {
 
 interface SuburbSearchProps {
     placeholder: string;
-    defaultSuburb?: Suburb | undefined;
-    defaultValue: string;
+    defaultSuburb?: Suburb | MapArea | undefined;
     variant?: "borderless" | "outlined" | "filled" | undefined;
     size?: "small" | "middle" | "large" | undefined;
     className?: string | undefined;
@@ -29,7 +30,6 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
         placeholder,
         variant,
         defaultSuburb,
-        defaultValue,
         size,
         className,
         onSuburbSelect: triggerSuburbSelect,
@@ -39,9 +39,9 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
     const [options, setOptions] = useState<Option[]>([]);
     const [suburbs, setSuburbs] = useState<Suburb[]>([]);
 
-    const [selectedSuburb, setSelectedSuburb] = useState<Suburb | undefined>(
-        defaultSuburb
-    );
+    const [selectedSuburb, setSelectedSuburb] = useState<
+        Suburb | MapArea | undefined
+    >(defaultSuburb);
     const [suburbValue, setSuburbValue] = useState<string>(
         defaultSuburb?.fullName ?? ""
     );
@@ -101,7 +101,7 @@ export const SuburbSearch = (props: SuburbSearchProps) => {
             value={suburbValue}
             className={`${styles.autoComplete} ${className}`}
             size={size}
-            defaultValue={selectedSuburb?.fullName ?? defaultValue}
+            defaultValue={selectedSuburb?.fullName ?? ""}
             allowClear={{
                 clearIcon: <CloseSquareFilled style={{ fontSize: "20px" }} />,
             }}

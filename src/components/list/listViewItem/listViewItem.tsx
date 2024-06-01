@@ -4,12 +4,13 @@ import Link from "next/link";
 import { Rate } from "antd";
 
 import { SearchContext } from "@/components/context/searchContext";
-import { Gallery } from "@/components/gallery";
-
 import { ListingSearchResult } from "@/models/listingSearchResult";
 import { getDistanceInKms } from "@/utils/geoUtils";
-import styles from "./listViewItem.module.scss";
+import { Gallery } from "@/components/gallery";
 import { slugify } from "@/utils/slugify";
+import { Suburb } from "@/models/suburb";
+
+import styles from "./listViewItem.module.scss";
 
 interface ListViewItemProps {
     listingSearchResult: ListingSearchResult;
@@ -18,20 +19,24 @@ interface ListViewItemProps {
 export const ListViewItem = (props: ListViewItemProps) => {
     const { listingSearchResult: listing } = props;
 
-    const { searchSuburb } = useContext(SearchContext);
+    const { selectedSuburb } = useContext(SearchContext);
 
     const [listingLongitude, listingLatitude] =
         listing.address.location.coordinates;
 
-    const [currentLongitude, currentLatitude] =
-        searchSuburb!.location.coordinates;
+    let distance: number | undefined = undefined;
 
-    const distance = getDistanceInKms(
-        listingLatitude,
-        listingLongitude,
-        currentLatitude,
-        currentLongitude
-    );
+    if (selectedSuburb?.suburbId !== "map") {
+        const [currentLongitude, currentLatitude] = (selectedSuburb as Suburb)
+            .location.coordinates;
+
+        distance = getDistanceInKms(
+            listingLatitude,
+            listingLongitude,
+            currentLatitude,
+            currentLongitude
+        );
+    }
 
     const rating = listing.rating && (
         <>
@@ -52,7 +57,11 @@ export const ListViewItem = (props: ListViewItemProps) => {
             />
             <div className={styles.heading}>
                 <h2>{listing.businessName}</h2>
-                <span className={styles.tag}>{distance.toFixed(1)} kms</span>
+                {distance && (
+                    <span className={styles.tag}>
+                        {distance.toFixed(1)} kms
+                    </span>
+                )}
             </div>
             <div className={styles.infoWrapper}>
                 {rating}
