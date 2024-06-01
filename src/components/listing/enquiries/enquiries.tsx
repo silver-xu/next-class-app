@@ -3,7 +3,7 @@
 import { PhoneButton } from "../phoneButton";
 import { Button, Form, Input } from "antd";
 
-import styles from "./contactUs.module.scss";
+import styles from "./enquiries.module.scss";
 import { useState } from "react";
 
 interface ContactUsProps {
@@ -11,7 +11,7 @@ interface ContactUsProps {
     email: string;
 }
 
-export const ContactUs = (props: ContactUsProps) => {
+export const Enquiries = (props: ContactUsProps) => {
     const { phoneNumber } = props;
     const [form] = Form.useForm();
 
@@ -37,6 +37,13 @@ export const ContactUs = (props: ContactUsProps) => {
                 <div className={styles.form}>
                     <h4>Send Enquiries</h4>
                     <Form layout="vertical" form={form}>
+                        <Form.Item label="Your name">
+                            <Input
+                                className={styles.input}
+                                size="large"
+                                placeholder="Mike James"
+                            />
+                        </Form.Item>
                         <Form.Item label="Your email">
                             <Input
                                 className={styles.input}

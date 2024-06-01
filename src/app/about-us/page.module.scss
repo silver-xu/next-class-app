@@ -1,0 +1,40 @@
+.contentWrapper {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 15px 25px;
+
+    section {
+        margin-bottom: 20px;
+        border-bottom: 1px solid var(--light-grey-color);
+    }
+
+    section:last-child {
+        border-bottom: none;
+    }
+
+    h2 {
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: 400;
+        margin: 10px 0;
+    }
+
+    p {
+        font-size: 20px;
+        color: var(--dark-text-color);
+        margin-bottom: 30px;
+    }
+
+    ul {
+        li {
+            list-style: disc;
+            margin-left: 30px;
+            font-size: 20px;
+            color: var(--dark-text-color);
+        }
+    }
+}

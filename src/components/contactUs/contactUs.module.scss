@@ -1,0 +1,44 @@
+.contactUs {
+    p {
+        margin-top: 20px;
+        font-weight: 300;
+        color: var(--dark-grey-color);
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .form {
+        h4 {
+            margin: 35px 0 15px 0;
+            font-size: 20px;
+        }
+
+        :global {
+            .ant-form-item-required::before {
+                color: var(--pink-color) !important;
+            }
+        }
+
+        .sendEnquiriesButton {
+            border: 1px solid var(--pink-color);
+            border-radius: 3px;
+            margin-right: 10px;
+            background: var(--pink-color) !important;
+            color: var(--white-color);
+        }
+
+        .input {
+            border-radius: 3px;
+
+            :global {
+                .ant-input-status-error:not(.ant-input-disabled) {
+                    border: 1px solid var(--pink-color);
+                }
+            }
+        }
+    }
+}

@@ -73,10 +73,10 @@ export const Header = (props: HeaderProps) => {
                         <Link href="/classifications">Classifications</Link>
                     </li>
                     <li>
-                        <Link href="/">Sitemap</Link>
+                        <Link href="/sitemap.xml">Sitemap</Link>
                     </li>
                     <li>
-                        <Link href="/">Contact us</Link>
+                        <Link href="/contact-us">Contact us</Link>
                     </li>
                 </ul>
             </motion.div>

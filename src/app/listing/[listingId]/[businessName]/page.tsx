@@ -4,7 +4,7 @@ import { remark } from "remark";
 import html from "remark-html";
 import { Rate } from "antd";
 
-import { ContactUs } from "@/components/listing/contactUs";
+import { Enquiries } from "@/components/listing/enquiries";
 import { ListingRepository } from "@/db/listingRepository";
 import { Listing as ListingModel } from "@/models/listing";
 import { ReadMore } from "@/components/readMore/readMore";
@@ -192,7 +192,7 @@ export default async function Listing({
                             </div>
                         )}
                         <div className={`${styles.info} ${styles.contacts}`}>
-                            <ContactUs
+                            <Enquiries
                                 phoneNumber={listing.contact.phone}
                                 email="abc"
                             />

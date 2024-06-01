@@ -25,7 +25,6 @@ export default async function Categories({
     const parentCategory =
         await categoryRepository.getParentCategoryByParentId(parentCategoryId);
 
-    console.log(parentCategory);
     const categoriesList = parentCategory?.categories.map(
         (category: Category, idx: number) => (
             <li key={idx}>
