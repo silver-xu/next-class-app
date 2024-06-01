@@ -2,12 +2,9 @@
     margin: 50px auto;
     width: 360px;
     max-width: 70%;
-    background: rgba(255, 255, 255, 0.7);
+    background: var(--white-color);
     border-radius: 10px;
     padding: 15px 18px;
-
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
 
     label {
         color: var(--dark-grey-color) !important;

@@ -78,7 +78,7 @@ export const CompactSearch = () => {
         <>
             <div className={styles.searchBox}>
                 <Input
-                    placeholder="Arts schools"
+                    placeholder="Arts, Dancing, Gymnastics or Tennis"
                     defaultValue={query ?? ""}
                     className={`${styles.searchField} ${styles.input}  ${queryError && styles.errorQuery}`}
                     onChange={onQueryChange}

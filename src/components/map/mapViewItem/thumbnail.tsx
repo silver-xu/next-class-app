@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import styles from "./thumbnail.module.scss";
 
 interface ThumbnailProps {

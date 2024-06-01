@@ -1,9 +1,9 @@
 "use client";
 
 import { useContext, useEffect, useRef, useState } from "react";
+import { Circle, MapPin } from "iconoir-react";
 import MapBox, { Marker } from "react-map-gl";
 import { motion } from "framer-motion";
-import { Circle } from "iconoir-react";
 import { Button } from "antd";
 import Link from "next/link";
 
@@ -114,6 +114,7 @@ export const MapView = (props: MapSearchProps) => {
     const onMarkerClick = (listing: ListingSearchResult) => {
         setMarkerClicked(true);
         setSelectedListing(listing);
+        setMoved(false);
 
         if (popupOpen) {
             setPopupOpen(false);
@@ -146,10 +147,20 @@ export const MapView = (props: MapSearchProps) => {
                     latitude={latitude}
                     anchor="bottom"
                 >
-                    <Circle
-                        className={styles.marker}
-                        onClick={() => onMarkerClick(listingSearchResult)}
-                    />
+                    {listingSearchResult.listingId !==
+                        selectedListing?.listingId && (
+                        <Circle
+                            className={styles.marker}
+                            onClick={() => onMarkerClick(listingSearchResult)}
+                        />
+                    )}
+                    {listingSearchResult.listingId ===
+                        selectedListing?.listingId && (
+                        <MapPin
+                            className={styles.selectedMarker}
+                            onClick={() => onMarkerClick(listingSearchResult)}
+                        />
+                    )}
                 </Marker>
             );
         }) ?? [];

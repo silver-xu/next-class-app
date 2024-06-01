@@ -83,7 +83,7 @@ export const HomeSearch = () => {
                         animate={queryValidationControl}
                     >
                         <Input
-                            placeholder="Arts schools"
+                            placeholder="Arts, Dancing, Gymnastics or Tennis"
                             autoComplete="off"
                             variant="borderless"
                             onChange={onQueryChange}

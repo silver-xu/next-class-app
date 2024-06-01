@@ -30,6 +30,15 @@
             }
         }
 
+        .selectedMarker {
+            font-size: 30px;
+            path {
+                stroke: var(--white-color);
+                stroke-width: 2px;
+                fill: var(--medium-grey-color);
+            }
+        }
+
         .popup {
             z-index: 1000;
             position: fixed;

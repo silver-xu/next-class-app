@@ -70,6 +70,9 @@ export const Header = (props: HeaderProps) => {
                         <Link href="/">About us</Link>
                     </li>
                     <li>
+                        <Link href="/classifications">Classifications</Link>
+                    </li>
+                    <li>
                         <Link href="/">Sitemap</Link>
                     </li>
                     <li>
