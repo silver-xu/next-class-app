@@ -11,10 +11,7 @@ export const Thumbnail = (props: ThumbnailProps) => (
         className={styles.thumbnailWrapper}
         style={{ backgroundImage: props.imageUrl }}
     >
-        <Image
-            width="0"
-            height="0"
-            sizes="100vw"
+        <img
             src={props.imageUrl}
             alt="Thumbnails"
             className={styles.thumbnail}

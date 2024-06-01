@@ -131,7 +131,7 @@ export const MapView = (props: MapSearchProps) => {
 
         setTimeout(() => {
             setMarkerClicked(false);
-        }, 500);
+        }, 1000);
     };
 
     const markers =

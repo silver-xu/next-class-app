@@ -8,6 +8,7 @@
         align-items: flex-start;
 
         h2 {
+            width: calc(100% - 150px);
             margin: 5px 10px 0 0;
             font-weight: 500;
             font-size: 22px;
@@ -19,8 +20,8 @@
     }
 
     .infoWrapper {
-        padding: 10px 10px 0 10px;
         width: calc(100% - 150px);
+        padding: 10px 10px 0 10px;
 
         .details {
             padding: 10px 10px 0 10px;

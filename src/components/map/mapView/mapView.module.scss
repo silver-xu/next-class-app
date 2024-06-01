@@ -33,7 +33,7 @@
         .popup {
             z-index: 1000;
             position: fixed;
-            left: calc(50% - 215px);
+            width: 100%;
 
             bottom: 0;
             background: var(--white-color);
