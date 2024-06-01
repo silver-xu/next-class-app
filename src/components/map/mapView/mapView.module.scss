@@ -46,19 +46,20 @@
 
         .updateSearchArea {
             position: fixed;
-            z-index: 0;
+            z-index: 1000;
             left: 0;
             right: 0;
-            top: 226px;
-
+            bottom: 0;
+            height: 155px;
+            box-sizing: border-box;
             text-align: center;
-            background-color: white;
-            padding: 0 0 10px 0;
+            background-color: var(--dark-grey-color);
+            padding: 25px 0 15px 0;
 
             p {
-                margin: 5px 0 10px 0;
-                color: var(--dark-grey-color);
-                font-size: 16px;
+                margin: 0 0 30px 0;
+                color: var(--light-grey-color);
+                font-size: 20px;
                 font-weight: 500;
             }
 

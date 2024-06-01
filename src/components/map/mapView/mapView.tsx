@@ -178,8 +178,10 @@ export const MapView = (props: MapSearchProps) => {
             },
         });
 
-        setMoved(true);
-        setIsNewSearch(true);
+        if (!markerClicked) {
+            setMoved(true);
+            setIsNewSearch(true);
+        }
     };
 
     const onAreaSearchClicked = async () => {
@@ -195,7 +197,7 @@ export const MapView = (props: MapSearchProps) => {
                     <MapBox
                         ref={mapRef}
                         mapboxAccessToken={mapBoxApiKey}
-                        onMove={() => setTimeout(onMove, 1000)}
+                        onMove={onMove}
                         initialViewState={{
                             bounds: bounds.southwest &&
                                 bounds.northeast && [
@@ -228,15 +230,15 @@ export const MapView = (props: MapSearchProps) => {
                         </div>
                     </motion.div>
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={moved ? { opacity: 1 } : { opacity: 0 }}
+                        initial={{ bottom: -1000 }}
+                        animate={moved ? { bottom: 0 } : { bottom: -1000 }}
                         transition={{ duration: 0.2 }}
                         className={styles.updateSearchArea}
                     >
                         <div>
                             <p>Your map location has changed</p>
                             <Button
-                                type="primary"
+                                type="default"
                                 className={styles.searchAreaButton}
                                 onClick={onAreaSearchClicked}
                             >
