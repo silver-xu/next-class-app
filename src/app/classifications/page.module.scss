@@ -1,9 +1,11 @@
 .contents {
     padding: 15px;
+    min-height: 800px;
 
     h2 {
         font-weight: 500;
         margin: 10px 0;
+        color: var(--dark-grey-color);
     }
 
     h3 {
@@ -17,10 +19,26 @@
     }
 
     ul {
+        display: flex;
+        flex-wrap: wrap;
         li {
+            width: 300px;
             a:visited,
             a {
                 color: var(--pink-color);
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .contents {
+        min-height: 400px;
+
+        ul {
+            display: block;
+            li {
+                width: auto;
             }
         }
     }

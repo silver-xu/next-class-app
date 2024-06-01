@@ -9,7 +9,7 @@ import { Listing } from "@/models/listing";
 import { slugify } from "@/utils/slugify";
 import Layout from "@/app/layout";
 
-import styles from "./page.module.scss";
+import styles from "../../../../../../../page.module.scss";
 
 export const metadata = {
     title: "nextclass. | Classifications | Categories",
@@ -58,4 +58,22 @@ export default async function Listings({
             </div>
         </Layout>
     );
+}
+
+export async function generateStaticParams() {
+    const categoryRepository = new CategoryRepository();
+    const parentCategories = await categoryRepository.getParentCategories();
+
+    const params = [];
+
+    for (const parentCategory of parentCategories) {
+        for (const category of parentCategory.categories) {
+            params.push({
+                parentCategoryId: parentCategory.parentCategoryId,
+                categoryId: category.categoryId,
+            });
+        }
+    }
+
+    return params;
 }

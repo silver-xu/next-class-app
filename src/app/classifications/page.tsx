@@ -38,11 +38,15 @@ export default async function Classifications() {
             <div className={styles.contentWrapper}>
                 <Header theme="light" />
                 <div className={styles.contents}>
-                    <h2>Classifications</h2>
+                    <h2>School Classifications</h2>
                     <ul>{parentCategoriesList}</ul>
                 </div>
                 <Footer />
             </div>
         </Layout>
     );
+}
+
+export async function generateStaticParams() {
+    return [{}];
 }

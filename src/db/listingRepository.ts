@@ -27,6 +27,17 @@ export class ListingRepository {
         return result ?? undefined;
     }
 
+    public async getAll(): Promise<Listing[]> {
+        const db = await this.dbContext.connect();
+
+        const result = await db
+            .collection<Listing>("listings")
+            .find()
+            .toArray();
+
+        return result;
+    }
+
     public async getAllByCategory(category: string): Promise<Listing[]> {
         const db = await this.dbContext.connect();
 

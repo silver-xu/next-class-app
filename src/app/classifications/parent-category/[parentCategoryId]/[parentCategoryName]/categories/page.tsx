@@ -7,7 +7,7 @@ import { Category } from "@/models/category";
 import { slugify } from "@/utils/slugify";
 import Layout from "@/app/layout";
 
-import styles from "./page.module.scss";
+import styles from "../../../../page.module.scss";
 
 export const metadata = {
     title: "nextclass. | Classifications | Categories",
@@ -52,4 +52,13 @@ export default async function Categories({
             </div>
         </Layout>
     );
+}
+
+export async function generateStaticParams() {
+    const categoryRepository = new CategoryRepository();
+    const parentCategories = await categoryRepository.getParentCategories();
+
+    return parentCategories.map((parentCategory) => ({
+        parentCategoryId: parentCategory.parentCategoryId,
+    }));
 }

@@ -221,3 +221,12 @@ const fetchListing = async (
     listingId: string
 ): Promise<ListingModel | undefined> =>
     JSON.parse(JSON.stringify(await listingRepository.getOne(listingId)));
+
+export async function generateStaticParams() {
+    const listingRepository = new ListingRepository();
+    const listings = await listingRepository.getAll();
+
+    return listings.map((listing) => ({
+        listingId: listing.listingId,
+    }));
+}
