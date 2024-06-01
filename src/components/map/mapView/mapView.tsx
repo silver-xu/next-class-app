@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import MapBox, { Marker } from "react-map-gl";
 import { motion } from "framer-motion";
 import { Circle } from "iconoir-react";
@@ -27,13 +27,28 @@ interface Bounds {
     northeast: MapLocation;
 }
 
-const getBounds = (listingSearchResults: ListingSearchResult[]): Bounds => {
+const getBounds = (
+    listingSearchResults: ListingSearchResult[] | undefined
+): Bounds => {
+    if (!listingSearchResults) {
+        return {
+            southwest: {
+                lat: -37.94738737623074,
+                lng: 144.75162903213288,
+            },
+            northeast: {
+                lat: -37.65054733300053,
+                lng: 145.2759752895912,
+            },
+        };
+    }
+
     let minLat = Number.MAX_VALUE,
         maxLat = -1 * Number.MAX_VALUE,
         minLng = Number.MAX_VALUE,
         maxLng = -1 * Number.MAX_VALUE;
 
-    listingSearchResults.forEach((listingSearchResult) => {
+    listingSearchResults?.forEach((listingSearchResult) => {
         const [longitude, latitude] =
             listingSearchResult.address.location.coordinates;
 
@@ -75,6 +90,17 @@ export const MapView = (props: MapSearchProps) => {
         ListingSearchResult | undefined
     >(undefined);
 
+    const [bounds, setBounds] = useState<Bounds>({
+        southwest: {
+            lat: -37.94738737623074,
+            lng: 144.75162903213288,
+        },
+        northeast: {
+            lat: -37.65054733300053,
+            lng: 145.2759752895912,
+        },
+    });
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mapRef = useRef<any>(null);
 
@@ -97,20 +123,15 @@ export const MapView = (props: MapSearchProps) => {
             setPopupOpen(true);
         }
 
-        mapRef.current?.setPadding({
-            top: 100,
-            left: 100,
-            right: 100,
-            bottom: 500,
-        });
-
         const [longitude, latitude] = listing.address.location.coordinates;
 
         mapRef.current?.flyTo({
             center: [longitude, latitude],
         });
 
-        setTimeout(() => setMarkerClicked(false), 500);
+        setTimeout(() => {
+            setMarkerClicked(false);
+        }, 500);
     };
 
     const markers =
@@ -133,13 +154,15 @@ export const MapView = (props: MapSearchProps) => {
             );
         }) ?? [];
 
-    const bounds = getBounds(listingSearchResults!);
+    useEffect(() => {
+        setBounds(getBounds(listingSearchResults));
+    }, [listingSearchResults]);
 
     const listingView = selectedListing && (
         <MapViewItem listingSearchResult={selectedListing} />
     );
 
-    const onMove = useCallback(async () => {
+    const onMove = async () => {
         const mapGL = mapRef.current.getMap();
         const bounds = mapGL.getBounds();
 
@@ -156,7 +179,8 @@ export const MapView = (props: MapSearchProps) => {
         });
 
         setMoved(true);
-    }, []);
+        setIsNewSearch(true);
+    };
 
     const onAreaSearchClicked = async () => {
         await fireSearchListingsInBounds();
@@ -171,16 +195,8 @@ export const MapView = (props: MapSearchProps) => {
                     <MapBox
                         ref={mapRef}
                         mapboxAccessToken={mapBoxApiKey}
-                        onMove={onMove}
+                        onMove={() => setTimeout(onMove, 1000)}
                         initialViewState={{
-                            fitBoundsOptions: {
-                                padding: {
-                                    top: 50,
-                                    right: 50,
-                                    bottom: 50,
-                                    left: 50,
-                                },
-                            },
                             bounds: bounds.southwest &&
                                 bounds.northeast && [
                                     bounds.southwest,
@@ -193,6 +209,7 @@ export const MapView = (props: MapSearchProps) => {
                         onClick={() => {
                             if (!markerClicked) {
                                 setPopupOpen(false);
+                                setMoved(false);
                             }
                         }}
                     >
@@ -210,11 +227,15 @@ export const MapView = (props: MapSearchProps) => {
                             <Link href="/listing">{listingView}</Link>
                         </div>
                     </motion.div>
-                    {moved && (
-                        <div className={styles.updateSearchArea}>
-                            <p>Your map area has changed</p>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={moved ? { opacity: 1 } : { opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className={styles.updateSearchArea}
+                    >
+                        <div>
+                            <p>Your map location has changed</p>
                             <Button
-                                size="large"
                                 type="primary"
                                 className={styles.searchAreaButton}
                                 onClick={onAreaSearchClicked}
@@ -222,7 +243,7 @@ export const MapView = (props: MapSearchProps) => {
                                 Search this area
                             </Button>
                         </div>
-                    )}
+                    </motion.div>
                 </div>
             </div>
         </>

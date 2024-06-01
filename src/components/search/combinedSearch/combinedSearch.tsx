@@ -56,6 +56,7 @@ export const CombinedSearch = (props: CombinedSearchProps) => {
     useEffect(() => {
         (async function () {
             setSearchSuburb(selectedSuburb);
+
             if (selectedSuburb?.suburbId !== "map") {
                 await fetchSuburb();
                 await fireSearchListings();
@@ -96,7 +97,6 @@ export const CombinedSearch = (props: CombinedSearchProps) => {
             listingSearchResults.length < currentResultSize
                 ? lastSearchToken
                 : undefined;
-
         await searchListingsInBounds(
             query!,
             pageLimit.get(searchMode) as number,

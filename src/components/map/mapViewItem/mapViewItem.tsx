@@ -48,7 +48,7 @@ export const MapViewItem = (props: MapViewItemProps) => {
                     <div className={styles.heading}>
                         <h2>{listingSearchResult.businessName}</h2>
                     </div>
-                    <div className={styles.infoWrapper}>
+                    <div className={styles.details}>
                         {rating}
                         <p className={styles.address}>
                             {listingSearchResult.address.fullAddress}
