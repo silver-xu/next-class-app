@@ -63,13 +63,6 @@ export default async function Listing({
         </>
     );
 
-    const [lng, lat] = listing.address.location.coordinates;
-
-    const location = {
-        lat,
-        lng,
-    };
-
     const getCourseName = (courseName: string | undefined) =>
         courseName && <h4>{courseName}</h4>;
 
@@ -93,6 +86,26 @@ export default async function Listing({
 
     const getCourseBriefIntro = (courseBriefIntro: string | undefined) =>
         courseBriefIntro && <p>{courseBriefIntro}</p>;
+
+    const getMap = () => {
+        const [lng, lat] = listing.address.location.coordinates;
+
+        const location = {
+            lat,
+            lng,
+        };
+
+        return (
+            <div className={`${styles.directions} ${styles.info}`}>
+                <h3>Directions</h3>
+                <Map
+                    mapBoxApiKey={mapBoxApiKey}
+                    location={location}
+                    streetAddress={listing.address.fullAddress ?? ""}
+                />
+            </div>
+        );
+    };
 
     const courses = listing.generatedContent?.courses?.map((course, idx) => (
         <div key={idx}>
@@ -179,7 +192,7 @@ export default async function Listing({
                                 {listing.numOfReviews ?? 0} Reviews
                             </span>
                         </div>
-                        {openingHours && (
+                        {listing.openingHours && (
                             <div
                                 className={`${styles.openingHours} ${styles.info}`}
                             >
@@ -197,16 +210,7 @@ export default async function Listing({
                                 email="abc"
                             />
                         </div>
-                        <div className={`${styles.directions} ${styles.info}`}>
-                            <h3>Directions</h3>
-                            <Map
-                                mapBoxApiKey={mapBoxApiKey}
-                                location={location}
-                                streetAddress={
-                                    listing.address.fullAddress ?? ""
-                                }
-                            />
-                        </div>
+                        {listing.address.location && getMap()}
                         {coursesSection}
                         {aboutUsSection}
                     </div>
