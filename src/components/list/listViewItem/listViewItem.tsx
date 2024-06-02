@@ -26,7 +26,7 @@ export const ListViewItem = (props: ListViewItemProps) => {
 
     let distance: number | undefined = undefined;
 
-    if (selectedSuburb?.suburbId !== "map") {
+    if (selectedSuburb?.suburbId !== "bounds") {
         const [currentLongitude, currentLatitude] = (selectedSuburb as Suburb)
             .location.coordinates;
 

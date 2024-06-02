@@ -67,7 +67,7 @@ export const Header = (props: HeaderProps) => {
                         <Link href="/">Home</Link>
                     </li>
                     <li>
-                        <Link href="/">About us</Link>
+                        <Link href="/about-us">About us</Link>
                     </li>
                     <li>
                         <Link href="/classifications">Classifications</Link>

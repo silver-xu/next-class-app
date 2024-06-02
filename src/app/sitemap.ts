@@ -3,7 +3,7 @@ import { ListingRepository } from "@/db/listingRepository";
 import { slugify } from "@/utils/slugify";
 import { MetadataRoute } from "next";
 
-const baseUrl = "https://www.nextclass.com.au";
+const baseUrl = "https://dev.nextclass.com.au";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const sitemapUrls = [

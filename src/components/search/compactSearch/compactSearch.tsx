@@ -12,6 +12,7 @@ import { SearchContext } from "@/components/context/searchContext";
 import { Sort } from "@/db/listingRepository";
 import { Suburb } from "@/models/suburb";
 
+import { getFullyQualifiedSearchUrl } from "@/utils/urlUtils";
 import styles from "./compactSearch.module.scss";
 
 export const CompactSearch = () => {
@@ -29,6 +30,9 @@ export const CompactSearch = () => {
         fireSearchListingsInBounds,
         setLastSearchToken,
         setIsNewSearch,
+        bounds,
+        searchRadius,
+        searchSorting,
     } = useContext(SearchContext);
 
     const [queryError, setQueryError] = useState<boolean>(false);
@@ -42,7 +46,7 @@ export const CompactSearch = () => {
             setIsNewSearch(true);
             setLastSearchToken(undefined);
 
-            if (selectedSuburb.suburbId !== "map") {
+            if (selectedSuburb.suburbId !== "bounds") {
                 await fireSearchListings();
             } else {
                 await fireSearchListingsInBounds();
@@ -50,64 +54,137 @@ export const CompactSearch = () => {
         }
     };
 
-    const onQueryChange = (e: ChangeEvent<HTMLInputElement>) =>
+    const onQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
         setQuery(e.currentTarget.value);
+
+        window.history.pushState(
+            {},
+            "",
+            getFullyQualifiedSearchUrl(
+                "map",
+                e.currentTarget.value,
+                selectedSuburb,
+                bounds,
+                searchRadius,
+                searchSorting
+            )
+        );
+    };
 
     const onSuburbDeselect = () => setSelectedSuburb(undefined);
 
-    const onSuburbSelected = (suburb: Suburb) => setSelectedSuburb(suburb);
+    const onSuburbSelected = (suburb: Suburb) => {
+        setSelectedSuburb(suburb);
+
+        window.history.pushState(
+            {},
+            "",
+            getFullyQualifiedSearchUrl(
+                "map",
+                query!,
+                suburb,
+                bounds,
+                searchRadius,
+                searchSorting
+            )
+        );
+    };
 
     const onSortingChange = async (value: string) => {
         setLastSearchToken(undefined);
         setSearchSorting(value as Sort);
         setIsNewSearch(true);
+
+        window.history.pushState(
+            {},
+            "",
+            getFullyQualifiedSearchUrl(
+                "map",
+                query!,
+                selectedSuburb,
+                bounds,
+                searchRadius,
+                value
+            )
+        );
     };
 
     const onRadiusChange = async (radiusString: string) => {
         const radius = parseInt(radiusString);
         setSearchRadius(radius);
         setIsNewSearch(true);
+
+        window.history.pushState(
+            {},
+            "",
+            getFullyQualifiedSearchUrl(
+                "map",
+                query!,
+                selectedSuburb,
+                bounds,
+                radius,
+                searchSorting
+            )
+        );
     };
 
     const toggleMode = () => {
         const newMode = searchMode === "map" ? "list" : "map";
+
         setSearchMode(newMode);
+
+        window.history.pushState(
+            {},
+            "",
+            getFullyQualifiedSearchUrl(
+                newMode,
+                query!,
+                selectedSuburb,
+                bounds,
+                searchRadius,
+                searchSorting
+            )
+        );
     };
 
     return (
         <>
-            <div className={styles.searchBox}>
-                <Input
-                    placeholder="Arts, Dancing, Gymnastics or Tennis"
-                    defaultValue={query ?? ""}
-                    className={`${styles.searchField} ${styles.input}  ${queryError && styles.errorQuery}`}
-                    onChange={onQueryChange}
-                    size="large"
-                    allowClear={{
-                        clearIcon: (
-                            <CloseSquareFilled style={{ fontSize: "20px" }} />
-                        ),
-                    }}
-                />
-                <Space.Compact style={{ width: "100%" }}>
-                    <SuburbSearch
-                        placeholder="Type Suburb, Town or Postcode"
-                        onSuburbSelect={onSuburbSelected}
-                        onSuburbDeselect={onSuburbDeselect}
-                        defaultSuburb={selectedSuburb}
-                        className={`${styles.autocomplete} ${suburbError && styles.errorSuburb}`}
+            {searchMode === "list" && (
+                <div className={styles.searchBox}>
+                    <Input
+                        placeholder="Arts, Dancing, Gymnastics or Tennis"
+                        defaultValue={query ?? ""}
+                        className={`${styles.searchField} ${styles.input}  ${queryError && styles.errorQuery}`}
+                        onChange={onQueryChange}
                         size="large"
+                        allowClear={{
+                            clearIcon: (
+                                <CloseSquareFilled
+                                    style={{ fontSize: "20px" }}
+                                />
+                            ),
+                        }}
                     />
-                    <Button
-                        type="primary"
-                        size="large"
-                        className={styles.searchButton}
-                        onClick={onSearchClicked}
-                    >
-                        <SearchOutlined />
-                    </Button>
-                </Space.Compact>
-            </div>
+                    <Space.Compact style={{ width: "100%" }}>
+                        <SuburbSearch
+                            placeholder="Type Suburb, Town or Postcode"
+                            onSuburbSelect={onSuburbSelected}
+                            onSuburbDeselect={onSuburbDeselect}
+                            defaultSuburb={selectedSuburb}
+                            className={`${styles.autocomplete} ${suburbError && styles.errorSuburb}`}
+                            size="large"
+                        />
+                        <Button
+                            type="primary"
+                            size="large"
+                            className={styles.searchButton}
+                            onClick={onSearchClicked}
+                        >
+                            <SearchOutlined />
+                        </Button>
+                    </Space.Compact>
+                </div>
+            )}
             <div className={styles.filterWrapper}>
                 <div className={`${styles.filters}`}>
                     <Space.Compact className="compactWrapper">
@@ -128,7 +205,7 @@ export const CompactSearch = () => {
                             )}
                         </Button>
                         <Select
-                            defaultValue="allages"
+                            defaultValue="All Ages"
                             className={styles.dropdown}
                             style={{ minWidth: "110px" }}
                             size="large"
@@ -137,14 +214,14 @@ export const CompactSearch = () => {
                                     value: "allages",
                                     label: "All Ages",
                                 },
-                                { value: "preschool", label: "Preschool" },
-                                { value: "schoolage", label: "School" },
-                                { value: "youth", label: "Youth" },
+                                { value: "Preschool", label: "Preschool" },
+                                { value: "Kids", label: "Kids" },
+                                { value: "Junior", label: "Junior" },
                             ]}
                         />
                         {searchMode === "list" && (
                             <>
-                                {selectedSuburb?.suburbId !== "map" && (
+                                {selectedSuburb?.suburbId !== "bounds" && (
                                     <Select
                                         onChange={onRadiusChange}
                                         defaultValue="10000"

@@ -7,8 +7,8 @@ import { SearchContext } from "@/components/context/searchContext";
 import { ListingSearchResult } from "@/models/listingSearchResult";
 import { CompactSearch } from "@/components/search/compactSearch";
 import { useParams, useSearchParams } from "next/navigation";
+import { Bounds, MapView } from "@/components/map/mapView";
 import { ListView } from "@/components/list/listView";
-import { MapView } from "@/components/map/mapView";
 import { Sort } from "@/db/listingRepository";
 import { Header } from "@/components/header";
 import { MapArea } from "@/models/mapArea";
@@ -28,11 +28,38 @@ pageLimit.set("list", 20);
 pageLimit.set("map", 100);
 
 export const CombinedSearch = (props: CombinedSearchProps) => {
-    const [searchMode, setSearchMode] = useState<SearchMode>("list");
-
     const q = useSearchParams().get("q")!;
+    const m = useSearchParams().get("m")!;
 
-    const suburbId = decodeURIComponent(useParams().suburbId as string);
+    const [searchMode, setSearchMode] = useState<SearchMode>(
+        (m as SearchMode) ?? "list"
+    );
+
+    const suburbId = useParams().suburbId;
+
+    let suburb = undefined;
+
+    // read initial bounds
+    if (suburbId === "bounds") {
+        const [northEastToken, southWestToken] = decodeURIComponent(
+            useParams().suburbFullname! as string
+        ).split(":");
+
+        const northEast = JSON.parse(northEastToken);
+        const southWest = JSON.parse(southWestToken);
+
+        suburb = {
+            suburbId: "bounds",
+            fullName: "Map Area",
+            bounds: {
+                northEast,
+                southWest,
+            },
+        };
+    }
+
+    const radius = useSearchParams().get("radius");
+    const sorting = useSearchParams().get("sorting");
 
     const [query, setQuery] = useState<string | undefined>(q);
     const [searchSuburb, setSearchSuburb] = useState<
@@ -40,31 +67,44 @@ export const CombinedSearch = (props: CombinedSearchProps) => {
     >(undefined);
     const [selectedSuburb, setSelectedSuburb] = useState<
         Suburb | MapArea | undefined
-    >(undefined);
+    >(suburb);
+
     const [listingSearchResults, setListingSearchResults] = useState<
         ListingSearchResult[] | undefined
     >(undefined);
-    const [searchSorting, setSearchSorting] = useState<Sort>("relevance");
-    const [searchRadius, setSearchRadius] = useState<number>(10000);
+    const [searchSorting, setSearchSorting] = useState<Sort>(
+        (sorting as Sort) ?? "relevance"
+    );
+    const [searchRadius, setSearchRadius] = useState<number>(
+        radius ? parseInt(radius) : 10000
+    );
 
     const [loading, setLoading] = useState<boolean>(false);
     const [lastSearchToken, setLastSearchToken] = useState<string | undefined>(
         undefined
     );
     const [isNewSearch, setIsNewSearch] = useState<boolean>(true);
+    const [bounds, setBounds] = useState<Bounds | undefined>(undefined);
 
     useEffect(() => {
         (async function () {
             setSearchSuburb(selectedSuburb);
 
-            if (selectedSuburb?.suburbId !== "map") {
+            if (selectedSuburb?.suburbId !== "bounds") {
                 await fetchSuburb();
                 await fireSearchListings();
             } else {
                 await fireSearchListingsInBounds();
             }
         })();
-    }, [suburbId, searchSorting, searchRadius, lastSearchToken, isNewSearch]);
+    }, [
+        suburbId,
+        (selectedSuburb as MapArea)?.bounds,
+        searchSorting,
+        searchRadius,
+        lastSearchToken,
+        isNewSearch,
+    ]);
 
     const currentResultSize = listingSearchResults
         ? listingSearchResults[listingSearchResults.length - 1]?.searchMeta
@@ -97,6 +137,7 @@ export const CombinedSearch = (props: CombinedSearchProps) => {
             listingSearchResults.length < currentResultSize
                 ? lastSearchToken
                 : undefined;
+
         await searchListingsInBounds(
             query!,
             pageLimit.get(searchMode) as number,
@@ -216,6 +257,8 @@ export const CombinedSearch = (props: CombinedSearchProps) => {
                     setLoading,
                     isNewSearch,
                     setIsNewSearch,
+                    bounds,
+                    setBounds,
                     fireSearchListings,
                     fireSearchListingsInBounds,
                 }}

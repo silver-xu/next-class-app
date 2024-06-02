@@ -3,6 +3,7 @@ import { SearchMode } from "@/components/search/combinedSearch";
 import { Sort } from "@/db/listingRepository";
 import { MapArea } from "@/models/mapArea";
 import { Suburb } from "@/models/suburb";
+import { Bounds } from "../map/mapView";
 import { createContext } from "react";
 
 interface SearchContextProps {
@@ -28,6 +29,8 @@ interface SearchContextProps {
     setLastSearchToken: (token: string | undefined) => void;
     isNewSearch: boolean;
     setIsNewSearch: (isNewSearch: boolean) => void;
+    bounds: Bounds | undefined;
+    setBounds: (bounds: Bounds) => void;
     fireSearchListings: () => Promise<void>;
     fireSearchListingsInBounds: () => Promise<void>;
 }
@@ -53,6 +56,8 @@ export const SearchContext = createContext<SearchContextProps>({
     setLastSearchToken: () => {},
     isNewSearch: true,
     setIsNewSearch: () => {},
+    bounds: undefined,
+    setBounds: () => {},
     fireSearchListings: () => {
         return Promise.resolve();
     },

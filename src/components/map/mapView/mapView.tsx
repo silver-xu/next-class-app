@@ -13,6 +13,7 @@ import { MapViewItem } from "@/components/map/mapViewItem";
 import { MapLocation } from "@/models/map-location";
 
 import listViewItemStyles from "@/components/list/listViewItem/listViewItem.module.scss";
+import { getFullyQualifiedSearchUrl } from "@/utils/urlUtils";
 import styles from "./mapView.module.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -22,7 +23,7 @@ export interface MapSearchProps {
     mapBoxApiKey: string | undefined;
 }
 
-interface Bounds {
+export interface Bounds {
     southwest: MapLocation;
     northeast: MapLocation;
 }
@@ -90,25 +91,21 @@ export const MapView = (props: MapSearchProps) => {
         ListingSearchResult | undefined
     >(undefined);
 
-    const [bounds, setBounds] = useState<Bounds>({
-        southwest: {
-            lat: -37.94738737623074,
-            lng: 144.75162903213288,
-        },
-        northeast: {
-            lat: -37.65054733300053,
-            lng: 145.2759752895912,
-        },
-    });
+    const [loaded, setLoaded] = useState<boolean>(false);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mapRef = useRef<any>(null);
 
     const {
         listingSearchResults,
-        fireSearchListingsInBounds,
+        query,
         setSelectedSuburb,
         setIsNewSearch,
+        selectedSuburb,
+        searchSorting,
+        searchRadius,
+        bounds,
+        setBounds,
     } = useContext(SearchContext);
 
     const onMarkerClick = (listing: ListingSearchResult) => {
@@ -126,9 +123,12 @@ export const MapView = (props: MapSearchProps) => {
 
         const [longitude, latitude] = listing.address.location.coordinates;
 
-        mapRef.current?.flyTo({
-            center: [longitude, latitude],
-        });
+        mapRef.current?.flyTo(
+            {
+                center: [longitude, latitude],
+            },
+            200
+        );
 
         setTimeout(() => {
             setMarkerClicked(false);
@@ -166,7 +166,22 @@ export const MapView = (props: MapSearchProps) => {
         }) ?? [];
 
     useEffect(() => {
+        if (!listingSearchResults) {
+            return;
+        }
+        const searchBounds = getBounds(listingSearchResults);
         setBounds(getBounds(listingSearchResults));
+
+        mapRef.current &&
+            mapRef.current.fitBounds(
+                [
+                    [searchBounds.northeast.lng, searchBounds.northeast.lat],
+                    [searchBounds.southwest.lng, searchBounds.southwest.lat],
+                ],
+                200
+            );
+
+        setTimeout(() => setLoaded(true), 5000);
     }, [listingSearchResults]);
 
     const listingView = selectedListing && (
@@ -174,31 +189,66 @@ export const MapView = (props: MapSearchProps) => {
     );
 
     const onMove = async () => {
-        const mapGL = mapRef.current.getMap();
-        const bounds = mapGL.getBounds();
+        if (!markerClicked && loaded) {
+            const mapGL = mapRef.current.getMap();
+            const bounds = mapGL.getBounds();
 
-        const { lng: northEastLng, lat: northEastLat } = bounds._ne;
-        const { lng: southWestLng, lat: southWestLat } = bounds._sw;
+            setBounds({
+                northeast: bounds._ne,
+                southwest: bounds._sw,
+            });
 
-        setSelectedSuburb({
-            fullName: "Map Area",
-            suburbId: "map",
-            bounds: {
-                northEast: [northEastLng, northEastLat],
-                southWest: [southWestLng, southWestLat],
-            },
-        });
-
-        if (!markerClicked) {
             setMoved(true);
             setIsNewSearch(true);
         }
     };
 
     const onAreaSearchClicked = async () => {
-        await fireSearchListingsInBounds();
+        const currentBounds = bounds!;
+        setSelectedSuburb({
+            fullName: "Map Area",
+            suburbId: "bounds",
+            bounds: {
+                northEast: [
+                    currentBounds.northeast.lng,
+                    currentBounds.northeast.lat,
+                ],
+                southWest: [
+                    currentBounds.southwest.lng,
+                    currentBounds.southwest.lat,
+                ],
+            },
+        });
+
+        setLoaded(false);
         setMoved(false);
         setIsNewSearch(true);
+
+        window.history.pushState(
+            {},
+            "",
+            getFullyQualifiedSearchUrl(
+                "map",
+                query!,
+                selectedSuburb,
+                currentBounds,
+                searchRadius,
+                searchSorting
+            )
+        );
+    };
+
+    const onLoad = () => {
+        if (!bounds) {
+            return;
+        }
+
+        mapRef.current.fitBounds([
+            [bounds.northeast.lng, bounds.northeast.lat],
+            [bounds.southwest.lng, bounds.southwest.lat],
+        ]);
+
+        setTimeout(() => setLoaded(true), 5000);
     };
 
     return (
@@ -209,12 +259,12 @@ export const MapView = (props: MapSearchProps) => {
                         ref={mapRef}
                         mapboxAccessToken={mapBoxApiKey}
                         onMove={onMove}
+                        onLoad={onLoad}
                         initialViewState={{
-                            bounds: bounds.southwest &&
-                                bounds.northeast && [
-                                    bounds.southwest,
-                                    bounds.northeast,
-                                ],
+                            bounds: [
+                                [144.75162903213288, -37.94738737623074],
+                                [145.2759752895912, -37.65054733300053],
+                            ],
                         }}
                         style={{ width: "100%", height: "100%" }}
                         mapStyle="mapbox://styles/mapbox/streets-v9"
