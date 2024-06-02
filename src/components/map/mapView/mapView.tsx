@@ -111,7 +111,6 @@ export const MapView = (props: MapSearchProps) => {
     const onMarkerClick = (listing: ListingSearchResult) => {
         setMarkerClicked(true);
         setSelectedListing(listing);
-        setMoved(false);
 
         if (popupOpen) {
             setPopupOpen(false);
@@ -121,18 +120,9 @@ export const MapView = (props: MapSearchProps) => {
             setPopupOpen(true);
         }
 
-        const [longitude, latitude] = listing.address.location.coordinates;
-
-        mapRef.current?.flyTo(
-            {
-                center: [longitude, latitude],
-            },
-            200
-        );
-
         setTimeout(() => {
             setMarkerClicked(false);
-        }, 1000);
+        }, 2000);
     };
 
     const markers =
@@ -178,10 +168,10 @@ export const MapView = (props: MapSearchProps) => {
                     [searchBounds.northeast.lng, searchBounds.northeast.lat],
                     [searchBounds.southwest.lng, searchBounds.southwest.lat],
                 ],
-                200
+                50
             );
 
-        setTimeout(() => setLoaded(true), 5000);
+        setTimeout(() => setLoaded(true), 3000);
     }, [listingSearchResults]);
 
     const listingView = selectedListing && (
@@ -189,15 +179,31 @@ export const MapView = (props: MapSearchProps) => {
     );
 
     const onMove = async () => {
+        const mapGL = mapRef.current.getMap();
+        const bounds = mapGL.getBounds();
+
+        setBounds({
+            northeast: bounds._ne,
+            southwest: bounds._sw,
+        });
+
+        window.history.pushState(
+            {},
+            "",
+            getFullyQualifiedSearchUrl(
+                "map",
+                query!,
+                selectedSuburb,
+                {
+                    northeast: bounds._ne,
+                    southwest: bounds._sw,
+                },
+                searchRadius,
+                searchSorting
+            )
+        );
+
         if (!markerClicked && loaded) {
-            const mapGL = mapRef.current.getMap();
-            const bounds = mapGL.getBounds();
-
-            setBounds({
-                northeast: bounds._ne,
-                southwest: bounds._sw,
-            });
-
             setMoved(true);
             setIsNewSearch(true);
         }
@@ -248,7 +254,7 @@ export const MapView = (props: MapSearchProps) => {
             [bounds.southwest.lng, bounds.southwest.lat],
         ]);
 
-        setTimeout(() => setLoaded(true), 5000);
+        setTimeout(() => setLoaded(true), 2000);
     };
 
     return (
